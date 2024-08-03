@@ -23,6 +23,6 @@
 		<Button Grid.Column="2" Content="Музыка"/>
 		<Button Grid.Column="3" Content="Настройки"/>
 
-		<Frame Grid.Row="2" Grid.ColumnSpan="4" />
+		<Frame Grid.Row="2" Grid.ColumnSpan="4" NavigationUIVisibility="Hidden"/>
 	</Grid>
 </Window>
