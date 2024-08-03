@@ -10,9 +10,9 @@ namespace Belly.Classes
 {
     public class PageControl
     {
-        Page musicEditor = new MusicEditor();
+        static Page musicEditor = new MusicEditor();
 
-        static Frame mainFrame;
+        static public Frame mainFrame;
 
         public enum Pages
         {
@@ -20,9 +20,14 @@ namespace Belly.Classes
         }
 
 
-        static void ChangePage()
+        static public void ChangePage(Pages pages)
         {
-
+            switch (pages)
+            {
+                case Pages.musicEditor:
+                    mainFrame.Navigate(musicEditor);
+                    break;
+            }
         }
     }
 }
