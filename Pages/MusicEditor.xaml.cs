@@ -1,20 +1,9 @@
-﻿using Belly.Classes;
+﻿
 using Belly.Classes.StaticClasses;
-using System;
+using Belly.Objects;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Belly.Pages
 {
@@ -27,11 +16,37 @@ namespace Belly.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            musicLists.RefreshLists();
 
-            DataGrid5Min.ItemsSource = musicLists.Folder5Min;
-            DataGrid10Min.ItemsSource = musicLists.Folder10Min;
-            DataGrid40Min.ItemsSource = musicLists.Folder40Min;
+            DataGrid5Min.ItemsSource = new List<Track>() 
+            { 
+                new Track("C:\\Users\\Hukuu\\Music\\Geoxor - Twilight.mp3"),
+                new Track("C:\\Users\\Hukuu\\Music\\Geoxor & poixone - I'm Here.mp3"),
+                new Track("C:\\Users\\Hukuu\\Music\\Geoxor - Neon Eyes.mp3"),
+                new Track("C:\\Users\\Hukuu\\Music\\Geoxor__Dritic_-_Let_You_Go.mp3")
+            };
+            DataGrid10Min.ItemsSource = new List<Track>()
+            {
+                new Track("C:\\Users\\Hukuu\\Music\\Geoxor - Twilight.mp3"),
+                new Track("C:\\Users\\Hukuu\\Music\\Geoxor & poixone - I'm Here.mp3"),
+                new Track("C:\\Users\\Hukuu\\Music\\Geoxor - Neon Eyes.mp3"),
+                new Track("C:\\Users\\Hukuu\\Music\\Geoxor__Dritic_-_Let_You_Go.mp3")
+            };
+            DataGrid40Min.ItemsSource = new List<Track>()
+            {
+                new Track("C:\\Users\\Hukuu\\Music\\Geoxor - Twilight.mp3"),
+                new Track("C:\\Users\\Hukuu\\Music\\Geoxor & poixone - I'm Here.mp3"),
+                new Track("C:\\Users\\Hukuu\\Music\\Geoxor - Neon Eyes.mp3"),
+                new Track("C:\\Users\\Hukuu\\Music\\Geoxor__Dritic_-_Let_You_Go.mp3")
+            };
+        }
+        private void SaveClick(object sender, RoutedEventArgs e)
+        {
+            musicLists.SaveLists
+            (
+                (List<Track>)DataGrid5Min.ItemsSource, 
+                (List<Track>)DataGrid10Min.ItemsSource, 
+                (List<Track>)DataGrid40Min.ItemsSource
+            );
         }
     }
 }
