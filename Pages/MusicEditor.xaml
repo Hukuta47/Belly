@@ -9,9 +9,14 @@
       Title="MusicEditor">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
 		<TabControl>
 			<TabItem Header="5 Минут">
-				<DataGrid AutoGenerateColumns="False">
+				<DataGrid AutoGenerateColumns="False" x:Name="DataGrid5Min">
 					<DataGrid.Columns>
 						<DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
 						<DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="auto"/>
@@ -19,7 +24,7 @@
 				</DataGrid>
 			</TabItem>
 			<TabItem Header="10 Минут">
-				<DataGrid AutoGenerateColumns="False">
+                <DataGrid AutoGenerateColumns="False" x:Name="DataGrid10Min">
 					<DataGrid.Columns>
 						<DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
 						<DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="auto"/>
@@ -27,7 +32,7 @@
 				</DataGrid>
 			</TabItem>
 			<TabItem Header="40 Минут">
-				<DataGrid AutoGenerateColumns="False">
+                <DataGrid AutoGenerateColumns="False" x:Name="DataGrid40Min">
 					<DataGrid.Columns>
 						<DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
 						<DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="auto"/>
@@ -35,5 +40,10 @@
 				</DataGrid>
 			</TabItem>
 		</TabControl>
+
+        <Button Grid.Row="1" Content="Обновить списки" Click="Button_Click"/>
+
+
+
     </Grid>
 </Page>
