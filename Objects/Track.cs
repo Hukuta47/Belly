@@ -9,6 +9,7 @@ namespace Belly.Objects
         public Track(string path)
         {
             Path = path;
+            Priority = 0;
         }
         public string Name 
         { 

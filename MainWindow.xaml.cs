@@ -33,7 +33,7 @@ namespace Belly
                 if (!Directory.Exists(folder))
                 {
                     Directory.CreateDirectory(folder);
-                    File.WriteAllText($"{folder}\\listInfo.json", "");
+                    File.WriteAllText($"{folder}\\listInfo.json", "[]");
                 }
             }
         }

@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Belly.Objects;
+using Newtonsoft.Json;
 
 
 namespace Belly.Classes.StaticClasses
@@ -22,23 +25,12 @@ namespace Belly.Classes.StaticClasses
         {
             foreach (string folderPath in Folders)
             {
-                foreach (string path in Directory.GetFiles(folderPath, "*.mp3"))
-                {
-                    switch (folderPath)
-                    {
-                        case "5 min":
-                            Folder5Min.Add(new Belly.Objects.Track(path));
-                            break;
-                        case "10 min":
-                            Folder10Min.Add(new Belly.Objects.Track(path));
-                            break;
-                        case "40 min":
-                            Folder40Min.Add(new Belly.Objects.Track(path));
-                            break;
-                    }
-                }
+
             }
             
         }
+
+
+        
     }
 }
