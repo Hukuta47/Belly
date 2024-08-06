@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:Belly.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="600"
-      Title="MusicEditor">
+      Title="MusicEditor"
+	  AllowDrop="True"
+	  Drop="Page_Drop">
 
     <Grid>
         <Grid.RowDefinitions>
