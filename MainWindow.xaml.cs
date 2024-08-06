@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -17,8 +14,9 @@ namespace Belly
         public MainWindow()
         {
             InitializeComponent();
-            PageControl.mainFrame = frame;
             InitializeFolders();
+            PageControl.mainFrame = frame;
+
         }
         void InitializeFolders()
         {
@@ -37,9 +35,6 @@ namespace Belly
                 }
             }
         }
-
-
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

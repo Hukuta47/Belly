@@ -12,32 +12,15 @@ namespace Belly.Pages
         public MusicEditor()
         {
             InitializeComponent();
+            DataGrid5Min.ItemsSource = musicLists.LoadList("5 min\\listInfo.json");
+            DataGrid10Min.ItemsSource = musicLists.LoadList("10 min\\listInfo.json");
+            DataGrid40Min.ItemsSource = musicLists.LoadList("40 min\\listInfo.json");
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            DataGrid5Min.ItemsSource = new List<Track>() 
-            { 
-                new Track("C:\\Users\\Hukuu\\Music\\Geoxor - Twilight.mp3"),
-                new Track("C:\\Users\\Hukuu\\Music\\Geoxor & poixone - I'm Here.mp3"),
-                new Track("C:\\Users\\Hukuu\\Music\\Geoxor - Neon Eyes.mp3"),
-                new Track("C:\\Users\\Hukuu\\Music\\Geoxor__Dritic_-_Let_You_Go.mp3")
-            };
-            DataGrid10Min.ItemsSource = new List<Track>()
-            {
-                new Track("C:\\Users\\Hukuu\\Music\\Geoxor - Twilight.mp3"),
-                new Track("C:\\Users\\Hukuu\\Music\\Geoxor & poixone - I'm Here.mp3"),
-                new Track("C:\\Users\\Hukuu\\Music\\Geoxor - Neon Eyes.mp3"),
-                new Track("C:\\Users\\Hukuu\\Music\\Geoxor__Dritic_-_Let_You_Go.mp3")
-            };
-            DataGrid40Min.ItemsSource = new List<Track>()
-            {
-                new Track("C:\\Users\\Hukuu\\Music\\Geoxor - Twilight.mp3"),
-                new Track("C:\\Users\\Hukuu\\Music\\Geoxor & poixone - I'm Here.mp3"),
-                new Track("C:\\Users\\Hukuu\\Music\\Geoxor - Neon Eyes.mp3"),
-                new Track("C:\\Users\\Hukuu\\Music\\Geoxor__Dritic_-_Let_You_Go.mp3")
-            };
+            musicLists.RefreshLists();
         }
         private void SaveClick(object sender, RoutedEventArgs e)
         {

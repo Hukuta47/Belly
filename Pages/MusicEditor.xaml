@@ -22,7 +22,7 @@
 			<TabItem Header="5 Минут">
 				<DataGrid AutoGenerateColumns="False" x:Name="DataGrid5Min">
 					<DataGrid.Columns>
-						<DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
+                        <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
 						<DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="auto"/>
 					</DataGrid.Columns>
 				</DataGrid>
@@ -30,7 +30,7 @@
 			<TabItem Header="10 Минут">
                 <DataGrid AutoGenerateColumns="False" x:Name="DataGrid10Min">
 					<DataGrid.Columns>
-						<DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
+                        <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
 						<DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="auto"/>
 					</DataGrid.Columns>
 				</DataGrid>
@@ -38,7 +38,7 @@
 			<TabItem Header="40 Минут">
                 <DataGrid AutoGenerateColumns="False" x:Name="DataGrid40Min">
 					<DataGrid.Columns>
-						<DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
+						<DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
 						<DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="auto"/>
 					</DataGrid.Columns>
 				</DataGrid>
