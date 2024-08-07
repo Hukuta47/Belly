@@ -1,0 +1,56 @@
+﻿<Page x:Class="Belly.Pages.MusicEditor"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Belly.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="600"
+      Title="MusicEditor"
+	  AllowDrop="True"
+	  Drop="Page_Drop">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+        
+		<TabControl Grid.ColumnSpan="2">
+			<TabItem Header="5 Минут">
+				<DataGrid AutoGenerateColumns="False" x:Name="DataGrid5Min">
+					<DataGrid.Columns>
+                        <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
+						<DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="auto"/>
+					</DataGrid.Columns>
+				</DataGrid>
+			</TabItem>
+			<TabItem Header="10 Минут">
+                <DataGrid AutoGenerateColumns="False" x:Name="DataGrid10Min">
+					<DataGrid.Columns>
+                        <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
+						<DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="auto"/>
+					</DataGrid.Columns>
+				</DataGrid>
+			</TabItem>
+			<TabItem Header="40 Минут">
+                <DataGrid AutoGenerateColumns="False" x:Name="DataGrid40Min">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
+						<DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="auto"/>
+					</DataGrid.Columns>
+				</DataGrid>
+			</TabItem>
+		</TabControl>
+
+        <Button Grid.Row="1" Grid.Column="0" Content="Удалить" Click="DeleteClick"/>
+		<Button Grid.Row="1" Grid.Column="1" Content="Сохранить приоритет" Click="SaveClick"/>
+
+
+
+    </Grid>
+</Page>
