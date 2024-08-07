@@ -7,12 +7,14 @@ namespace Belly.Classes
     public class PageControl
     {
         static Page musicEditor = new MusicEditor();
+        static Page sheduleEditor = new SheduleEditor();
 
         static public Frame mainFrame;
 
         public enum Pages
         {
-            musicEditor
+            musicEditor,
+            sheduleEditor
         }
 
 
@@ -22,6 +24,9 @@ namespace Belly.Classes
             {
                 case Pages.musicEditor:
                     mainFrame.Navigate(musicEditor);
+                    break;
+                case Pages.sheduleEditor:
+                    mainFrame.Navigate(sheduleEditor);
                     break;
             }
         }

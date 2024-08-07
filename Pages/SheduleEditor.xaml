@@ -1,0 +1,27 @@
+﻿<Page x:Class="Belly.Pages.SheduleEditor"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Belly.Pages"
+      mc:Ignorable="d"
+      Title="SheduleEditor" Height="476" Width="627">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="Тип дня:"/>
+        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="schedules" DisplayMemberPath="Name"/>
+
+        <DataGrid Grid.Row="1" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</Page>

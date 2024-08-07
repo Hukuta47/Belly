@@ -33,6 +33,7 @@ namespace Belly.Pages
                 foreach (Track selectTrack in dataGrid.SelectedItems)
                 {
                     tempTracks.Remove(selectTrack);
+                    File.Delete(selectTrack.Path);
                 }
                 dataGrid.ItemsSource = null;
                 dataGrid.ItemsSource = tempTracks;
@@ -80,43 +81,46 @@ namespace Belly.Pages
                     {
                         if (addTrackWindow.Accept5min)
                         {
-                            File.Copy(file, $"5 min\\{Path.GetFileName(file)}", false);
-                            musicLists.Folder5Min.Add(new Track($"5min\\{Path.GetFileName(file)}"));
-                            musicLists.Folder5Min = RemoveDuplicates(musicLists.Folder5Min);
+                            if (!musicLists.Folder5Min.Exists(l => l.Path == new Track($"5 min\\{Path.GetFileName(file)}").Path))
+                            {
+                                File.Copy(file, $"5 min\\{Path.GetFileName(file)}", true);
+                                musicLists.Folder5Min.Add(new Track($"5 min\\{Path.GetFileName(file)}"));
+                                var json = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("5 min\\listInfo.json"));
 
-
-                            var json = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("5 min\\listInfo.json"));
-                            json = RemoveDuplicates(json);
-                            json.Add(new Track($"5 min\\{Path.GetFileName(file)}"));
-                            json.Sort((m1, m2) => string.Compare(m1.Name, m2.Name, StringComparison.Ordinal)); // Сортировка А-Я
-                            var jsonWrit = JsonConvert.SerializeObject(json, Formatting.Indented);
-                            File.WriteAllText("5 min\\listInfo.json", jsonWrit);
+                                json.Add(new Track($"5 min\\{Path.GetFileName(file)}"));
+                                json.Sort((m1, m2) => string.Compare(m1.Name, m2.Name, StringComparison.Ordinal)); // Сортировка А-Я
+                                var jsonWrit = JsonConvert.SerializeObject(json, Formatting.Indented);
+                                File.WriteAllText("5 min\\listInfo.json", jsonWrit);
+                            }
                         }
                         if (addTrackWindow.Accept10min)
                         {
-                            File.Copy(file, $"10 min\\{Path.GetFileName(file)}", false);
-                            musicLists.Folder10Min.Add(new Track($"5min\\{Path.GetFileName(file)}"));
-                            musicLists.Folder10Min = RemoveDuplicates(musicLists.Folder10Min);
+                            if (!musicLists.Folder10Min.Exists(l => l.Path == new Track($"10 min\\{Path.GetFileName(file)}").Path))
+                            {
+                                File.Copy(file, $"10 min\\{Path.GetFileName(file)}", true);
+                                musicLists.Folder10Min.Add(new Track($"10 min\\{Path.GetFileName(file)}"));
+                                var json = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("10 min\\listInfo.json"));
 
-                            var json = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("5 min\\listInfo.json"));
-                            json = RemoveDuplicates(json);
-                            json.Add(new Track($"10 min\\{Path.GetFileName(file)}"));
-                            json.Sort((m1, m2) => string.Compare(m1.Name, m2.Name, StringComparison.Ordinal)); // Сортировка А-Я
-                            var jsonWrit = JsonConvert.SerializeObject(json, Formatting.Indented);
-                            File.WriteAllText("10 min\\listInfo.json", jsonWrit);
+                                json.Add(new Track($"10 min\\{Path.GetFileName(file)}"));
+                                json.Sort((m1, m2) => string.Compare(m1.Name, m2.Name, StringComparison.Ordinal)); // Сортировка А-Я
+                                var jsonWrit = JsonConvert.SerializeObject(json, Formatting.Indented);
+                                File.WriteAllText("10 min\\listInfo.json", jsonWrit);
+                            }
                         }
                         if (addTrackWindow.Accept40min)
                         {
-                            File.Copy(file, $"40 min\\{Path.GetFileName(file)}", false);
-                            musicLists.Folder40Min.Add(new Track($"5min\\{Path.GetFileName(file)}"));
-                            musicLists.Folder40Min = RemoveDuplicates(musicLists.Folder40Min);
+                            
+                            if (!musicLists.Folder40Min.Exists(l => l.Path == new Track($"40 min\\{Path.GetFileName(file)}").Path))
+                            {
+                                File.Copy(file, $"40 min\\{Path.GetFileName(file)}", true);
+                                musicLists.Folder40Min.Add(new Track($"40 min\\{Path.GetFileName(file)}"));
+                                var json = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("40 min\\listInfo.json"));
 
-                            var json = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("5 min\\listInfo.json"));
-                            json = RemoveDuplicates(json);
-                            json.Add(new Track($"40 min\\{Path.GetFileName(file)}"));
-                            json.Sort((m1, m2) => string.Compare(m1.Name, m2.Name, StringComparison.Ordinal)); // Сортировка А-Я
-                            var jsonWrit = JsonConvert.SerializeObject(json, Formatting.Indented);
-                            File.WriteAllText("40 min\\listInfo.json", jsonWrit);
+                                json.Add(new Track($"40 min\\{Path.GetFileName(file)}"));
+                                json.Sort((m1, m2) => string.Compare(m1.Name, m2.Name, StringComparison.Ordinal)); // Сортировка А-Я
+                                var jsonWrit = JsonConvert.SerializeObject(json, Formatting.Indented);
+                                File.WriteAllText("40 min\\listInfo.json", jsonWrit);
+                            }
                         }
                     }
                 }
