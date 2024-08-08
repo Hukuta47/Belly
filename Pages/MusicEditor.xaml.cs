@@ -64,9 +64,14 @@ namespace Belly.Pages
         }
         void LoadTracks()
         {
-            DataGrid5Min.ItemsSource = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("5 min\\listInfo.json"));
-            DataGrid10Min.ItemsSource = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("10 min\\listInfo.json"));
-            DataGrid40Min.ItemsSource = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("40 min\\listInfo.json"));
+            musicLists.Folder5Min = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("5 min\\listInfo.json"));
+            musicLists.Folder10Min = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("10 min\\listInfo.json"));
+            musicLists.Folder40Min = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("40 min\\listInfo.json"));
+
+
+            DataGrid5Min.ItemsSource = musicLists.Folder5Min;
+            DataGrid10Min.ItemsSource = musicLists.Folder10Min;
+            DataGrid40Min.ItemsSource = musicLists.Folder40Min;
         }
         private void Page_Drop(object sender, DragEventArgs e)
         {

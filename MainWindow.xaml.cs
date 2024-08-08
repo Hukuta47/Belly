@@ -39,16 +39,19 @@ namespace Belly
         }
         void InitializeFiles()
         {
-            List<Schedule> schedules = new List<Schedule>()
+            if (File.Exists("sheduleList.json"))
             {
-                new Schedule("Обычный день"),
-                new Schedule("Сокращенный день"),
-                new Schedule("Корпоративный день")
-            };
+                List<Schedule> schedules = new List<Schedule>()
+                {
+                    new Schedule("Обычный день"),
+                    new Schedule("Сокращенный день"),
+                    new Schedule("Корпоративный день")
+                };
 
-            var json = JsonConvert.SerializeObject(schedules, Formatting.Indented);
+                var json = JsonConvert.SerializeObject(schedules, Formatting.Indented);
 
-            File.WriteAllText("sheduleList", json);
+                File.WriteAllText("sheduleList.json", json);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
