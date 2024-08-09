@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Belly.Dialogs"
         mc:Ignorable="d"
-        Title="ChangeBellData" Height="368" Width="312">
+        Title="ChangeBellData" Height="185" Width="312">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -16,16 +16,19 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Content="Название"/>
-        <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" x:Name="TextBox_Name"/>
 
         <Label Grid.Row="1" Content="Время"/>
-        <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" x:Name="TextBox_PlayTime" />
 
         <Label Grid.Row="2" Content="Музыка"/>
         <ListBox Grid.Row="2" Grid.Column="1" DisplayMemberPath="Path" x:Name="listTracks"/>
+
+        <CheckBox Grid.Row="3" Grid.ColumnSpan="2" Content="Выбирать музыку по приоритету" Margin="10" x:Name="PrioritySelect"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
             <Button Content="Сохранить" Width="100" Margin="5 5 2.5 5" Click="SaveClick"/>

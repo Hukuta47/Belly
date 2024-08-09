@@ -1,26 +1,19 @@
 ﻿using Belly.Classes.StaticClasses;
 using Belly.Objects;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace Belly.Dialogs
 {
     public partial class ChangeBellData : Window
     {
-        public ChangeBellData()
+        public Bell SelectedItem;
+        public ChangeBellData(object selectedItem)
         {
             InitializeComponent();
+
+            SelectedItem = ((Bell)selectedItem);
 
             List<Track> tracks = new List<Track>();
             
@@ -38,11 +31,31 @@ namespace Belly.Dialogs
             }
 
             listTracks.ItemsSource = tracks;
+
+
+            TextBox_Name.Text = SelectedItem.Name;
+            TextBox_PlayTime.Text = SelectedItem.PlayTime;
+            listTracks.SelectedItem = SelectedItem.track;
+
         }
 
         private void SaveClick(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
+
+            SelectedItem.Name = TextBox_Name.Text;
+            SelectedItem.PlayTime = TextBox_PlayTime.Text;
+
+            if (PrioritySelect.IsChecked == true)
+            {
+                SelectedItem.track = new SelectTrackPriority(musicLists.Folder5Min);
+            }
+            else
+            {
+                SelectedItem.track = (Track)listTracks.SelectedItem;
+            }
+
+
         }
 
         private void CancelClick(object sender, RoutedEventArgs e)

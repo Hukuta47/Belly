@@ -34,6 +34,8 @@
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
+                    <MenuItem Header="Сместить вверх"/>
+                    <MenuItem Header="Сместить вниз"/>
                     <MenuItem Header="Изменить" Click="MenuItem_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>

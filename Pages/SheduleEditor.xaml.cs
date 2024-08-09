@@ -59,11 +59,14 @@ namespace Belly.Pages
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            ChangeBellData changeBellData = new ChangeBellData();
+            ChangeBellData changeBellData = new ChangeBellData(dataListSchedule.SelectedItem);
 
             if (changeBellData.ShowDialog() == true)
             {
-
+                dataListSchedule.SelectedItem = changeBellData.SelectedItem;
+                List<Bell> bells = (List<Bell>)dataListSchedule.ItemsSource;
+                dataListSchedule.ItemsSource = null;
+                dataListSchedule.ItemsSource = bells;
             }
         }
     }
