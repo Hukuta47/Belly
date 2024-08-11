@@ -4,7 +4,7 @@ namespace Belly.Objects
 {
     public class Schedule
     {
-        public Schedule(string Name )
+        public Schedule(string Name)
         {
             this.Name = Name;
             bells = new List<Bell>();

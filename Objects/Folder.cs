@@ -1,46 +1,31 @@
-﻿using System;
+﻿using Belly.Enums;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Shapes;
 
 namespace Belly.Objects
 {
-    public class SelectTrackPriority : Track
+    public class Folder : MediaData
     {
-        List<Track> Playlist = new List<Track>();
-
-
-        public SelectTrackPriority(List<Track> tracks) : base(path:"")
+        public Folder(string name, string pathToListTracks) : base(TypeData.Folder)
         {
-            foreach(Track track in tracks)
-            {
-                Playlist.Add(track);
-            }
-        }
+            Name = name;
 
-        public string Name
-        {
-            get
+            foreach (string path in Directory.GetFiles(pathToListTracks))
             {
-                return $"По приотету из {System.IO.Path.GetDirectoryName(Path)}";
+                listTracks.Add(new Track(path));
             }
-        }
-        public string Path 
-        {
-            get
-            {
-                return GetPriorityPath(Playlist); 
-            }
-        }
 
-        string GetPriorityPath(List<Track> playlist)
+        }
+        public string Name { get; set; }
+        public List<Track> listTracks { get; set; } = new List<Track>();
+
+        public string GetPriorityPath()
         {
             List<Tuple<string, int>> items = new List<Tuple<string, int>>();
-            
-            foreach (Track track in playlist)
+
+            foreach (Track track in listTracks)
             {
                 items.Add(new Tuple<string, int>(track.Path, track.Priority));
             }
@@ -61,5 +46,6 @@ namespace Belly.Objects
 
             return "None";
         }
+
     }
 }

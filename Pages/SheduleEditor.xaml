@@ -30,7 +30,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
                 <DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="*"/>
-                <DataGridTextColumn Binding="{Binding track.Name}" Header="Музыка" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>

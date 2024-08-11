@@ -3,9 +3,9 @@ using System.IO;
 using Belly.Objects;
 using System.Windows.Controls;
 using System.Collections.Generic;
-using Belly.Classes.StaticClasses;
 using System.Windows;
 using Belly.Dialogs;
+using Belly.Classes.StaticClasses;
 
 namespace Belly.Pages
 {
@@ -41,7 +41,8 @@ namespace Belly.Pages
         {
 
             List<Bell> tempList = dataListSchedule.ItemsSource as List<Bell>;
-            tempList.Add(new Bell("Звонок", "8:30", musicLists.Folder5Min[0]));
+            tempList.Add(new Bell("Звонок", "8:30", folderLists.Folder5Min));
+            tempList.Add(new Bell("Перемена", "9:45", folderLists.Folder5Min.listTracks[0]));
             dataListSchedule.ItemsSource = null;
             dataListSchedule.ItemsSource = tempList;
 
@@ -59,11 +60,12 @@ namespace Belly.Pages
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            ChangeBellData changeBellData = new ChangeBellData(dataListSchedule.SelectedItem);
+            SetBellData changeBellData = new SetBellData(dataListSchedule.SelectedItem);
 
             if (changeBellData.ShowDialog() == true)
             {
                 dataListSchedule.SelectedItem = changeBellData.SelectedItem;
+
                 List<Bell> bells = (List<Bell>)dataListSchedule.ItemsSource;
                 dataListSchedule.ItemsSource = null;
                 dataListSchedule.ItemsSource = bells;

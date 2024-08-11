@@ -39,7 +39,7 @@ namespace Belly
         }
         void InitializeFiles()
         {
-            if (File.Exists("sheduleList.json"))
+            if (!File.Exists("sheduleList.json"))
             {
                 List<Schedule> schedules = new List<Schedule>()
                 {
