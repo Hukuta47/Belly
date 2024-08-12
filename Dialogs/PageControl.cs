@@ -8,13 +8,15 @@ namespace Belly.Classes
     {
         static Page musicEditor = new MusicEditor();
         static Page sheduleEditor = new SheduleEditor();
+        static Page mainPage = new MainPage();
 
         static public Frame mainFrame;
 
         public enum Pages
         {
             musicEditor,
-            sheduleEditor
+            sheduleEditor,
+            mainPage
         }
 
 
@@ -27,6 +29,9 @@ namespace Belly.Classes
                     break;
                 case Pages.sheduleEditor:
                     mainFrame.Navigate(sheduleEditor);
+                    break;
+                case Pages.mainPage:
+                    mainFrame.Navigate(mainPage);
                     break;
             }
         }

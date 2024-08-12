@@ -1,7 +1,6 @@
 ﻿using Belly.Enums;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace Belly.Objects
@@ -11,17 +10,9 @@ namespace Belly.Objects
         public Folder(string name, string pathToListTracks) : base(TypeData.Folder)
         {
             Name = name;
-
-            foreach (string path in Directory.GetFiles(pathToListTracks))
-            {
-                listTracks.Add(new Track(path));
-            }
-
         }
-        public string Name { get; set; }
-        public List<Track> listTracks { get; set; } = new List<Track>();
 
-        public string GetPriorityPath()
+        public string GetPriorityPath(List<Track> listTracks)
         {
             List<Tuple<string, int>> items = new List<Tuple<string, int>>();
 

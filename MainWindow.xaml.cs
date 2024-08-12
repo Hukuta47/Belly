@@ -67,6 +67,9 @@ namespace Belly
                 case "schedule":
                     PageControl.ChangePage(PageControl.Pages.sheduleEditor);
                     break;
+                case "main":
+                    PageControl.ChangePage(PageControl.Pages.mainPage);
+                    break;
             }
         }
     }

@@ -18,7 +18,7 @@
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
 
-		<Button Grid.Column="0" Content="Главная"/>
+        <Button Grid.Column="0" Content="Главная" Tag="main" Click="Button_Click"/>
         <Button Grid.Column="1" Content="Звонки" Tag="schedule" Click="Button_Click"/>
 		<Button Grid.Column="2" Content="Музыка" Tag="music" Click="Button_Click"/>
 		<Button Grid.Column="3" Content="Настройки"/>

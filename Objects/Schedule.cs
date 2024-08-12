@@ -10,7 +10,7 @@ namespace Belly.Objects
             bells = new List<Bell>();
         }
         public string Name { get; }
-        public List<Bell> bells { get; set; }
+        public List<Bell> bells { get; set; } = new List<Bell>();
 
     }
 }

@@ -11,11 +11,10 @@ namespace Belly.Objects
             Path = path;
             priority = 1;
         }
-
         private int priority { get; set; }
 
         
-        public string Name 
+        public new string Name 
         { 
             get 
             {

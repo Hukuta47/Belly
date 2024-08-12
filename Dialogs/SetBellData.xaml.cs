@@ -32,9 +32,9 @@ namespace Belly.Dialogs
 
                     List<List<Track>> trackLists = new List<List<Track>>()
                     {
-                        folderLists.Folder5Min.listTracks,
-                        folderLists.Folder10Min.listTracks,
-                        folderLists.Folder40Min.listTracks  
+                        musicLists.Min5,
+                        musicLists.Min10,
+                        musicLists.Min40
                     };
                     List<Track> tmpTracks = new List<Track>();
 

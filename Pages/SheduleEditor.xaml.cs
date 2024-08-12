@@ -27,7 +27,20 @@ namespace Belly.Pages
         void LoadList()
         {
             var jsonRead = JsonConvert.DeserializeObject<List<Schedule>>(File.ReadAllText("sheduleList.json"));
-            schedules.ItemsSource = jsonRead;
+            
+
+            // TODO: Надо короче сделать так чтобы он понимал какой это объект, а то насрано...
+            
+            
+            //schedules.ItemsSource = jsonRead;
+
+
+
+
+            sheduleList.basicSchedule = jsonRead[0];
+            sheduleList.shortSchedule = jsonRead[1];
+            sheduleList.exclusiveSchedule = jsonRead[2];
+
 
             schedules.SelectedIndex = 0;
         }
@@ -42,7 +55,7 @@ namespace Belly.Pages
 
             List<Bell> tempList = dataListSchedule.ItemsSource as List<Bell>;
             tempList.Add(new Bell("Звонок", "8:30", folderLists.Folder5Min));
-            tempList.Add(new Bell("Перемена", "9:45", folderLists.Folder5Min.listTracks[0]));
+            tempList.Add(new Bell("Перемена", "9:45", musicLists.Min5[0]));
             dataListSchedule.ItemsSource = null;
             dataListSchedule.ItemsSource = tempList;
 
