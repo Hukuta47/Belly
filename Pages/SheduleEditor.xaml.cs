@@ -32,7 +32,7 @@ namespace Belly.Pages
             // TODO: Надо короче сделать так чтобы он понимал какой это объект, а то насрано...
             
             
-            //schedules.ItemsSource = jsonRead;
+            schedules.ItemsSource = jsonRead;
 
 
 

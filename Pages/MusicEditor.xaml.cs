@@ -138,6 +138,11 @@ namespace Belly.Pages
             DataGrid10Min.ItemsSource = musicLists.Min10;
             DataGrid40Min.ItemsSource = musicLists.Min40;
 
+
+            DataGrid5Min.Items.Refresh();
+            DataGrid10Min.Items.Refresh();
+            DataGrid40Min.Items.Refresh();
+
         }
 
         public static List<T> RemoveDuplicates<T>(List<T> list)

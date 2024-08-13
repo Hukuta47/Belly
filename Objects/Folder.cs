@@ -7,7 +7,7 @@ namespace Belly.Objects
 {
     public class Folder : MediaData
     {
-        public Folder(string name, string pathToListTracks) : base(TypeData.Folder)
+        public Folder(string name) : base(TypeData.Folder)
         {
             Name = name;
         }

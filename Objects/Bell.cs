@@ -1,4 +1,7 @@
-﻿namespace Belly.Objects
+﻿using Belly.Classes;
+using Newtonsoft.Json;
+
+namespace Belly.Objects
 {
     public class Bell
     {
@@ -10,7 +13,9 @@
         }
         public string Name { get; set; }
         public string PlayTime { get; set; }
+
+        [JsonConverter(typeof(MediaDataJsonConverter))]
         public MediaData Media { get; set; }
-        
+
     }
 }
