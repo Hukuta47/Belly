@@ -5,13 +5,130 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Belly.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="355"
+      d:DesignHeight="450" d:DesignWidth="365"
       Title="MainPage">
 
-    <Grid>
-        <StackPanel>
-            <ComboBox DisplayMemberPath="Name" x:Name="cmbx"/>
-            <Button Content="Сыграть звонок" Click="Button_Click"></Button>
-        </StackPanel>
-    </Grid>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition Height="auto"/>
+		</Grid.RowDefinitions>
+
+		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" > 
+			<Label Content="10:08" HorizontalContentAlignment="Center"/>
+			<Label Content="бла-бла-бла" HorizontalContentAlignment="Center"/>
+		</StackPanel>
+
+		<TabControl TabStripPlacement="Bottom" Grid.Row="1">
+			<TabItem Header="Понидельник">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition Height="auto"/>
+					</Grid.RowDefinitions>
+					<DataGrid Grid.Row="0">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
+							<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
+							<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
+						</DataGrid.Columns>
+					</DataGrid>
+					<ComboBox Grid.Row="1"/>
+				</Grid>
+			</TabItem>
+			
+			<TabItem Header="Вторник">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition Height="auto"/>
+					</Grid.RowDefinitions>
+					<DataGrid Grid.Row="0">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
+							<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
+							<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
+						</DataGrid.Columns>
+					</DataGrid>
+					<ComboBox Grid.Row="1"/>
+				</Grid>
+			</TabItem>
+
+			<TabItem Header="Среда">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition Height="auto"/>
+					</Grid.RowDefinitions>
+					<DataGrid Grid.Row="0">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
+							<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
+							<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
+						</DataGrid.Columns>
+					</DataGrid>
+					<ComboBox Grid.Row="1"/>
+				</Grid>
+			</TabItem>
+			
+			<TabItem Header="Четверг">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition Height="auto"/>
+					</Grid.RowDefinitions>
+					<DataGrid Grid.Row="0">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
+							<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
+							<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
+						</DataGrid.Columns>
+					</DataGrid>
+					<ComboBox Grid.Row="1"/>
+				</Grid>
+			</TabItem>
+			
+			<TabItem Header="Пятница">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition Height="auto"/>
+					</Grid.RowDefinitions>
+					<DataGrid Grid.Row="0">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
+							<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
+							<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
+						</DataGrid.Columns>
+					</DataGrid>
+					<ComboBox Grid.Row="1"/>
+				</Grid>
+			</TabItem>
+			
+			<TabItem Header="Суббота">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition Height="auto"/>
+					</Grid.RowDefinitions>
+					<DataGrid Grid.Row="0">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
+							<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
+							<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
+						</DataGrid.Columns>
+					</DataGrid>
+					<ComboBox Grid.Row="1"/>
+				</Grid>
+			</TabItem>
+		</TabControl>
+
+		<Grid Grid.Row="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Button Content="Сохранить неделю"/>
+		</Grid>
+	</Grid>
 </Page>
