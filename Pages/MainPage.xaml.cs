@@ -2,11 +2,13 @@
 using Belly.Objects;
 using System;
 using System.Windows;
+using NAudio.Wave;
 using System.Windows.Controls;
 using System.Collections.Generic;
 
 namespace Belly.Pages
 {
+
     public partial class MainPage : Page
     {
         int TimeMinutes = DateTime.Now.Minute + (DateTime.Now.Hour * 60);
@@ -15,16 +17,21 @@ namespace Belly.Pages
 
         int RealMinutes = DateTime.Now.Minute;
         int RealHours = DateTime.Now.Hour;
+
+
+        Mp3FileReader reader;
+        WaveOut waveOut;
+
         public MainPage()
         {
             InitializeComponent();
-            TimeSlider.Value = TimeMinutes;
-            WeekTab.SelectedIndex = DayOfWeek;
+            
 
             List<Schedule> schedules = new List<Schedule>()
             {
-                sheduleList.shortSchedule,
+                
                 sheduleList.basicSchedule,
+                sheduleList.shortSchedule,
                 sheduleList.exclusiveSchedule
             };
 
@@ -35,6 +42,13 @@ namespace Belly.Pages
             Friday_Schedules.ItemsSource = schedules;
             Saturday_Schedules.ItemsSource = schedules;
 
+
+            Monday_Schedules.SelectedIndex = 0;
+
+
+
+            TimeSlider.Value = TimeMinutes;
+            WeekTab.SelectedIndex = DayOfWeek;
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -45,6 +59,36 @@ namespace Belly.Pages
             RealMinutes = TimeMinutes % 60;
 
             TimeLabel.Content = $"{RealHours}:{RealMinutes}";
+
+            foreach (Bell bell in (List<Bell>)Monday_DataGrid.ItemsSource)
+            {
+                if (bell.PlayTime == $"{RealHours}:{RealMinutes}")
+                {
+
+                    switch (bell.Media.typeData)
+                    {
+                        case Enums.TypeData.Track:
+
+                            reader = new Mp3FileReader(((Track)bell.Media).Path);
+                            waveOut = new WaveOut();
+                            waveOut.Init(reader);
+                            waveOut.Play();
+
+                            break;
+                        case Enums.TypeData.Folder:
+
+
+                            reader = new Mp3FileReader(((Folder)bell.Media).GetPriorityPath(musicLists.Min5));
+                            waveOut = new WaveOut();
+                            waveOut.Init(reader);
+                            waveOut.Play();
+                            break;
+                    }
+                }
+            }
+
+
+
         }
 
         private void Schedules_SelectionChanged(object sender, SelectionChangedEventArgs e)
