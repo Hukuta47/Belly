@@ -45,7 +45,7 @@ namespace Belly.Pages
 
             Monday_Schedules.SelectedIndex = 0;
 
-
+                                
 
             TimeSlider.Value = TimeMinutes;
             WeekTab.SelectedIndex = DayOfWeek;
@@ -60,31 +60,190 @@ namespace Belly.Pages
 
             TimeLabel.Content = $"{RealHours}:{RealMinutes}";
 
-            foreach (Bell bell in (List<Bell>)Monday_DataGrid.ItemsSource)
+
+            switch (DayOfWeek)
             {
-                if (bell.PlayTime == $"{RealHours}:{RealMinutes}")
-                {
+                case 0:
 
-                    switch (bell.Media.typeData)
+                    foreach (Bell bell in (List<Bell>)Monday_DataGrid.ItemsSource)
                     {
-                        case Enums.TypeData.Track:
+                        if (bell.PlayTime == $"{RealHours}:{RealMinutes}")
+                        {
 
-                            reader = new Mp3FileReader(((Track)bell.Media).Path);
-                            waveOut = new WaveOut();
-                            waveOut.Init(reader);
-                            waveOut.Play();
+                            switch (bell.Media.typeData)
+                            {
+                                case Enums.TypeData.Track:
 
-                            break;
-                        case Enums.TypeData.Folder:
+                                    reader = new Mp3FileReader(((Track)bell.Media).Path);
+                                    waveOut = new WaveOut();
+                                    waveOut.Init(reader);
+                                    waveOut.Play();
+
+                                    break;
+                                case Enums.TypeData.Folder:
 
 
-                            reader = new Mp3FileReader(((Folder)bell.Media).GetPriorityPath(musicLists.Min5));
-                            waveOut = new WaveOut();
-                            waveOut.Init(reader);
-                            waveOut.Play();
-                            break;
+                                    reader = new Mp3FileReader(((Folder)bell.Media).GetPriorityPath(musicLists.Min5));
+                                    waveOut = new WaveOut();
+                                    waveOut.Init(reader);
+                                    waveOut.Play();
+                                    break;
+                            }
+                        }
                     }
-                }
+
+                    break;
+
+                case 1:
+
+                    foreach (Bell bell in (List<Bell>)Tuesday_DataGrid.ItemsSource)
+                    {
+                        if (bell.PlayTime == $"{RealHours}:{RealMinutes}")
+                        {
+
+                            switch (bell.Media.typeData)
+                            {
+                                case Enums.TypeData.Track:
+
+                                    reader = new Mp3FileReader(((Track)bell.Media).Path);
+                                    waveOut = new WaveOut();
+                                    waveOut.Init(reader);
+                                    waveOut.Play();
+
+                                    break;
+                                case Enums.TypeData.Folder:
+
+
+                                    reader = new Mp3FileReader(((Folder)bell.Media).GetPriorityPath(musicLists.Min5));
+                                    waveOut = new WaveOut();
+                                    waveOut.Init(reader);
+                                    waveOut.Play();
+                                    break;
+                            }
+                        }
+                    }
+
+                    break;
+                case 2:
+
+                    foreach (Bell bell in (List<Bell>)Wednesday_DataGrid.ItemsSource)
+                    {
+                        if (bell.PlayTime == $"{RealHours}:{RealMinutes}")
+                        {
+
+                            switch (bell.Media.typeData)
+                            {
+                                case Enums.TypeData.Track:
+
+                                    reader = new Mp3FileReader(((Track)bell.Media).Path);
+                                    waveOut = new WaveOut();
+                                    waveOut.Init(reader);
+                                    waveOut.Play();
+
+                                    break;
+                                case Enums.TypeData.Folder:
+
+
+                                    reader = new Mp3FileReader(((Folder)bell.Media).GetPriorityPath(musicLists.Min5));
+                                    waveOut = new WaveOut();
+                                    waveOut.Init(reader);
+                                    waveOut.Play();
+                                    break;
+                            }
+                        }
+                    }
+
+                    break;
+                case 3:
+
+                    foreach (Bell bell in (List<Bell>)Thursday_DataGrid.ItemsSource)
+                    {
+                        if (bell.PlayTime == $"{RealHours}:{RealMinutes}")
+                        {
+
+                            switch (bell.Media.typeData)
+                            {
+                                case Enums.TypeData.Track:
+
+                                    reader = new Mp3FileReader(((Track)bell.Media).Path);
+                                    waveOut = new WaveOut();
+                                    waveOut.Init(reader);
+                                    waveOut.Play();
+
+                                    break;
+                                case Enums.TypeData.Folder:
+
+
+                                    reader = new Mp3FileReader(((Folder)bell.Media).GetPriorityPath(musicLists.Min5));
+                                    waveOut = new WaveOut();
+                                    waveOut.Init(reader);
+                                    waveOut.Play();
+                                    break;
+                            }
+                        }
+                    }
+
+                    break;
+                case 4:
+
+                    foreach (Bell bell in (List<Bell>)Friday_DataGrid.ItemsSource)
+                    {
+                        if (bell.PlayTime == $"{RealHours}:{RealMinutes}")
+                        {
+
+                            switch (bell.Media.typeData)
+                            {
+                                case Enums.TypeData.Track:
+
+                                    reader = new Mp3FileReader(((Track)bell.Media).Path);
+                                    waveOut = new WaveOut();
+                                    waveOut.Init(reader);
+                                    waveOut.Play();
+
+                                    break;
+                                case Enums.TypeData.Folder:
+
+
+                                    reader = new Mp3FileReader(((Folder)bell.Media).GetPriorityPath(musicLists.Min5));
+                                    waveOut = new WaveOut();
+                                    waveOut.Init(reader);
+                                    waveOut.Play();
+                                    break;
+                            }
+                        }
+                    }
+
+                    break;
+                case 5:
+
+                    foreach (Bell bell in (List<Bell>)Saturday_DataGrid.ItemsSource)
+                    {
+                        if (bell.PlayTime == $"{RealHours}:{RealMinutes}")
+                        {
+
+                            switch (bell.Media.typeData)
+                            {
+                                case Enums.TypeData.Track:
+
+                                    reader = new Mp3FileReader(((Track)bell.Media).Path);
+                                    waveOut = new WaveOut();
+                                    waveOut.Init(reader);
+                                    waveOut.Play();
+
+                                    break;
+                                case Enums.TypeData.Folder:
+
+
+                                    reader = new Mp3FileReader(((Folder)bell.Media).GetPriorityPath(musicLists.Min5));
+                                    waveOut = new WaveOut();
+                                    waveOut.Init(reader);
+                                    waveOut.Play();
+                                    break;
+                            }
+                        }
+                    }
+
+                    break;
             }
 
 
@@ -104,15 +263,17 @@ namespace Belly.Pages
                     Tuesday_DataGrid.ItemsSource = ((Schedule)Tuesday_Schedules.SelectedItem).bells;
                     break;
                 case "Wednesday_Schedules":
+                    Wednesday_DataGrid.ItemsSource = ((Schedule)Wednesday_Schedules.SelectedItem).bells;
                     break;
                 case "Thursday_Schedules":
-                    break;
+                    Thursday_DataGrid.ItemsSource = ((Schedule)Thursday_Schedules.SelectedItem).bells;
+                    break; 
                 case "Friday_Schedules":
+                    Friday_DataGrid.ItemsSource = ((Schedule)Friday_Schedules.SelectedItem).bells;
                     break;
                 case "Saturday_Schedules":
+                    Saturday_DataGrid.ItemsSource = ((Schedule)Saturday_Schedules.SelectedItem).bells;
                     break; 
-
-
 
             }
 
