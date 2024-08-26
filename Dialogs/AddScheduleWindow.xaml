@@ -28,11 +28,11 @@
 		<Label Grid.Row="2" Content="Музыка" x:Name="LabelNameState"/>
 		<ListBox Grid.Row="2" Grid.Column="1" DisplayMemberPath="Path" x:Name="listObjects"/>
 
-		<CheckBox Grid.Row="3" Grid.ColumnSpan="2" Content="Выбирать музыку по приоритету" Margin="10" x:Name="PrioritySelect" Click="PrioritySelect_Clicked"/>
+		<CheckBox Grid.Row="3" Grid.ColumnSpan="2" Content="Выбирать музыку по приоритету" Margin="10" x:Name="PrioritySelect"/>
 
 		<StackPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
-			<Button Content="Создать" Width="100" Margin="5 5 2.5 5" Click="SaveClick"/>
-			<Button Content="Отмена" Width="100" Margin="2.5 5 0 5" Click="CancelClick"/>
+			<Button Content="Создать" Width="100" Margin="5 5 2.5 5" Click="Create_Click"/>
+			<Button Content="Отмена" Width="100" Margin="2.5 5 0 5" Click="Cancel_Click"/>
 		</StackPanel>
 
 	</Grid>

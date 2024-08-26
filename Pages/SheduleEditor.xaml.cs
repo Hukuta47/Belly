@@ -52,12 +52,20 @@ namespace Belly.Pages
 
         private void CreateBell(object sender, System.Windows.RoutedEventArgs e)
         {
+            var dialog = new AddScheduleWindow();
 
             List<Bell> tempList = dataListSchedule.ItemsSource as List<Bell>;
+            if (dialog.ShowDialog() == true)
+            {
+
+            }
+
+
+
             tempList.Add(new Bell("Звонок", "8:30", folderLists.Folder5Min));
             tempList.Add(new Bell("Перемена", "9:45", musicLists.Min5[0]));
-            dataListSchedule.ItemsSource = null;
             dataListSchedule.ItemsSource = tempList;
+            dataListSchedule.Items.Refresh();
 
 
         }
