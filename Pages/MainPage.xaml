@@ -129,7 +129,7 @@
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
-			<Button Content="Сохранить неделю"/>
+			<Button Content="Сохранить неделю" Click="SaveWeek_Click"/>
 		</Grid>
 	</Grid>
 </Page>

@@ -1,4 +1,5 @@
 ﻿using Belly.Classes;
+using Belly.Classes.StaticClasses;
 using Belly.Objects;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -51,6 +52,13 @@ namespace Belly
                 var json = JsonConvert.SerializeObject(schedules, Formatting.Indented);
 
                 File.WriteAllText("sheduleList.json", json);
+            }
+
+            if (!File.Exists("weekList.json"))
+            {
+                var json = JsonConvert.SerializeObject(new weekList(), Formatting.Indented);
+
+                File.WriteAllText("weekList.json", json);
             }
         }
 

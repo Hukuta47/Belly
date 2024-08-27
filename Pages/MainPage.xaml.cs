@@ -5,6 +5,8 @@ using System.Windows;
 using NAudio.Wave;
 using System.Windows.Controls;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Belly.Pages
 {
@@ -136,6 +138,26 @@ namespace Belly.Pages
                     }
                 }
             }
+        }
+
+        private void SaveWeek_Click(object sender, RoutedEventArgs e)
+        {
+            var a = new 
+            {
+                Monday_Schedules,
+                Tuesday_Schedules,
+                Wednesday_Schedules,
+                Thursday_Schedules,
+                Friday_Schedules,
+                Saturday_Schedules
+            };
+
+
+            var json = JsonConvert.SerializeObject(a.Wednesday_Schedules.SelectedItem, Formatting.Indented);
+            File.WriteAllText("weekList.json", json);
+
+
+
         }
     }
 }
