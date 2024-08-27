@@ -44,8 +44,12 @@ namespace Belly.Pages
 
 
             Monday_Schedules.SelectedIndex = 0;
+            Tuesday_Schedules.SelectedIndex = 0;
+            Wednesday_Schedules.SelectedIndex = 0;
+            Thursday_Schedules.SelectedIndex = 0;
+            Friday_Schedules.SelectedIndex = 0;
+            Saturday_Schedules.SelectedIndex = 0;
 
-                                
 
             TimeSlider.Value = TimeMinutes;
             WeekTab.SelectedIndex = DayOfWeek;
@@ -63,12 +67,12 @@ namespace Belly.Pages
 
             switch (DayOfWeek)
             {
-                case 0: playMediaAtTime(Monday_DataGrid); break;
-                case 1: playMediaAtTime(Tuesday_DataGrid); break;
-                case 2: playMediaAtTime(Wednesday_DataGrid); break;
-                case 3: playMediaAtTime(Thursday_DataGrid); break;
-                case 4: playMediaAtTime(Friday_DataGrid); break;
-                case 5: playMediaAtTime(Saturday_DataGrid); break;
+                case 0: playMediaAtTime((List<Bell>)Monday_DataGrid.ItemsSource); break;
+                case 1: playMediaAtTime((List<Bell>)Tuesday_DataGrid.ItemsSource); break;
+                case 2: playMediaAtTime((List<Bell>)Wednesday_DataGrid.ItemsSource); break;
+                case 3: playMediaAtTime((List<Bell>)Thursday_DataGrid.ItemsSource); break;
+                case 4: playMediaAtTime((List<Bell>)Friday_DataGrid.ItemsSource); break;
+                case 5: playMediaAtTime((List<Bell>)Saturday_DataGrid.ItemsSource); break;
             }
 
 
@@ -104,9 +108,9 @@ namespace Belly.Pages
 
         }
 
-        void playMediaAtTime(DataGrid dataGrid)
+        void playMediaAtTime(List<Bell> Bells)
         {
-            foreach (Bell bell in (List<Bell>)dataGrid.ItemsSource)
+            foreach (Bell bell in Bells)
             {
                 if (bell.PlayTime == $"{RealHours}:{RealMinutes}")
                 {
@@ -135,3 +139,4 @@ namespace Belly.Pages
         }
     }
 }
+ 

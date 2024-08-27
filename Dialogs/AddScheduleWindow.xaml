@@ -20,15 +20,15 @@
 		</Grid.RowDefinitions>
 
 		<Label Grid.Row="0" Content="Название"/>
-		<TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" x:Name="TextBox_Name"/>
+		<TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" x:Name="TextBox_Name" Text="Звоночек"/>
 
 		<Label Grid.Row="1" Content="Время"/>
-		<TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" x:Name="TextBox_PlayTime" />
+		<TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" x:Name="TextBox_PlayTime" Text="00:00"/>
 
 		<Label Grid.Row="2" Content="Музыка" x:Name="LabelNameState"/>
 		<ListBox Grid.Row="2" Grid.Column="1" DisplayMemberPath="Path" x:Name="listObjects"/>
 
-		<CheckBox Grid.Row="3" Grid.ColumnSpan="2" Content="Выбирать музыку по приоритету" Margin="10" x:Name="PrioritySelect"/>
+		<CheckBox Grid.Row="3" Grid.ColumnSpan="2" Content="Выбирать музыку по приоритету" Margin="10" x:Name="PrioritySelect" Click="PrioritySelect_Clicked"/>
 
 		<StackPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
 			<Button Content="Создать" Width="100" Margin="5 5 2.5 5" Click="Create_Click"/>

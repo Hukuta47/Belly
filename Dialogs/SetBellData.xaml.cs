@@ -88,7 +88,39 @@ namespace Belly.Dialogs
 
         private void PrioritySelect_Clicked(object sender, RoutedEventArgs e)
         {
+            if (PrioritySelect.IsChecked == true)
+            {
+                List<Folder> tmpFolders = new List<Folder>()
+                    {
+                        folderLists.Folder5Min,
+                        folderLists.Folder10Min,
+                        folderLists.Folder40Min
+                    };
 
+                listObjects.DisplayMemberPath = "Name";
+                listObjects.ItemsSource = tmpFolders;
+            }
+            else
+            {
+                List<List<Track>> trackLists = new List<List<Track>>()
+                    {
+                        musicLists.Min5,
+                        musicLists.Min10,
+                        musicLists.Min40
+                    };
+                List<Track> tmpTracks = new List<Track>();
+
+                foreach (List<Track> list in trackLists)
+                {
+                    foreach (Track track in list)
+                    {
+                        tmpTracks.Add(track);
+                    }
+                }
+
+                listObjects.DisplayMemberPath = "Path";
+                listObjects.ItemsSource = tmpTracks;
+            }
         }
     }
 }
