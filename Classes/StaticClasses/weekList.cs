@@ -5,11 +5,14 @@ namespace Belly.Classes.StaticClasses
 {
     public class weekList
     {
-        static public Schedule Monday;
-        static public Schedule Tuesday;
-        static public Schedule Wednesday;
-        static public Schedule Thursday;
-        static public Schedule Friday;
-        static public Schedule Saturday;
+        static public List<int> Week = new List<int>()
+        {
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        };
     }
 }

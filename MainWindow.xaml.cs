@@ -56,7 +56,7 @@ namespace Belly
 
             if (!File.Exists("weekList.json"))
             {
-                var json = JsonConvert.SerializeObject(new weekList(), Formatting.Indented);
+                var json = JsonConvert.SerializeObject(weekList.Week, Formatting.Indented);
 
                 File.WriteAllText("weekList.json", json);
             }

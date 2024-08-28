@@ -31,11 +31,13 @@ namespace Belly.Pages
 
             List<Schedule> schedules = new List<Schedule>()
             {
-                
                 sheduleList.basicSchedule,
                 sheduleList.shortSchedule,
                 sheduleList.exclusiveSchedule
             };
+
+            weekList.Week = JsonConvert.DeserializeObject<List<int>>(File.ReadAllText("weekList.json"));
+
 
             Monday_Schedules.ItemsSource = schedules;
             Tuesday_Schedules.ItemsSource = schedules;
@@ -44,13 +46,13 @@ namespace Belly.Pages
             Friday_Schedules.ItemsSource = schedules;
             Saturday_Schedules.ItemsSource = schedules;
 
+            Monday_Schedules.SelectedIndex = weekList.Week[0];
+            Tuesday_Schedules.SelectedIndex = weekList.Week[1];
+            Wednesday_Schedules.SelectedIndex = weekList.Week[2];
+            Thursday_Schedules.SelectedIndex = weekList.Week[3];
+            Friday_Schedules.SelectedIndex = weekList.Week[4];
+            Saturday_Schedules.SelectedIndex = weekList.Week[5];
 
-            Monday_Schedules.SelectedIndex = 0;
-            Tuesday_Schedules.SelectedIndex = 0;
-            Wednesday_Schedules.SelectedIndex = 0;
-            Thursday_Schedules.SelectedIndex = 0;
-            Friday_Schedules.SelectedIndex = 0;
-            Saturday_Schedules.SelectedIndex = 0;
 
 
             TimeSlider.Value = TimeMinutes;
@@ -64,7 +66,7 @@ namespace Belly.Pages
             RealHours = TimeMinutes / 60;
             RealMinutes = TimeMinutes % 60;
 
-            TimeLabel.Content = $"{RealHours}:{RealMinutes}";
+            TimeLabel.Content = Time();
 
 
             switch (DayOfWeek)
@@ -76,9 +78,6 @@ namespace Belly.Pages
                 case 4: playMediaAtTime((List<Bell>)Friday_DataGrid.ItemsSource); break;
                 case 5: playMediaAtTime((List<Bell>)Saturday_DataGrid.ItemsSource); break;
             }
-
-
-
         }
 
         private void Schedules_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -114,7 +113,7 @@ namespace Belly.Pages
         {
             foreach (Bell bell in Bells)
             {
-                if (bell.PlayTime == $"{RealHours}:{RealMinutes}")
+                if (bell.PlayTime == Time())
                 {
 
                     switch (bell.Media.typeData)
@@ -142,23 +141,34 @@ namespace Belly.Pages
 
         private void SaveWeek_Click(object sender, RoutedEventArgs e)
         {
-            var a = new 
+            weekList.Week = new List<int>
             {
-                Monday_Schedules,
-                Tuesday_Schedules,
-                Wednesday_Schedules,
-                Thursday_Schedules,
-                Friday_Schedules,
-                Saturday_Schedules
+                Monday_Schedules.SelectedIndex,
+                Tuesday_Schedules.SelectedIndex,
+                Wednesday_Schedules.SelectedIndex,
+                Thursday_Schedules.SelectedIndex,
+                Friday_Schedules.SelectedIndex,
+                Saturday_Schedules.SelectedIndex
             };
 
 
-            var json = JsonConvert.SerializeObject(a.Wednesday_Schedules.SelectedItem, Formatting.Indented);
+
+            var json = JsonConvert.SerializeObject(weekList.Week, Formatting.Indented);
             File.WriteAllText("weekList.json", json);
 
-
-
         }
+
+        string Time()
+        {
+            if (RealHours <= 9 && RealMinutes <= 9) return $"0{RealHours}:0{RealMinutes}";
+            else if (RealHours <= 9 && RealMinutes >= 9) return $"0{RealHours}:{RealMinutes}";
+            else if (RealHours >= 9 && RealMinutes <= 9) return $"{RealHours}:0{RealMinutes}";
+            else if (RealHours >= 9 && RealMinutes >= 9) return $"{RealHours}:{RealMinutes}";
+
+            return "";
+        }
+
+
     }
 }
  
