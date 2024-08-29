@@ -11,119 +11,120 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition/>
-			<RowDefinition/>
+			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
 		</Grid.RowDefinitions>
 
 		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" > 
-			<Label Content="10:08" HorizontalContentAlignment="Center" x:Name="TimeLabel"/>
-			<Label Content="бла-бла-бла" HorizontalContentAlignment="Center"/>
+			<Label Content="10:08" HorizontalContentAlignment="Center" x:Name="TimeLabel" FontFamily="Arial Black" FontSize="72"/>
 			<Slider x:Name="TimeSlider" Minimum="0" Maximum="1440" Width="300" ValueChanged="Slider_ValueChanged" SmallChange="1" />
 		</StackPanel>
 
-		<TabControl TabStripPlacement="Bottom" Grid.Row="1" x:Name="WeekTab">
-			<TabItem Header="Понидельник">
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition/>
-						<RowDefinition Height="auto"/>
-					</Grid.RowDefinitions>
-					<DataGrid Grid.Row="0" x:Name="Monday_DataGrid" AutoGenerateColumns="False">
-						<DataGrid.Columns>
-							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
-							<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
-							<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
-						</DataGrid.Columns>
-					</DataGrid>
-					<ComboBox Grid.Row="1" x:Name="Monday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
-				</Grid>
-			</TabItem>
-			
-			<TabItem Header="Вторник">
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition/>
-						<RowDefinition Height="auto"/>
-					</Grid.RowDefinitions>
-					<DataGrid Grid.Row="0" x:Name="Tuesday_DataGrid" AutoGenerateColumns="False">
-						<DataGrid.Columns>
-							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
-							<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
-							<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
-						</DataGrid.Columns>
-					</DataGrid>
-					<ComboBox Grid.Row="1" x:Name="Tuesday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
-				</Grid>
-			</TabItem>
+		<Expander Header="Прикол" Grid.Row="1" ExpandDirection="Up">
+			<TabControl TabStripPlacement="Bottom" Grid.Row="1" x:Name="WeekTab">
+				<TabItem Header="Понидельник">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition Height="auto"/>
+						</Grid.RowDefinitions>
+						<DataGrid Grid.Row="0" x:Name="Monday_DataGrid" AutoGenerateColumns="False" MinHeight="150">
+							<DataGrid.Columns>
+								<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
+								<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
+								<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
+							</DataGrid.Columns>
+						</DataGrid>
+						<ComboBox Grid.Row="1" x:Name="Monday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
+					</Grid>
+				</TabItem>
 
-			<TabItem Header="Среда">
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition/>
-						<RowDefinition Height="auto"/>
-					</Grid.RowDefinitions>
-					<DataGrid Grid.Row="0" x:Name="Wednesday_DataGrid" AutoGenerateColumns="False">
-						<DataGrid.Columns>
-							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
-							<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
-							<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
-						</DataGrid.Columns>
-					</DataGrid>
-					<ComboBox Grid.Row="1" x:Name="Wednesday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
-				</Grid>
-			</TabItem>
-			
-			<TabItem Header="Четверг">
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition/>
-						<RowDefinition Height="auto"/>
-					</Grid.RowDefinitions>
-					<DataGrid Grid.Row="0" x:Name="Thursday_DataGrid" AutoGenerateColumns="False">
-						<DataGrid.Columns>
-							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
-							<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
-							<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
-						</DataGrid.Columns>
-					</DataGrid>
-					<ComboBox Grid.Row="1" x:Name="Thursday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
-				</Grid>
-			</TabItem>
-			
-			<TabItem Header="Пятница">
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition/>
-						<RowDefinition Height="auto"/>
-					</Grid.RowDefinitions>
-					<DataGrid Grid.Row="0" x:Name="Friday_DataGrid" AutoGenerateColumns="False">
-						<DataGrid.Columns>
-							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
-							<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
-							<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
-						</DataGrid.Columns>
-					</DataGrid>
-					<ComboBox Grid.Row="1" x:Name="Friday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
-				</Grid>
-			</TabItem>
-			
-			<TabItem Header="Суббота">
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition/>
-						<RowDefinition Height="auto"/>
-					</Grid.RowDefinitions>
-					<DataGrid Grid.Row="0" x:Name="Saturday_DataGrid" AutoGenerateColumns="False">
-						<DataGrid.Columns>
-							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
-							<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
-							<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
-						</DataGrid.Columns>
-					</DataGrid>
-					<ComboBox Grid.Row="1" x:Name="Saturday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
-				</Grid>
-			</TabItem>
-		</TabControl>
+				<TabItem Header="Вторник">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition Height="auto"/>
+						</Grid.RowDefinitions>
+						<DataGrid Grid.Row="0" x:Name="Tuesday_DataGrid" AutoGenerateColumns="False">
+							<DataGrid.Columns>
+								<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
+								<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
+								<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
+							</DataGrid.Columns>
+						</DataGrid>
+						<ComboBox Grid.Row="1" x:Name="Tuesday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
+					</Grid>
+				</TabItem>
+
+				<TabItem Header="Среда">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition Height="auto"/>
+						</Grid.RowDefinitions>
+						<DataGrid Grid.Row="0" x:Name="Wednesday_DataGrid" AutoGenerateColumns="False">
+							<DataGrid.Columns>
+								<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
+								<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
+								<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
+							</DataGrid.Columns>
+						</DataGrid>
+						<ComboBox Grid.Row="1" x:Name="Wednesday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
+					</Grid>
+				</TabItem>
+
+				<TabItem Header="Четверг">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition Height="auto"/>
+						</Grid.RowDefinitions>
+						<DataGrid Grid.Row="0" x:Name="Thursday_DataGrid" AutoGenerateColumns="False">
+							<DataGrid.Columns>
+								<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
+								<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
+								<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
+							</DataGrid.Columns>
+						</DataGrid>
+						<ComboBox Grid.Row="1" x:Name="Thursday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
+					</Grid>
+				</TabItem>
+
+				<TabItem Header="Пятница">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition Height="auto"/>
+						</Grid.RowDefinitions>
+						<DataGrid Grid.Row="0" x:Name="Friday_DataGrid" AutoGenerateColumns="False">
+							<DataGrid.Columns>
+								<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
+								<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
+								<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
+							</DataGrid.Columns>
+						</DataGrid>
+						<ComboBox Grid.Row="1" x:Name="Friday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
+					</Grid>
+				</TabItem>
+
+				<TabItem Header="Суббота">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition Height="auto"/>
+						</Grid.RowDefinitions>
+						<DataGrid Grid.Row="0" x:Name="Saturday_DataGrid" AutoGenerateColumns="False">
+							<DataGrid.Columns>
+								<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
+								<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="auto"/>
+								<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
+							</DataGrid.Columns>
+						</DataGrid>
+						<ComboBox Grid.Row="1" x:Name="Saturday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
+					</Grid>
+				</TabItem>
+			</TabControl>
+		</Expander>
 
 		<Grid Grid.Row="2">
 			<Grid.ColumnDefinitions>

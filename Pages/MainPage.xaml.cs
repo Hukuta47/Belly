@@ -7,15 +7,20 @@ using System.Windows.Controls;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.IO;
+using System.Windows.Threading;
 
 namespace Belly.Pages
 {
 
     public partial class MainPage : Page
     {
+        private DispatcherTimer _timer;
+
+
+
         int TimeMinutes = DateTime.Now.Minute + (DateTime.Now.Hour * 60);
 
-        int DayOfWeek = (int)DateTime.Now.DayOfWeek-1;
+        int DayOfWeek = (int)DateTime.Now.DayOfWeek - 1;
 
         int RealMinutes = DateTime.Now.Minute;
         int RealHours = DateTime.Now.Hour;
@@ -27,7 +32,8 @@ namespace Belly.Pages
         public MainPage()
         {
             InitializeComponent();
-            
+            InitializeTimer();
+
 
             List<Schedule> schedules = new List<Schedule>()
             {
@@ -52,6 +58,8 @@ namespace Belly.Pages
             Thursday_Schedules.SelectedIndex = weekList.Week[3];
             Friday_Schedules.SelectedIndex = weekList.Week[4];
             Saturday_Schedules.SelectedIndex = weekList.Week[5];
+
+
 
 
 
@@ -86,24 +94,12 @@ namespace Belly.Pages
 
             switch (comboBox.Name)
             {
-                case "Monday_Schedules":
-                    Monday_DataGrid.ItemsSource = ((Schedule)Monday_Schedules.SelectedItem).bells;
-                    break;
-                case "Tuesday_Schedules":
-                    Tuesday_DataGrid.ItemsSource = ((Schedule)Tuesday_Schedules.SelectedItem).bells;
-                    break;
-                case "Wednesday_Schedules":
-                    Wednesday_DataGrid.ItemsSource = ((Schedule)Wednesday_Schedules.SelectedItem).bells;
-                    break;
-                case "Thursday_Schedules":
-                    Thursday_DataGrid.ItemsSource = ((Schedule)Thursday_Schedules.SelectedItem).bells;
-                    break; 
-                case "Friday_Schedules":
-                    Friday_DataGrid.ItemsSource = ((Schedule)Friday_Schedules.SelectedItem).bells;
-                    break;
-                case "Saturday_Schedules":
-                    Saturday_DataGrid.ItemsSource = ((Schedule)Saturday_Schedules.SelectedItem).bells;
-                    break; 
+                case "Monday_Schedules": Monday_DataGrid.ItemsSource = ((Schedule)Monday_Schedules.SelectedItem).bells; break;
+                case "Tuesday_Schedules": Tuesday_DataGrid.ItemsSource = ((Schedule)Tuesday_Schedules.SelectedItem).bells; break;
+                case "Wednesday_Schedules": Wednesday_DataGrid.ItemsSource = ((Schedule)Wednesday_Schedules.SelectedItem).bells; break;
+                case "Thursday_Schedules": Thursday_DataGrid.ItemsSource = ((Schedule)Thursday_Schedules.SelectedItem).bells; break;
+                case "Friday_Schedules": Friday_DataGrid.ItemsSource = ((Schedule)Friday_Schedules.SelectedItem).bells; break;
+                case "Saturday_Schedules": Saturday_DataGrid.ItemsSource = ((Schedule)Saturday_Schedules.SelectedItem).bells; break;
 
             }
 
@@ -166,6 +162,38 @@ namespace Belly.Pages
             else if (RealHours >= 9 && RealMinutes >= 9) return $"{RealHours}:{RealMinutes}";
 
             return "";
+        }
+
+        private void InitializeTimer()
+        {
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(1); // Интервал в 1 минуту
+            _timer.Tick += Timer_Tick; // Привязка события
+            _timer.Start(); // Запуск таймера
+        }
+
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            TimeMinutes = (int)DateTime.Now.TimeOfDay.TotalMinutes;
+
+            MessageBox.Show($"{TimeMinutes}");
+
+            RealHours = TimeMinutes / 60;
+            RealMinutes = TimeMinutes % 60;
+
+            TimeLabel.Content = Time();
+
+
+            switch (DayOfWeek)
+            {
+                case 0: playMediaAtTime((List<Bell>)Monday_DataGrid.ItemsSource); break;
+                case 1: playMediaAtTime((List<Bell>)Tuesday_DataGrid.ItemsSource); break;
+                case 2: playMediaAtTime((List<Bell>)Wednesday_DataGrid.ItemsSource); break;
+                case 3: playMediaAtTime((List<Bell>)Thursday_DataGrid.ItemsSource); break;
+                case 4: playMediaAtTime((List<Bell>)Friday_DataGrid.ItemsSource); break;
+                case 5: playMediaAtTime((List<Bell>)Saturday_DataGrid.ItemsSource); break;
+            }
         }
 
 
