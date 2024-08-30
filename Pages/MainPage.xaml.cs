@@ -18,7 +18,7 @@ namespace Belly.Pages
 
 
 
-        int TimeMinutes = DateTime.Now.Minute + (DateTime.Now.Hour * 60);
+        int TimeMinutes = (int)DateTime.Now.TimeOfDay.TotalMinutes;
 
         int DayOfWeek = (int)DateTime.Now.DayOfWeek - 1;
 
@@ -166,18 +166,66 @@ namespace Belly.Pages
 
         private void InitializeTimer()
         {
-            _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(1); // Интервал в 1 минуту
-            _timer.Tick += Timer_Tick; // Привязка события
-            _timer.Start(); // Запуск таймера
-        }
+            // Рассчитаем время до начала следующей минуты
+            DateTime now = DateTime.Now;
+            int secondsUntilNextMinute = 60 - now.Second;
+            TimeSpan timeToNextMinute = TimeSpan.FromSeconds(secondsUntilNextMinute);
 
+            // Создаем и запускаем таймер на оставшееся время до начала следующей минуты
+            _timer = new DispatcherTimer();
+            _timer.Interval = timeToNextMinute;
+            _timer.Tick += SyncWithRealTime;
+            _timer.Start();
+        }
+        private void SyncWithRealTime(object sender, EventArgs e)
+        {
+            // Останавливаем текущий таймер
+            _timer.Stop();
+
+            // Действия, которые нужно выполнить в начале каждой минуты
+
+            TimeMinutes = (int)DateTime.Now.TimeOfDay.TotalMinutes;
+
+            if (DayOfWeek != (int)DateTime.Now.DayOfWeek - 1)
+            {
+                DayOfWeek = (int)DateTime.Now.DayOfWeek - 1;
+                WeekTab.SelectedIndex = DayOfWeek;
+            }
+
+            RealHours = TimeMinutes / 60;
+            RealMinutes = TimeMinutes % 60;
+
+            TimeLabel.Content = Time();
+
+
+            switch (DayOfWeek)
+            {
+                case 0: playMediaAtTime((List<Bell>)Monday_DataGrid.ItemsSource); break;
+                case 1: playMediaAtTime((List<Bell>)Tuesday_DataGrid.ItemsSource); break;
+                case 2: playMediaAtTime((List<Bell>)Wednesday_DataGrid.ItemsSource); break;
+                case 3: playMediaAtTime((List<Bell>)Thursday_DataGrid.ItemsSource); break;
+                case 4: playMediaAtTime((List<Bell>)Friday_DataGrid.ItemsSource); break;
+                case 5: playMediaAtTime((List<Bell>)Saturday_DataGrid.ItemsSource); break;
+            }
+
+
+
+            // Настраиваем таймер на повторение каждые 60 секунд
+            _timer.Interval = TimeSpan.FromMinutes(1);
+            _timer.Tick -= SyncWithRealTime; // Отвязываем предыдущий обработчик
+            _timer.Tick += Timer_Tick;
+            _timer.Start();
+        }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             TimeMinutes = (int)DateTime.Now.TimeOfDay.TotalMinutes;
 
-            MessageBox.Show($"{TimeMinutes}");
+            if (DayOfWeek != (int)DateTime.Now.DayOfWeek - 1)
+            {
+                DayOfWeek = (int)DateTime.Now.DayOfWeek - 1;
+                WeekTab.SelectedIndex = DayOfWeek;
+            }
 
             RealHours = TimeMinutes / 60;
             RealMinutes = TimeMinutes % 60;
