@@ -13,5 +13,6 @@ namespace Belly
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

@@ -1,13 +1,20 @@
-﻿namespace Belly.Objects
+﻿using Belly.Enums;
+using System.Runtime.CompilerServices;
+using System.Windows;
+
+namespace Belly.Objects
 {
-    public class Track
+    public class Track : MediaData
     {
-        public Track(string path)
+        public Track(string path) : base(TypeData.Track)
         {
             Path = path;
-            Priority = 0;
+            priority = 1;
         }
-        public string Name 
+        private int priority { get; set; }
+
+        
+        public new string Name 
         { 
             get 
             {
@@ -15,6 +22,17 @@
             } 
         }
         public string Path { get; }
-        public int Priority { get; set; }
+        public int Priority
+        {
+            set
+            {
+                if (value >= 1) priority = value;
+                else MessageBox.Show("Нельзя указывать приоритет ниже 1.", "Указано значение ниже 1", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            get
+            {
+                return priority;
+            }
+        }
     }
 }
