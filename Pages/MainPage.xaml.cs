@@ -63,17 +63,26 @@ namespace Belly.Pages
 
 
 
-            TimeSlider.Value = TimeMinutes;
             WeekTab.SelectedIndex = DayOfWeek;
-        }
 
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            TimeMinutes = (int)TimeSlider.Value;
+
+
+
+
+
+            TimeMinutes = (int)DateTime.Now.TimeOfDay.TotalMinutes;
+
+            WeekTab.SelectedIndex = DayOfWeek;
+
+            if (DayOfWeek != (int)DateTime.Now.DayOfWeek - 1)
+            {
+                DayOfWeek = (int)DateTime.Now.DayOfWeek - 1;
+                WeekTab.SelectedIndex = DayOfWeek;
+            }
 
             RealHours = TimeMinutes / 60;
             RealMinutes = TimeMinutes % 60;
-
+            DayOfWeek = (int)DateTime.Now.DayOfWeek - 1;
             TimeLabel.Content = Time();
 
 
@@ -86,7 +95,16 @@ namespace Belly.Pages
                 case 4: playMediaAtTime((List<Bell>)Friday_DataGrid.ItemsSource); break;
                 case 5: playMediaAtTime((List<Bell>)Saturday_DataGrid.ItemsSource); break;
             }
+
+
+
+
+
+
+
         }
+
+        
 
         private void Schedules_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -186,6 +204,8 @@ namespace Belly.Pages
 
             TimeMinutes = (int)DateTime.Now.TimeOfDay.TotalMinutes;
 
+            WeekTab.SelectedIndex = DayOfWeek;
+
             if (DayOfWeek != (int)DateTime.Now.DayOfWeek - 1)
             {
                 DayOfWeek = (int)DateTime.Now.DayOfWeek - 1;
@@ -194,7 +214,7 @@ namespace Belly.Pages
 
             RealHours = TimeMinutes / 60;
             RealMinutes = TimeMinutes % 60;
-
+            DayOfWeek = (int)DateTime.Now.DayOfWeek - 1;
             TimeLabel.Content = Time();
 
 
