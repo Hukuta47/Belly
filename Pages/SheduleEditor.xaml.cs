@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Windows;
 using Belly.Dialogs;
 using Belly.Classes.StaticClasses;
+using NAudio.Mixer;
 
 namespace Belly.Pages
 {
@@ -74,6 +75,17 @@ namespace Belly.Pages
                 dataListSchedule.ItemsSource = null;
                 dataListSchedule.ItemsSource = bells;
             }
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+
+            ((List<Bell>)dataListSchedule.ItemsSource).RemoveRange(dataListSchedule.SelectedIndex, dataListSchedule.SelectedItems.Count);
+
+            dataListSchedule.Items.Refresh();
+
+
+
         }
     }
 }

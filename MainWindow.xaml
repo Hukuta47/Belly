@@ -10,6 +10,7 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="auto"/>
 			<RowDefinition/>
+			<RowDefinition Height="auto"/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition/>
@@ -23,6 +24,8 @@
 		<Button Grid.Column="2" Content="Музыка" Tag="music" Click="Button_Click"/>
 		<Button Grid.Column="3" Content="Настройки"/>
 
-		<Frame Grid.Row="2" Grid.ColumnSpan="4" NavigationUIVisibility="Hidden" x:Name="frame"/>
+		<Frame Grid.Row="1" Grid.ColumnSpan="4" NavigationUIVisibility="Hidden" x:Name="frame"/>
+
+		<Label Content="Ver: 1.0.0" Grid.Row="3" Grid.ColumnSpan="4"/>
 	</Grid>
 </Window>

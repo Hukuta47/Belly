@@ -19,7 +19,7 @@
 			<Label Content="10:08" HorizontalContentAlignment="Center" x:Name="TimeLabel" FontFamily="Arial Black" FontSize="72"/>
 		</StackPanel>
 
-		<Expander Header="Прикол" Grid.Row="1" ExpandDirection="Up">
+		<Expander Header="Расписание недели" Grid.Row="1" ExpandDirection="Up">
 			<TabControl TabStripPlacement="Bottom" Grid.Row="1" x:Name="WeekTab">
 				<TabItem Header="Понидельник">
 					<Grid>
