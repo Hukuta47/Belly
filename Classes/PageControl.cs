@@ -9,6 +9,7 @@ namespace Belly.Classes
         static Page musicEditor = new MusicEditor();
         static Page sheduleEditor = new SheduleEditor();
         static Page mainPage = new MainPage();
+        static Page settings = new Settings();
 
         static public Frame mainFrame;
 
@@ -16,7 +17,8 @@ namespace Belly.Classes
         {
             musicEditor,
             sheduleEditor,
-            mainPage
+            mainPage,
+            settings
         }
 
 
@@ -32,6 +34,9 @@ namespace Belly.Classes
                     break;
                 case Pages.mainPage:
                     mainFrame.Navigate(mainPage);
+                    break;
+                case Pages.settings:
+                    mainFrame.Navigate(settings);
                     break;
             }
         }

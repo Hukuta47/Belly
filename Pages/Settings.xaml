@@ -1,0 +1,63 @@
+﻿<Page x:Class="Belly.Pages.Settings"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Belly.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="320"
+      Title="Settings">
+
+	<ScrollViewer>
+		<StackPanel>
+			<Expander 
+		Header="Настройка громкости" 
+		Background="White" 
+		BorderBrush="Black"
+		Padding="5"
+		Margin="10">
+				<Border BorderThickness="1" CornerRadius="10" BorderBrush="Black" Padding="10" Margin="10">
+					<StackPanel>
+
+						<GroupBox Header="Master громкость">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition/>
+									<ColumnDefinition Width="auto"/>
+								</Grid.ColumnDefinitions>
+
+								<Slider Grid.Column="0" Minimum="0" Maximum="100" Value="50" VerticalAlignment="Center" SmallChange="1"/>
+								<Label Content="XXX%" Grid.Column="1"/>
+							</Grid>
+						</GroupBox>
+
+						<GroupBox Header="Основная громкость">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition/>
+									<ColumnDefinition Width="auto"/>
+								</Grid.ColumnDefinitions>
+
+								<Slider Grid.Column="0" Minimum="0" Maximum="100" Value="50" VerticalAlignment="Center" SmallChange="1"/>
+								<Label Content="XXX%" Grid.Column="1"/>
+							</Grid>
+						</GroupBox>
+
+						<GroupBox Header="Начала/Конца громкость">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition/>
+									<ColumnDefinition Width="auto"/>
+								</Grid.ColumnDefinitions>
+
+								<Slider Grid.Column="0" Minimum="0" Maximum="100" Value="50" VerticalAlignment="Center" SmallChange="1"/>
+								<Label Content="XXX%" Grid.Column="1"/>
+							</Grid>
+						</GroupBox>
+
+					</StackPanel>
+				</Border>
+			</Expander>
+		</StackPanel>
+	</ScrollViewer>
+</Page>

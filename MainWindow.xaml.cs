@@ -78,6 +78,9 @@ namespace Belly
                 case "main":
                     PageControl.ChangePage(PageControl.Pages.mainPage);
                     break;
+                case "settings":
+                    PageControl.ChangePage(PageControl.Pages.settings);
+                    break;
             }
         }
     }

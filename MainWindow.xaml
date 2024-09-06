@@ -22,7 +22,7 @@
         <Button Grid.Column="0" Content="Главная" Tag="main" Click="Button_Click"/>
         <Button Grid.Column="1" Content="Звонки" Tag="schedule" Click="Button_Click"/>
 		<Button Grid.Column="2" Content="Музыка" Tag="music" Click="Button_Click"/>
-		<Button Grid.Column="3" Content="Настройки"/>
+		<Button Grid.Column="3" Content="Настройки" Tag="settings" Click="Button_Click"/>
 
 		<Frame Grid.Row="1" Grid.ColumnSpan="4" NavigationUIVisibility="Hidden" x:Name="frame"/>
 
