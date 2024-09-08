@@ -19,6 +19,7 @@ namespace Belly
             InitializeFolders();
             InitializeFiles();
             PageControl.mainFrame = frame;
+            Player.SyncSettings();
 
         }
         void InitializeFolders()
@@ -59,6 +60,18 @@ namespace Belly
                 var json = JsonConvert.SerializeObject(weekList.Week, Formatting.Indented);
 
                 File.WriteAllText("weekList.json", json);
+            }
+            if (!File.Exists("settings.json"))
+            {
+                var settings = new
+                {
+                    SettingsValues.normalVolume,
+                    SettingsValues.introOutroVolume
+                };
+
+                var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
+
+                File.WriteAllText("settings.json", json);
             }
         }
 

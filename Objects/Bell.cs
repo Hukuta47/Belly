@@ -13,6 +13,7 @@ namespace Belly.Objects
         }
         public string Name { get; set; }
         public string PlayTime { get; set; }
+        public bool volumeUpDown { get; set; } = false;
 
         [JsonConverter(typeof(MediaDataJsonConverter))]
         public MediaData Media { get; set; }

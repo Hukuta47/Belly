@@ -27,11 +27,12 @@
         <Label Grid.Row="0" Grid.Column="0" Content="Тип дня:"/>
         <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="schedules" DisplayMemberPath="Name" SelectionChanged="schedules_SelectionChanged"/>
 
-        <DataGrid Grid.Row="1" Grid.ColumnSpan="4" x:Name="dataListSchedule" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Extended">
+        <DataGrid Grid.Row="1" Grid.ColumnSpan="4" x:Name="dataListSchedule" AutoGenerateColumns="False" SelectionMode="Extended">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
-                <DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="*"/>
-                <DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
+				<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*" IsReadOnly="True" />
+				<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="*" IsReadOnly="True" />
+				<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*" IsReadOnly="True" />
+                <DataGridCheckBoxColumn Binding="{Binding volumeUpDown}" Header="Н/К громче" Width="*"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
