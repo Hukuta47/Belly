@@ -12,6 +12,11 @@ namespace Belly.Pages
         public Settings()
         {
             InitializeComponent();
+
+
+            slider_Basic.Value = SettingsValues.introOutroVolume * 100;
+            slider_IO.Value = SettingsValues.introOutroVolume * 100;
+
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

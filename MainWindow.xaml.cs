@@ -1,6 +1,7 @@
 ﻿using Belly.Classes;
 using Belly.Classes.StaticClasses;
 using Belly.Objects;
+using Belly.Pages;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
@@ -79,9 +80,16 @@ namespace Belly
 
 
 
-                var jsonRead = JsonConvert.SerializeObject(read);
+                var jsonRead = JsonConvert.DeserializeObject<SettingsValues>(read);
 
-                SettingsValues.introOutroVolume = ((SettingsValues)jsonRead)
+
+                SettingsValues.normalVolume = jsonRead._normalVolume;
+                SettingsValues.introOutroVolume = jsonRead._introOutroVolume;
+
+
+
+                
+
             }
         }
 
