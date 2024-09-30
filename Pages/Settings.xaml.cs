@@ -1,18 +1,9 @@
 ﻿using Belly.Classes.StaticClasses;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Belly.Pages
 {
@@ -36,6 +27,20 @@ namespace Belly.Pages
                 if (IOLabel != null) IOLabel.Content = $"{Math.Round(slider_IO.Value, 0)}%";
             }
             Player.SyncSettings();
+        }
+
+        private void SaveSettings_Click(object sender, RoutedEventArgs e)
+        {
+            var settingsVolume = new
+            {
+                SettingsValues.introOutroVolume,
+                SettingsValues.normalVolume
+            };
+
+            string jsonReady = JsonConvert.SerializeObject(settingsVolume, Formatting.Indented);
+
+            File.WriteAllText("settings.json", jsonReady);
+
         }
     }
 }

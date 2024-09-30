@@ -42,7 +42,7 @@ namespace Belly.Classes.StaticClasses
         static async Task ControlVolumeAsync(Mp3FileReader audioFile, WaveOut wave, TimeSpan firstMinute, TimeSpan lastMinute)
         {
             while (audioFile.CurrentTime < audioFile.TotalTime)
-            {
+            { 
                 TimeSpan currentTime = audioFile.CurrentTime;
 
                 if (currentTime <= firstMinute)

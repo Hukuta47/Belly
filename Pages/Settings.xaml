@@ -8,44 +8,56 @@
       d:DesignHeight="450" d:DesignWidth="320"
       Title="Settings">
 
-	<ScrollViewer>
-		<StackPanel>
-			<Expander 
-		Header="Настройка громкости" 
-		Background="White" 
-		BorderBrush="Black"
-		Padding="5"
-		Margin="10">
-				<Border BorderThickness="1" CornerRadius="10" BorderBrush="Black" Padding="10" Margin="10">
-					<StackPanel>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="auto"/>
+		</Grid.RowDefinitions>
+		
+	
+		<ScrollViewer Grid.Row="0">
+			<StackPanel>
+				<Expander 
+					Header="Настройка громкости" 
+					Background="White" 
+					BorderBrush="Black"
+					Padding="5"
+					Margin="10">
+					<Border BorderThickness="1" CornerRadius="10" BorderBrush="Black" Padding="10" Margin="10">
+						<StackPanel>
 
-						<GroupBox Header="Основная громкость">
-							<Grid>
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition/>
-									<ColumnDefinition Width="44"/>
-								</Grid.ColumnDefinitions>
+							<GroupBox Header="Основная громкость">
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition/>
+										<ColumnDefinition Width="44"/>
+									</Grid.ColumnDefinitions>
 
-								<Slider x:Name="slider_Basic" ValueChanged="Slider_ValueChanged" Grid.Column="0" Minimum="0" Maximum="100" Value="50" VerticalAlignment="Center" SmallChange="1"/>
-								<Label x:Name="BasicLabel" Content="XXX%" Grid.Column="1"/>
-							</Grid>
-						</GroupBox>
+									<Slider x:Name="slider_Basic" ValueChanged="Slider_ValueChanged" Grid.Column="0" Minimum="0" Maximum="100" Value="50" VerticalAlignment="Center" SmallChange="1"/>
+									<Label x:Name="BasicLabel" Content="XXX%" Grid.Column="1"/>
+								</Grid>
+							</GroupBox>
 
-						<GroupBox Header="Начала/Конца громкость">
-							<Grid>
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition/>
-									<ColumnDefinition Width="44"/>
-								</Grid.ColumnDefinitions>
+							<GroupBox Header="Начала/Конца громкость">
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition/>
+										<ColumnDefinition Width="44"/>
+									</Grid.ColumnDefinitions>
 
-								<Slider x:Name="slider_IO" ValueChanged="Slider_ValueChanged" Grid.Column="0" Minimum="0" Maximum="100" Value="50" VerticalAlignment="Center" SmallChange="1"/>
-								<Label x:Name="IOLabel" Content="XXX%" Grid.Column="1"/>
-							</Grid>
-						</GroupBox>
+									<Slider x:Name="slider_IO" ValueChanged="Slider_ValueChanged" Grid.Column="0" Minimum="0" Maximum="100" Value="50" VerticalAlignment="Center" SmallChange="1"/>
+									<Label x:Name="IOLabel" Content="XXX%" Grid.Column="1"/>
+								</Grid>
+							</GroupBox>
 
-					</StackPanel>
-				</Border>
-			</Expander>
-		</StackPanel>
-	</ScrollViewer>
+						</StackPanel>
+					</Border>
+				</Expander>
+			</StackPanel>
+		</ScrollViewer>
+
+		<Button Grid.Row="1" Content="Сохранить настройки" Padding="5" Margin="5" Click="SaveSettings_Click"/>
+
+
+	</Grid>
 </Page>

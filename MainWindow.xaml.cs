@@ -73,6 +73,16 @@ namespace Belly
 
                 File.WriteAllText("settings.json", json);
             }
+            else
+            {
+                var read = File.ReadAllText("settings.json");
+
+
+
+                var jsonRead = JsonConvert.SerializeObject(read);
+
+                SettingsValues.introOutroVolume = ((SettingsValues)jsonRead)
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
