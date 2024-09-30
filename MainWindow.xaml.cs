@@ -1,7 +1,6 @@
 ﻿using Belly.Classes;
 using Belly.Classes.StaticClasses;
 using Belly.Objects;
-using Belly.Pages;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
@@ -14,6 +13,9 @@ namespace Belly
 
     public partial class MainWindow : Window
     {
+        public SettingsValues SettingsValues;
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -64,6 +66,8 @@ namespace Belly
             }
             if (!File.Exists("settings.json"))
             {
+                SettingsValues = new(1, 1);
+
                 var settings = new
                 {
                     SettingsValues.normalVolume,
@@ -73,23 +77,16 @@ namespace Belly
                 var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
 
                 File.WriteAllText("settings.json", json);
+
+
             }
             else
             {
                 var read = File.ReadAllText("settings.json");
 
-
-
                 var jsonRead = JsonConvert.DeserializeObject<SettingsValues>(read);
 
-
-                SettingsValues.normalVolume = jsonRead._normalVolume;
-                SettingsValues.introOutroVolume = jsonRead._introOutroVolume;
-
-
-
-                
-
+                SettingsValues = new(jsonRead.introOutroVolume, jsonRead.normalVolume);
             }
         }
 
