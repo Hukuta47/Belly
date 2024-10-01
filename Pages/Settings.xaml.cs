@@ -1,6 +1,8 @@
 ﻿using Belly.Classes.StaticClasses;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +24,14 @@ namespace Belly.Pages
         {
             InitializeComponent();
         }
+        void InitializeSettings()
+        {
 
+            var jsonRead = File.ReadAllText("settings.json");
+            var json = JsonConvert.DeserializeObject<SettingsValues>(jsonRead);
+
+            json.SyncData();
+        }
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (slider_Basic != null)
@@ -36,6 +45,11 @@ namespace Belly.Pages
                 if (IOLabel != null) IOLabel.Content = $"{Math.Round(slider_IO.Value, 0)}%";
             }
             Player.SyncSettings();
+        }
+
+        private void SaveValues_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

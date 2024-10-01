@@ -65,8 +65,8 @@ namespace Belly
             {
                 var settings = new
                 {
-                    SettingsValues.normalVolume,
-                    SettingsValues.introOutroVolume
+                    new SettingsValues(.5f, .5f)._normalVolume,
+                    new SettingsValues(.5f, .5f)._introOutroVolume
                 };
 
                 var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
