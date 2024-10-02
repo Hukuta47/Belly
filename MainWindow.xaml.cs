@@ -13,7 +13,6 @@ namespace Belly
 
     public partial class MainWindow : Window
     {
-
         public static SettingsValues SettingsValues { get; set; }
 
         public static Player Player;
@@ -82,21 +81,11 @@ namespace Belly
                 {
                     SettingsValues.normalVolume,
                     SettingsValues.ssintroOutroVolume
-                };  
+                };
 
                 var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
 
                 File.WriteAllText("settings.json", json);
-
-
-            }
-            else
-            {
-                var read = File.ReadAllText("settings.json");
-
-                var jsonRead = JsonConvert.DeserializeObject<SettingsValues>(read);
-
-                SettingsValues = new(jsonRead.introOutroVolume, jsonRead.normalVolume);
             }
             else
             {

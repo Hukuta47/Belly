@@ -10,6 +10,11 @@ namespace Belly.Classes.StaticClasses
 
         public SettingsValues _settings;
 
+        public WaveOut waveOut;
+        public Mp3FileReader reader;
+
+
+
 
       
         public void SyncSettings()
