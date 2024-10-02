@@ -14,6 +14,7 @@ namespace Belly.Pages
 
     public partial class MainPage : Page
     {
+
         private DispatcherTimer _timer;
 
 
@@ -33,6 +34,8 @@ namespace Belly.Pages
         {
             InitializeComponent();
             InitializeTimer();
+
+
 
 
             List<Schedule> schedules = new List<Schedule>()
@@ -129,24 +132,23 @@ namespace Belly.Pages
             {
                 if (bell.PlayTime == Time())
                 {
+                    string path;
 
                     switch (bell.Media.typeData)
                     {
                         case Enums.TypeData.Track:
 
-                            reader = new Mp3FileReader(((Track)bell.Media).Path);
-                            waveOut = new WaveOut();
-                            waveOut.Init(reader);
-                            waveOut.Play();
+                            path = ((Track)bell.Media).Path;
+
+                            MainWindow.Player.Play(path, bell.volumeUpDown);
 
                             break;
                         case Enums.TypeData.Folder:
 
+                            path = ((Folder)bell.Media).GetPriorityPath(musicLists.Min5);
 
-                            reader = new Mp3FileReader(((Folder)bell.Media).GetPriorityPath(musicLists.Min5));
-                            waveOut = new WaveOut();
-                            waveOut.Init(reader);
-                            waveOut.Play();
+                            MainWindow.Player.Play(path, bell.volumeUpDown);
+
                             break;
                     }
                 }

@@ -13,12 +13,22 @@ namespace Belly
 
     public partial class MainWindow : Window
     {
+
+        public static SettingsValues SettingsValues { get; set; }
+
+        public static Player Player;
+
         public MainWindow()
         {
+
+
+
             InitializeComponent();
             InitializeFolders();
             InitializeFiles();
+            Player = new Player(SettingsValues.normalVolume, SettingsValues.ssintroOutroVolume);
             PageControl.mainFrame = frame;
+            Player.SyncSettings();
 
         }
         void InitializeFolders()
@@ -59,6 +69,39 @@ namespace Belly
                 var json = JsonConvert.SerializeObject(weekList.Week, Formatting.Indented);
 
                 File.WriteAllText("weekList.json", json);
+            }
+            if (!File.Exists("settings.json"))
+            {
+                SettingsValues = new();
+
+                SettingsValues.normalVolume = 0.5f;
+                SettingsValues.ssintroOutroVolume = 0.5f;
+
+
+                var settings = new
+                {
+                    SettingsValues.normalVolume,
+                    SettingsValues.ssintroOutroVolume
+                };  
+
+                var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
+
+                File.WriteAllText("settings.json", json);
+
+
+            }
+            else
+            {
+                var read = File.ReadAllText("settings.json");
+
+                var jsonRead = JsonConvert.DeserializeObject<SettingsValues>(read);
+
+                SettingsValues = new(jsonRead.introOutroVolume, jsonRead.normalVolume);
+            }
+            else
+            {
+                var jsonRead = File.ReadAllText("settings.json");
+                SettingsValues = JsonConvert.DeserializeObject<SettingsValues>(jsonRead);
             }
         }
 
