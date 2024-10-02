@@ -14,6 +14,7 @@ namespace Belly.Pages
 
     public partial class MainPage : Page
     {
+
         private DispatcherTimer _timer;
 
 
@@ -139,14 +140,14 @@ namespace Belly.Pages
 
                             path = ((Track)bell.Media).Path;
 
-                            Player.Play(path, bell.volumeUpDown);
+                            MainWindow.Player.Play(path, bell.volumeUpDown);
 
                             break;
                         case Enums.TypeData.Folder:
 
                             path = ((Folder)bell.Media).GetPriorityPath(musicLists.Min5);
 
-                            Player.Play(path, bell.volumeUpDown);
+                            MainWindow.Player.Play(path, bell.volumeUpDown);
 
                             break;
                     }

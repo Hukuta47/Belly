@@ -13,14 +13,20 @@ namespace Belly
 
     public partial class MainWindow : Window
     {
-        public SettingsValues SettingsValues;
 
+        public static SettingsValues SettingsValues { get; set; }
+
+        public static Player Player;
 
         public MainWindow()
         {
+
+
+
             InitializeComponent();
             InitializeFolders();
             InitializeFiles();
+            Player = new Player(SettingsValues.normalVolume, SettingsValues.ssintroOutroVolume);
             PageControl.mainFrame = frame;
             Player.SyncSettings();
 
@@ -66,13 +72,17 @@ namespace Belly
             }
             if (!File.Exists("settings.json"))
             {
-                SettingsValues = new(1, 1);
+                SettingsValues = new();
+
+                SettingsValues.normalVolume = 0.5f;
+                SettingsValues.ssintroOutroVolume = 0.5f;
+
 
                 var settings = new
                 {
                     SettingsValues.normalVolume,
-                    SettingsValues.introOutroVolume
-                };
+                    SettingsValues.ssintroOutroVolume
+                };  
 
                 var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
 
@@ -87,6 +97,11 @@ namespace Belly
                 var jsonRead = JsonConvert.DeserializeObject<SettingsValues>(read);
 
                 SettingsValues = new(jsonRead.introOutroVolume, jsonRead.normalVolume);
+            }
+            else
+            {
+                var jsonRead = File.ReadAllText("settings.json");
+                SettingsValues = JsonConvert.DeserializeObject<SettingsValues>(jsonRead);
             }
         }
 

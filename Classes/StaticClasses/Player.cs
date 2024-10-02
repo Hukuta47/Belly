@@ -7,28 +7,26 @@ namespace Belly.Classes.StaticClasses
 {
     public class Player
     {
-        MainWindow main;
+
+        public SettingsValues _settings;
 
 
-        public Player(MainWindow window) 
-        {
-            main = window;
-        }
-
-
-        public float introOutroVolume;
-        public float normalVolume;
-
-        Mp3FileReader reader;
-        public WaveOut waveOut;
-
+      
         public void SyncSettings()
         {
-            introOutroVolume = MainWindow.SettingsValues
-            normalVolume = SettingsValues.normalVolume;
-
-            if (waveOut != null) waveOut.Volume = SettingsValues.normalVolume;
+            if (waveOut != null) waveOut.Volume = _settings.normalVolume;
         }
+
+        public Player(float norm, float io)
+        {
+            _settings = MainWindow.SettingsValues;
+
+            _settings.normalVolume = norm;
+            _settings.ssintroOutroVolume = io;
+        }
+
+
+
         public async Task Play(string filePath, bool? volumeUpDown)
         {
             reader = new Mp3FileReader(filePath);
@@ -42,7 +40,7 @@ namespace Belly.Classes.StaticClasses
             TimeSpan lastMinute = duration - TimeSpan.FromMinutes(1);
 
 
-            waveOut.Volume = SettingsValues.normalVolume;
+            waveOut.Volume = _settings.normalVolume;
             waveOut.Play();
 
             if (volumeUpDown == true) await ControlVolumeAsync(reader, waveOut, firstMinute, lastMinute);
@@ -58,17 +56,17 @@ namespace Belly.Classes.StaticClasses
                 if (currentTime <= firstMinute)
                 {
                     // Увеличиваем громкость на первую минуту
-                    wave.Volume = introOutroVolume;
+                    wave.Volume = _settings.ssintroOutroVolume;
                 }
                 else if (currentTime >= lastMinute)
                 {
                     // Увеличиваем громкость на последнюю минуту
-                    wave.Volume = introOutroVolume;
+                    wave.Volume = _settings.ssintroOutroVolume;
                 }
                 else
                 {
                     // Обычная громкость
-                    wave.Volume = normalVolume;
+                    wave.Volume = _settings.normalVolume;
                 }
 
                 // Ждём 1 миллисекунд перед следующей проверкой без блокировки основного потока

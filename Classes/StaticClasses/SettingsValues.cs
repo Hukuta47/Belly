@@ -2,13 +2,9 @@
 {
     public class SettingsValues
     {
-        public float introOutroVolume;
-        public float normalVolume;
+        
+        public float normalVolume { get; set;}
+        public float ssintroOutroVolume { get; set; }
 
-        public SettingsValues(float introOutroVolume, float normalVolume)
-        {
-            this.introOutroVolume = introOutroVolume;
-            this.normalVolume = normalVolume;
-        }
     }
 }

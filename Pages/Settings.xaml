@@ -13,8 +13,8 @@
 			<RowDefinition/>
 			<RowDefinition Height="auto"/>
 		</Grid.RowDefinitions>
-		
-	
+
+
 		<ScrollViewer Grid.Row="0">
 			<StackPanel>
 				<Expander 
@@ -33,7 +33,7 @@
 										<ColumnDefinition Width="44"/>
 									</Grid.ColumnDefinitions>
 
-									<Slider x:Name="slider_Basic" ValueChanged="Slider_ValueChanged" Grid.Column="0" Minimum="0" Maximum="100" Value="50" VerticalAlignment="Center" SmallChange="1"/>
+									<Slider x:Name="slider_Basic" ValueChanged="Slider_ValueChanged" Grid.Column="0" Minimum="0" Maximum="100" VerticalAlignment="Center" SmallChange="1"/>
 									<Label x:Name="BasicLabel" Content="XXX%" Grid.Column="1"/>
 								</Grid>
 							</GroupBox>
@@ -45,7 +45,7 @@
 										<ColumnDefinition Width="44"/>
 									</Grid.ColumnDefinitions>
 
-									<Slider x:Name="slider_IO" ValueChanged="Slider_ValueChanged" Grid.Column="0" Minimum="0" Maximum="100" Value="50" VerticalAlignment="Center" SmallChange="1"/>
+									<Slider x:Name="slider_IO" ValueChanged="Slider_ValueChanged" Grid.Column="0" Minimum="0" Maximum="100" VerticalAlignment="Center" SmallChange="1"/>
 									<Label x:Name="IOLabel" Content="XXX%" Grid.Column="1"/>
 								</Grid>
 							</GroupBox>
@@ -56,8 +56,6 @@
 			</StackPanel>
 		</ScrollViewer>
 
-		<Button Grid.Row="1" Content="Сохранить настройки" Padding="5" Margin="5" Click="SaveSettings_Click"/>
-
-
+		<Button Grid.Row="1" Content="Сохранить настройки" Margin="5" Padding="5" Click="SaveValues_Click"/>
 	</Grid>
 </Page>
