@@ -13,9 +13,21 @@ namespace Belly
 
     public partial class MainWindow : Window
     {
+        public SettingsValues SettingsValues { get; set; }
+
+        private MainWindow this_window = new MainWindow();
+
+        public Player Player;
+
         public MainWindow()
         {
+            
+
+
+
             InitializeComponent();
+
+            Player = new Player(this_window);
             InitializeFolders();
             InitializeFiles();
             PageControl.mainFrame = frame;
@@ -65,9 +77,9 @@ namespace Belly
             {
                 var settings = new
                 {
-                    new SettingsValues(.5f, .5f)._normalVolume,
-                    new SettingsValues(.5f, .5f)._introOutroVolume
-                };
+                    SettingsValues.normalVolume,
+                    SettingsValues.introOutroVolume
+                };  
 
                 var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
 
