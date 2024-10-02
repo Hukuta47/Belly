@@ -5,48 +5,65 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Belly.Pages"
       xmlns:trackClass="clr-namespace:Belly.Objects"
-      
+      Background="White"
       mc:Ignorable="d"
-      Title="SheduleEditor" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:DesignHeight="444.142" d:DesignWidth="521.845">
+      Title="SheduleEditor" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:DesignWidth="853" d:DesignHeight="480">
 
     
     <Grid>
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width=".4*"/>
-            <ColumnDefinition Width="1*"/>
-			<ColumnDefinition Width="1.2*"/>
-			<ColumnDefinition Width="1.4*"/>
+			<ColumnDefinition Width="1*"/>
+			<ColumnDefinition Width="auto"/>
+			<ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Content="Тип дня:"/>
-        <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" x:Name="schedules" DisplayMemberPath="Name" SelectionChanged="schedules_SelectionChanged"/>
+        <Label Grid.Row="0" Grid.Column="1" Content="Тип дня:"/>
+        <ComboBox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" x:Name="schedules" DisplayMemberPath="Name" SelectionChanged="schedules_SelectionChanged"/>
 
-        <DataGrid Grid.Row="1" Grid.ColumnSpan="4" x:Name="dataListSchedule" AutoGenerateColumns="False" SelectionMode="Extended">
-            <DataGrid.Columns>
-				<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*" IsReadOnly="True" />
-				<DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="*" IsReadOnly="True" />
-				<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*" IsReadOnly="True" />
-                <DataGridCheckBoxColumn Binding="{Binding volumeUpDown}" Header="Н/К громче" Width="*"/>
-            </DataGrid.Columns>
-            <DataGrid.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Сместить вверх"/>
-                    <MenuItem Header="Сместить вниз"/>
-                    <MenuItem Header="Изменить" Click="MenuItem_Click"/>
-                </ContextMenu>
-            </DataGrid.ContextMenu>
-        </DataGrid>
+        <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="dataListSchedule" AutoGenerateColumns="False" SelectionMode="Extended" IsReadOnly="True">
+			<DataGrid.Columns>
+				<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
+				<DataGridTextColumn Binding="{Binding Type}" Header="Тип" Width="*"/>
+			</DataGrid.Columns>
+		</DataGrid>
 
-        <Button Content="Создать звонок" Grid.ColumnSpan="2" Grid.Row="3" Click="CreateBell"/>
-        <Button Content="Сохранить" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="3" Click="SaveClick"/>
-        <Button Content="Удалить" Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="3" Click="Delete_Click"/>
+		
+
+		<Grid Grid.RowSpan="2" Grid.Column="0" Grid.Row="0" >
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition Height="auto"/>
+			</Grid.RowDefinitions>
+
+			<ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+				<StackPanel Orientation="Vertical">
+
+					<Label Content="Окно свойств" />
+
+				</StackPanel>
+			</ScrollViewer>
+
+			<StackPanel Grid.Row="1" Orientation="Vertical">
+				<Button Content="Создать звонок" Grid.ColumnSpan="2" Grid.Row="3" Click="CreateBell"/>
+				<Button Content="Сохранить" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="3" Click="SaveClick"/>
+				<Button Content="Удалить" Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="3" Click="Delete_Click"/>
+			</StackPanel>
+
+		</Grid>
 
 
-    </Grid>
+
+
+
+
+		<!--
+        
+        -->
+
+	</Grid>
 </Page>

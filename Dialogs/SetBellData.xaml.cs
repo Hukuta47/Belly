@@ -28,19 +28,19 @@ namespace Belly.Dialogs
 
             switch (objType.typeData)
             {
-                case TypeData.Track:
+                case TypeMediaFile.Track:
 
-                    List<List<Track>> trackLists = new List<List<Track>>()
+                    List<List<Music>> trackLists = new List<List<Music>>()
                     {
                         musicLists.Min5,
                         musicLists.Min10,
                         musicLists.Min40
                     };
-                    List<Track> tmpTracks = new List<Track>();
+                    List<Music> tmpTracks = new List<Music>();
 
-                    foreach (List<Track> list in trackLists)
+                    foreach (List<Music> list in trackLists)
                     {
-                        foreach (Track track in list)
+                        foreach (Music track in list)
                         {
                             tmpTracks.Add(track);
                         }
@@ -51,7 +51,7 @@ namespace Belly.Dialogs
 
                     break;
 
-                case TypeData.Folder:
+                case TypeMediaFile.Folder:
 
                     List<Folder> tmpFolders = new List<Folder>()
                     {
@@ -102,17 +102,17 @@ namespace Belly.Dialogs
             }
             else
             {
-                List<List<Track>> trackLists = new List<List<Track>>()
+                List<List<Music>> trackLists = new List<List<Music>>()
                     {
                         musicLists.Min5,
                         musicLists.Min10,
                         musicLists.Min40
                     };
-                List<Track> tmpTracks = new List<Track>();
+                List<Music> tmpTracks = new List<Music>();
 
-                foreach (List<Track> list in trackLists)
+                foreach (List<Music> list in trackLists)
                 {
-                    foreach (Track track in list)
+                    foreach (Music track in list)
                     {
                         tmpTracks.Add(track);
                     }

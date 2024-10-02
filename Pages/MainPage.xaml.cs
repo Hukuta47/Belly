@@ -136,14 +136,14 @@ namespace Belly.Pages
 
                     switch (bell.Media.typeData)
                     {
-                        case Enums.TypeData.Track:
+                        case Enums.TypeMediaFile.Track:
 
-                            path = ((Track)bell.Media).Path;
+                            path = ((Music)bell.Media).Path;
 
                             MainWindow.Player.Play(path, bell.volumeUpDown);
 
                             break;
-                        case Enums.TypeData.Folder:
+                        case Enums.TypeMediaFile.Folder:
 
                             path = ((Folder)bell.Media).GetPriorityPath(musicLists.Min5);
 

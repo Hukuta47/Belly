@@ -28,9 +28,9 @@ namespace Belly.Pages
 
             foreach (DataGrid dataGrid in dataGrids)
             {
-                List<Track> tempTracks = dataGrid.ItemsSource as List<Track>;
+                List<Music> tempTracks = dataGrid.ItemsSource as List<Music>;
 
-                foreach (Track selectTrack in dataGrid.SelectedItems)
+                foreach (Music selectTrack in dataGrid.SelectedItems)
                 {
                     tempTracks.Remove(selectTrack);
                     File.Delete(selectTrack.Path);
@@ -64,9 +64,9 @@ namespace Belly.Pages
         }
         void LoadTracks()
         {
-            musicLists.Min5 = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("5 min\\listInfo.json"));
-            musicLists.Min10 = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("10 min\\listInfo.json"));
-            musicLists.Min40 = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("40 min\\listInfo.json"));
+            musicLists.Min5 = JsonConvert.DeserializeObject<List<Music>>(File.ReadAllText("5 min\\listInfo.json"));
+            musicLists.Min10 = JsonConvert.DeserializeObject<List<Music>>(File.ReadAllText("10 min\\listInfo.json"));
+            musicLists.Min40 = JsonConvert.DeserializeObject<List<Music>>(File.ReadAllText("40 min\\listInfo.json"));
 
             DataGrid5Min.ItemsSource = musicLists.Min5;
             DataGrid10Min.ItemsSource = musicLists.Min10;
@@ -85,13 +85,13 @@ namespace Belly.Pages
                     {
                         if (addTrackWindow.Accept5min)
                         {
-                            if (!musicLists.Min5.Exists(l => l.Path == new Track($"5 min\\{Path.GetFileName(file)}").Path))
+                            if (!musicLists.Min5.Exists(l => l.Path == new Music($"5 min\\{Path.GetFileName(file)}").Path))
                             {
                                 File.Copy(file, $"5 min\\{Path.GetFileName(file)}", true);
-                                musicLists.Min5.Add(new Track($"5 min\\{Path.GetFileName(file)}"));
-                                var json = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("5 min\\listInfo.json"));
+                                musicLists.Min5.Add(new Music($"5 min\\{Path.GetFileName(file)}"));
+                                var json = JsonConvert.DeserializeObject<List<Music>>(File.ReadAllText("5 min\\listInfo.json"));
 
-                                json.Add(new Track($"5 min\\{Path.GetFileName(file)}"));
+                                json.Add(new Music($"5 min\\{Path.GetFileName(file)}"));
                                 json.Sort((m1, m2) => string.Compare(m1.Name, m2.Name, StringComparison.Ordinal)); // Сортировка А-Я
                                 var jsonWrit = JsonConvert.SerializeObject(json, Formatting.Indented);
                                 File.WriteAllText("5 min\\listInfo.json", jsonWrit);
@@ -99,13 +99,13 @@ namespace Belly.Pages
                         }
                         if (addTrackWindow.Accept10min)
                         {
-                            if (!musicLists.Min10.Exists(l => l.Path == new Track($"10 min\\{Path.GetFileName(file)}").Path))
+                            if (!musicLists.Min10.Exists(l => l.Path == new Music($"10 min\\{Path.GetFileName(file)}").Path))
                             {
                                 File.Copy(file, $"10 min\\{Path.GetFileName(file)}", true);
-                                musicLists.Min10.Add(new Track($"10 min\\{Path.GetFileName(file)}"));
-                                var json = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("10 min\\listInfo.json"));
+                                musicLists.Min10.Add(new Music($"10 min\\{Path.GetFileName(file)}"));
+                                var json = JsonConvert.DeserializeObject<List<Music>>(File.ReadAllText("10 min\\listInfo.json"));
 
-                                json.Add(new Track($"10 min\\{Path.GetFileName(file)}"));
+                                json.Add(new Music($"10 min\\{Path.GetFileName(file)}"));
                                 json.Sort((m1, m2) => string.Compare(m1.Name, m2.Name, StringComparison.Ordinal)); // Сортировка А-Я
                                 var jsonWrit = JsonConvert.SerializeObject(json, Formatting.Indented);
                                 File.WriteAllText("10 min\\listInfo.json", jsonWrit);
@@ -114,13 +114,13 @@ namespace Belly.Pages
                         if (addTrackWindow.Accept40min)
                         {
                             
-                            if (!musicLists.Min40.Exists(l => l.Path == new Track($"40 min\\{Path.GetFileName(file)}").Path))
+                            if (!musicLists.Min40.Exists(l => l.Path == new Music($"40 min\\{Path.GetFileName(file)}").Path))
                             {
                                 File.Copy(file, $"40 min\\{Path.GetFileName(file)}", true);
-                                musicLists.Min40.Add(new Track($"40 min\\{Path.GetFileName(file)}"));
-                                var json = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("40 min\\listInfo.json"));
+                                musicLists.Min40.Add(new Music($"40 min\\{Path.GetFileName(file)}"));
+                                var json = JsonConvert.DeserializeObject<List<Music>>(File.ReadAllText("40 min\\listInfo.json"));
 
-                                json.Add(new Track($"40 min\\{Path.GetFileName(file)}"));
+                                json.Add(new Music($"40 min\\{Path.GetFileName(file)}"));
                                 json.Sort((m1, m2) => string.Compare(m1.Name, m2.Name, StringComparison.Ordinal)); // Сортировка А-Я
                                 var jsonWrit = JsonConvert.SerializeObject(json, Formatting.Indented);
                                 File.WriteAllText("40 min\\listInfo.json", jsonWrit);

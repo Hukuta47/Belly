@@ -16,17 +16,17 @@ namespace Belly.Dialogs
             InitializeComponent();
 
 
-            List<List<Track>> trackLists = new List<List<Track>>()
+            List<List<Music>> trackLists = new List<List<Music>>()
             {
                 musicLists.Min5,
                 musicLists.Min10,
                 musicLists.Min40
             };
-            List<Track> tmpTracks = new List<Track>();
+            List<Music> tmpTracks = new List<Music>();
 
-            foreach (List<Track> list in trackLists)
+            foreach (List<Music> list in trackLists)
             {
-                foreach (Track track in list)
+                foreach (Music track in list)
                 {
                     tmpTracks.Add(track);
                 }
@@ -50,8 +50,8 @@ namespace Belly.Dialogs
 
             switch (((MediaData)listObjects.SelectedItem).typeData)
             {
-                case Enums.TypeData.Track: MediaData = (Track)listObjects.SelectedItem; break;
-                case Enums.TypeData.Folder: MediaData = (Folder)listObjects.SelectedItem; break;
+                case Enums.TypeMediaFile.Track: MediaData = (Music)listObjects.SelectedItem; break;
+                case Enums.TypeMediaFile.Folder: MediaData = (Folder)listObjects.SelectedItem; break;
             }
         }
 
@@ -76,17 +76,17 @@ namespace Belly.Dialogs
             }
             else
             {
-                List<List<Track>> trackLists = new List<List<Track>>()
+                List<List<Music>> trackLists = new List<List<Music>>()
                     {
                         musicLists.Min5,
                         musicLists.Min10,
                         musicLists.Min40
                     };
-                List<Track> tmpTracks = new List<Track>();
+                List<Music> tmpTracks = new List<Music>();
 
-                foreach (List<Track> list in trackLists)
+                foreach (List<Music> list in trackLists)
                 {
-                    foreach (Track track in list)
+                    foreach (Music track in list)
                     {
                         tmpTracks.Add(track);
                     }

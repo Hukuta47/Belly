@@ -1,6 +1,7 @@
 ﻿using Belly.Classes;
 using Belly.Classes.StaticClasses;
 using Belly.Objects;
+using NAudio.Gui;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
@@ -31,20 +32,13 @@ namespace Belly
         }
         void InitializeFolders()
         {
-            List<string> list = new List<string>()
+            if (Directory.Exists("Music"))
             {
-                "5 min",
-                "10 min",
-                "40 min"
-            };
-            foreach (string folder in list)
-            {
-                if (!Directory.Exists(folder))
-                {
-                    Directory.CreateDirectory(folder);
-                    File.WriteAllText($"{folder}\\listInfo.json", "[]");
-                }
+                Directory.CreateDirectory("Music");
+                File.WriteAllText($"Music\\listInfo.json", "[]");
             }
+            if (Directory.Exists("Other media")) Directory.CreateDirectory("Other media");
+
         }
         void InitializeFiles()
         {

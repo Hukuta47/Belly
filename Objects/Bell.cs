@@ -1,22 +1,27 @@
-﻿using Belly.Classes;
-using Newtonsoft.Json;
+﻿using System;
 
 namespace Belly.Objects
 {
     public class Bell
     {
-        public Bell(string Name, string PlayTime, MediaData Media) 
+        public Bell(string Name, DateTime StartTime, DateTime EndTime, MediaFile Media) 
         {
             this.Name = Name;
-            this.PlayTime = PlayTime;
+            this.StartTime = StartTime;
+            this.EndTime = EndTime;
             this.Media = Media;
         }
+        public Bell(string Name, DateTime StartTime, MediaFile Media)
+        {
+            this.Name = Name;
+            this.StartTime = StartTime;
+            this.Media = Media;
+        }
+
         public string Name { get; set; }
-        public string PlayTime { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime? EndTime { get; set; }
         public bool volumeUpDown { get; set; } = false;
-
-        [JsonConverter(typeof(MediaDataJsonConverter))]
-        public MediaData Media { get; set; }
-
+        public MediaFile Media { get; set; }
     }
 }
