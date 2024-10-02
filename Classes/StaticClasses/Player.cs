@@ -6,7 +6,7 @@ namespace Belly.Classes.StaticClasses
 {
     public class Player
     {
-        MainWindow mainWindow;
+        SettingsValues settings;
 
 
         static Mp3FileReader reader;
@@ -14,12 +14,15 @@ namespace Belly.Classes.StaticClasses
 
         public void SyncSettings()
         {
-            if (waveOut != null) waveOut.Volume = mainWindow.SettingsValues.normalVolume;
+
+
+
+            if (waveOut != null) waveOut.Volume = settings.normalVolume;
         }
 
-        public Player(MainWindow mainWindow)
+        public Player(SettingsValues settings)
         {
-            this.mainWindow = mainWindow;
+            this.settings = settings;
         }
 
 
@@ -36,7 +39,7 @@ namespace Belly.Classes.StaticClasses
             TimeSpan lastMinute = duration - TimeSpan.FromMinutes(1);
 
 
-            waveOut.Volume = mainWindow.SettingsValues.normalVolume;
+            waveOut.Volume = settings.normalVolume;
             waveOut.Play();
 
             if (volumeUpDown == true) await ControlVolumeAsync(reader, waveOut, firstMinute, lastMinute);
@@ -52,17 +55,17 @@ namespace Belly.Classes.StaticClasses
                 if (currentTime <= firstMinute)
                 {
                     // Увеличиваем громкость на первую минуту
-                    wave.Volume = mainWindow.SettingsValues.introOutroVolume;
+                    wave.Volume = settings.ssintroOutroVolume;
                 }
                 else if (currentTime >= lastMinute)
                 {
                     // Увеличиваем громкость на последнюю минуту
-                    wave.Volume = mainWindow.SettingsValues.introOutroVolume;
+                    wave.Volume = settings.ssintroOutroVolume;
                 }
                 else
                 {
                     // Обычная громкость
-                    wave.Volume = mainWindow.SettingsValues.normalVolume;
+                    wave.Volume = settings.normalVolume;
                 }
 
                 // Ждём 1 миллисекунд перед следующей проверкой без блокировки основного потока

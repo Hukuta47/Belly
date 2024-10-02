@@ -13,11 +13,9 @@ namespace Belly
 
     public partial class MainWindow : Window
     {
-        public SettingsValues SettingsValues { get; set; }
+        public static SettingsValues SettingsValues { get; set; }
 
-        private MainWindow this_window = new MainWindow();
-
-        public Player Player;
+        public static Player Player;
 
         public MainWindow()
         {
@@ -26,11 +24,10 @@ namespace Belly
 
 
             InitializeComponent();
-
-            Player = new Player(this_window);
             InitializeFolders();
             InitializeFiles();
             PageControl.mainFrame = frame;
+            Player = new Player(SettingsValues);
             Player.SyncSettings();
 
         }
@@ -75,15 +72,26 @@ namespace Belly
             }
             if (!File.Exists("settings.json"))
             {
+                SettingsValues = new();
+
+                SettingsValues.normalVolume = 0.5f;
+                SettingsValues.ssintroOutroVolume = 0.5f;
+
+
                 var settings = new
                 {
                     SettingsValues.normalVolume,
-                    SettingsValues.introOutroVolume
+                    SettingsValues.ssintroOutroVolume
                 };  
 
                 var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
 
                 File.WriteAllText("settings.json", json);
+            }
+            else
+            {
+                var jsonRead = File.ReadAllText("settings.json");
+                SettingsValues = JsonConvert.DeserializeObject<SettingsValues>(jsonRead);
             }
         }
 
