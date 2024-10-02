@@ -32,7 +32,7 @@
 										<ColumnDefinition Width="44"/>
 									</Grid.ColumnDefinitions>
 
-									<Slider x:Name="slider_Basic" ValueChanged="Slider_ValueChanged" Grid.Column="0" Minimum="0" Maximum="100" Value="50" VerticalAlignment="Center" SmallChange="1"/>
+									<Slider x:Name="slider_Basic" ValueChanged="Slider_ValueChanged" Grid.Column="0" Minimum="0" Maximum="100" VerticalAlignment="Center" SmallChange="1"/>
 									<Label x:Name="BasicLabel" Content="XXX%" Grid.Column="1"/>
 								</Grid>
 							</GroupBox>
@@ -44,7 +44,7 @@
 										<ColumnDefinition Width="44"/>
 									</Grid.ColumnDefinitions>
 
-									<Slider x:Name="slider_IO" ValueChanged="Slider_ValueChanged" Grid.Column="0" Minimum="0" Maximum="100" Value="25" VerticalAlignment="Center" SmallChange="1"/>
+									<Slider x:Name="slider_IO" ValueChanged="Slider_ValueChanged" Grid.Column="0" Minimum="0" Maximum="100" VerticalAlignment="Center" SmallChange="1"/>
 									<Label x:Name="IOLabel" Content="XXX%" Grid.Column="1"/>
 								</Grid>
 							</GroupBox>

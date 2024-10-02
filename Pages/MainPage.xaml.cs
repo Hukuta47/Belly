@@ -14,8 +14,6 @@ namespace Belly.Pages
 
     public partial class MainPage : Page
     {
-        MainWindow MainWindow = new MainWindow();
-
 
         private DispatcherTimer _timer;
 

@@ -22,7 +22,7 @@ namespace Belly.Pages
             MainWindow.SettingsValues = JsonConvert.DeserializeObject<SettingsValues>(jsonRead);
 
             slider_Basic.Value = MainWindow.SettingsValues.normalVolume * 100;
-            slider_IO.Value = MainWindow.SettingsValues.ssintroOutroVolume * 100;
+            slider_IO.Value = MainWindow.Player._settings.ssintroOutroVolume * 100;
 
         }
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

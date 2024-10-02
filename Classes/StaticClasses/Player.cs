@@ -6,7 +6,7 @@ namespace Belly.Classes.StaticClasses
 {
     public class Player
     {
-        SettingsValues settings;
+        public SettingsValues _settings;
 
 
         static Mp3FileReader reader;
@@ -14,15 +14,15 @@ namespace Belly.Classes.StaticClasses
 
         public void SyncSettings()
         {
-
-
-
-            if (waveOut != null) waveOut.Volume = settings.normalVolume;
+            if (waveOut != null) waveOut.Volume = _settings.normalVolume;
         }
 
-        public Player(SettingsValues settings)
+        public Player(float norm, float io)
         {
-            this.settings = settings;
+            _settings = MainWindow.SettingsValues;
+
+            _settings.normalVolume = norm;
+            _settings.ssintroOutroVolume = io;
         }
 
 
@@ -39,7 +39,7 @@ namespace Belly.Classes.StaticClasses
             TimeSpan lastMinute = duration - TimeSpan.FromMinutes(1);
 
 
-            waveOut.Volume = settings.normalVolume;
+            waveOut.Volume = _settings.normalVolume;
             waveOut.Play();
 
             if (volumeUpDown == true) await ControlVolumeAsync(reader, waveOut, firstMinute, lastMinute);
@@ -55,17 +55,17 @@ namespace Belly.Classes.StaticClasses
                 if (currentTime <= firstMinute)
                 {
                     // Увеличиваем громкость на первую минуту
-                    wave.Volume = settings.ssintroOutroVolume;
+                    wave.Volume = _settings.ssintroOutroVolume;
                 }
                 else if (currentTime >= lastMinute)
                 {
                     // Увеличиваем громкость на последнюю минуту
-                    wave.Volume = settings.ssintroOutroVolume;
+                    wave.Volume = _settings.ssintroOutroVolume;
                 }
                 else
                 {
                     // Обычная громкость
-                    wave.Volume = settings.normalVolume;
+                    wave.Volume = _settings.normalVolume;
                 }
 
                 // Ждём 1 миллисекунд перед следующей проверкой без блокировки основного потока

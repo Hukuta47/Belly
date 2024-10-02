@@ -19,15 +19,14 @@ namespace Belly
 
         public MainWindow()
         {
-            
 
 
 
             InitializeComponent();
             InitializeFolders();
             InitializeFiles();
+            Player = new Player(SettingsValues.normalVolume, SettingsValues.ssintroOutroVolume);
             PageControl.mainFrame = frame;
-            Player = new Player(SettingsValues);
             Player.SyncSettings();
 
         }
