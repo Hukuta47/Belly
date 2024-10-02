@@ -6,12 +6,12 @@ namespace Belly.Classes
 {
     public class PageControl
     {
-        static Page musicEditor = new MusicEditor();
-        static Page sheduleEditor = new SheduleEditor();
-        static Page mainPage = new MainPage();
-        static Page settings = new Settings();
+        Page musicEditor = new MusicEditor();
+        Page sheduleEditor = new SheduleEditor();
+        Page mainPage = new MainPage();
+        Page settings = new Settings();
 
-        static public Frame mainFrame;
+        Frame mainFrame;
 
         public enum Pages
         {
@@ -20,9 +20,11 @@ namespace Belly.Classes
             mainPage,
             settings
         }
-
-
-        static public void ChangePage(Pages pages)
+        public PageControl(Frame frame)
+        {
+            mainFrame = frame;
+        }
+        public void ChangePage(Pages pages)
         {
             switch (pages)
             {

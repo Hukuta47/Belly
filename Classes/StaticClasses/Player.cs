@@ -13,9 +13,6 @@ namespace Belly.Classes.StaticClasses
         public WaveOut waveOut;
         public Mp3FileReader reader;
 
-
-
-
       
         public void SyncSettings()
         {

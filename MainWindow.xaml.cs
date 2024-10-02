@@ -13,20 +13,19 @@ namespace Belly
 
     public partial class MainWindow : Window
     {
-        public static SettingsValues SettingsValues { get; set; }
-
+        public static SettingsValues SettingsValues;
         public static Player Player;
+        public static PageControl pageControl;
 
         public MainWindow()
         {
-
-
 
             InitializeComponent();
             InitializeFolders();
             InitializeFiles();
             Player = new Player(SettingsValues.normalVolume, SettingsValues.ssintroOutroVolume);
-            PageControl.mainFrame = frame;
+            pageControl = new PageControl(frame);
+
             Player.SyncSettings();
 
         }
@@ -102,16 +101,16 @@ namespace Belly
             switch (button.Tag)
             {
                 case "music":
-                    PageControl.ChangePage(PageControl.Pages.musicEditor);
+                    MainWindow.pageControl.ChangePage(PageControl.Pages.musicEditor);
                     break;
                 case "schedule":
-                    PageControl.ChangePage(PageControl.Pages.sheduleEditor);
+                    MainWindow.pageControl.ChangePage(PageControl.Pages.sheduleEditor);
                     break;
                 case "main":
-                    PageControl.ChangePage(PageControl.Pages.mainPage);
+                    MainWindow.pageControl.ChangePage(PageControl.Pages.mainPage);
                     break;
                 case "settings":
-                    PageControl.ChangePage(PageControl.Pages.settings);
+                    MainWindow.pageControl.ChangePage(PageControl.Pages.settings);
                     break;
             }
         }
