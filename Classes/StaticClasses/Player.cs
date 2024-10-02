@@ -1,17 +1,17 @@
 ﻿using NAudio.Wave;
 using System;
 using System.Threading.Tasks;
+using Belly;
 
 namespace Belly.Classes.StaticClasses
 {
     public class Player
     {
+
         public SettingsValues _settings;
 
 
-        static Mp3FileReader reader;
-        static public WaveOut waveOut;
-
+      
         public void SyncSettings()
         {
             if (waveOut != null) waveOut.Volume = _settings.normalVolume;
@@ -24,6 +24,7 @@ namespace Belly.Classes.StaticClasses
             _settings.normalVolume = norm;
             _settings.ssintroOutroVolume = io;
         }
+
 
 
         public async Task Play(string filePath, bool? volumeUpDown)
@@ -49,7 +50,7 @@ namespace Belly.Classes.StaticClasses
         async Task ControlVolumeAsync(Mp3FileReader audioFile, WaveOut wave, TimeSpan firstMinute, TimeSpan lastMinute)
         {
             while (audioFile.CurrentTime < audioFile.TotalTime)
-            {
+            { 
                 TimeSpan currentTime = audioFile.CurrentTime;
 
                 if (currentTime <= firstMinute)

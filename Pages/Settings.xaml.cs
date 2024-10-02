@@ -5,7 +5,6 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
-
 namespace Belly.Pages
 {
     public partial class Settings : Page
@@ -51,6 +50,20 @@ namespace Belly.Pages
             var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
 
             File.WriteAllText("settings.json", json);
+        }
+
+        private void SaveSettings_Click(object sender, RoutedEventArgs e)
+        {
+            var settingsVolume = new
+            {
+                SettingsValues.introOutroVolume,
+                SettingsValues.normalVolume
+            };
+
+            string jsonReady = JsonConvert.SerializeObject(settingsVolume, Formatting.Indented);
+
+            File.WriteAllText("settings.json", jsonReady);
+
         }
     }
 }
