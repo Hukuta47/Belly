@@ -28,7 +28,7 @@
         <DataGrid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="dataListSchedule" AutoGenerateColumns="False" SelectionMode="Extended" IsReadOnly="True">
 			<DataGrid.Columns>
 				<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
-				<DataGridTextColumn Binding="{Binding Type}" Header="Тип" Width="*"/>
+				<DataGridTextColumn Binding="{Binding Media.Type}" Header="Тип" Width="*"/>
 			</DataGrid.Columns>
 		</DataGrid>
 

@@ -1,10 +1,11 @@
 ﻿using Belly.Classes;
 using Belly.Classes.StaticClasses;
 using Belly.Objects;
-using NAudio.Gui;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -17,11 +18,14 @@ namespace Belly
         public static SettingsValues SettingsValues;
         public static Player Player;
         public static PageControl pageControl;
+        public static TimeOnly TimeNow;
+
 
         public MainWindow()
         {
 
             InitializeComponent();
+            syncTime().Start();
             InitializeFolders();
             InitializeFiles();
             Player = new Player(SettingsValues.normalVolume, SettingsValues.ssintroOutroVolume);
@@ -106,6 +110,15 @@ namespace Belly
                 case "settings":
                     MainWindow.pageControl.ChangePage(PageControl.Pages.settings);
                     break;
+            }
+        }
+
+        async Task syncTime()
+        {
+            while (true)
+            {
+                TimeNow = TimeOnly.FromDateTime(DateTime.Now);
+                await Task.Delay(1);
             }
         }
     }

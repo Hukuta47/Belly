@@ -10,7 +10,7 @@ namespace Belly.Dialogs
     {
         public string Name;
         public string PlayTime;
-        public MediaData MediaData;
+        public MediaFile MediaData;
         public AddScheduleWindow()
         {
             InitializeComponent();
