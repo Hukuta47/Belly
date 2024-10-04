@@ -10,13 +10,13 @@ namespace Belly.Dialogs
 {
     public partial class SetBellData : Window
     {
-        public Bell SelectedItem;
+        public Issue SelectedItem;
         public SetBellData(object selectedItem)
         {
             InitializeComponent();
 
 
-            SelectedItem = (Bell)selectedItem;
+            SelectedItem = (Issue)selectedItem;
 
             var objType = SelectedItem.Media;
 

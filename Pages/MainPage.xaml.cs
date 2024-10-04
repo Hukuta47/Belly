@@ -91,12 +91,12 @@ namespace Belly.Pages
 
             switch (DayOfWeek)
             {
-                case 0: playMediaAtTime((List<Bell>)Monday_DataGrid.ItemsSource); break;
-                case 1: playMediaAtTime((List<Bell>)Tuesday_DataGrid.ItemsSource); break;
-                case 2: playMediaAtTime((List<Bell>)Wednesday_DataGrid.ItemsSource); break;
-                case 3: playMediaAtTime((List<Bell>)Thursday_DataGrid.ItemsSource); break;
-                case 4: playMediaAtTime((List<Bell>)Friday_DataGrid.ItemsSource); break;
-                case 5: playMediaAtTime((List<Bell>)Saturday_DataGrid.ItemsSource); break;
+                case 0: playMediaAtTime((List<Issue>)Monday_DataGrid.ItemsSource); break;
+                case 1: playMediaAtTime((List<Issue>)Tuesday_DataGrid.ItemsSource); break;
+                case 2: playMediaAtTime((List<Issue>)Wednesday_DataGrid.ItemsSource); break;
+                case 3: playMediaAtTime((List<Issue>)Thursday_DataGrid.ItemsSource); break;
+                case 4: playMediaAtTime((List<Issue>)Friday_DataGrid.ItemsSource); break;
+                case 5: playMediaAtTime((List<Issue>)Saturday_DataGrid.ItemsSource); break;
             }
 
 
@@ -126,9 +126,9 @@ namespace Belly.Pages
 
         }
 
-        void playMediaAtTime(List<Bell> Bells)
+        void playMediaAtTime(List<Issue> Bells)
         {
-            foreach (Bell bell in Bells)
+            foreach (Issue bell in Bells)
             {
                 if (bell.PlayTime == Time())
                 {
@@ -222,12 +222,12 @@ namespace Belly.Pages
 
             switch (DayOfWeek)
             {
-                case 0: playMediaAtTime((List<Bell>)Monday_DataGrid.ItemsSource); break;
-                case 1: playMediaAtTime((List<Bell>)Tuesday_DataGrid.ItemsSource); break;
-                case 2: playMediaAtTime((List<Bell>)Wednesday_DataGrid.ItemsSource); break;
-                case 3: playMediaAtTime((List<Bell>)Thursday_DataGrid.ItemsSource); break;
-                case 4: playMediaAtTime((List<Bell>)Friday_DataGrid.ItemsSource); break;
-                case 5: playMediaAtTime((List<Bell>)Saturday_DataGrid.ItemsSource); break;
+                case 0: playMediaAtTime((List<Issue>)Monday_DataGrid.ItemsSource); break;
+                case 1: playMediaAtTime((List<Issue>)Tuesday_DataGrid.ItemsSource); break;
+                case 2: playMediaAtTime((List<Issue>)Wednesday_DataGrid.ItemsSource); break;
+                case 3: playMediaAtTime((List<Issue>)Thursday_DataGrid.ItemsSource); break;
+                case 4: playMediaAtTime((List<Issue>)Friday_DataGrid.ItemsSource); break;
+                case 5: playMediaAtTime((List<Issue>)Saturday_DataGrid.ItemsSource); break;
             }
 
 
@@ -257,12 +257,12 @@ namespace Belly.Pages
 
             switch (DayOfWeek)
             {
-                case 0: playMediaAtTime((List<Bell>)Monday_DataGrid.ItemsSource); break;
-                case 1: playMediaAtTime((List<Bell>)Tuesday_DataGrid.ItemsSource); break;
-                case 2: playMediaAtTime((List<Bell>)Wednesday_DataGrid.ItemsSource); break;
-                case 3: playMediaAtTime((List<Bell>)Thursday_DataGrid.ItemsSource); break;
-                case 4: playMediaAtTime((List<Bell>)Friday_DataGrid.ItemsSource); break;
-                case 5: playMediaAtTime((List<Bell>)Saturday_DataGrid.ItemsSource); break;
+                case 0: playMediaAtTime((List<Issue>)Monday_DataGrid.ItemsSource); break;
+                case 1: playMediaAtTime((List<Issue>)Tuesday_DataGrid.ItemsSource); break;
+                case 2: playMediaAtTime((List<Issue>)Wednesday_DataGrid.ItemsSource); break;
+                case 3: playMediaAtTime((List<Issue>)Thursday_DataGrid.ItemsSource); break;
+                case 4: playMediaAtTime((List<Issue>)Friday_DataGrid.ItemsSource); break;
+                case 5: playMediaAtTime((List<Issue>)Saturday_DataGrid.ItemsSource); break;
             }
         }
 

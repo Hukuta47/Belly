@@ -2,19 +2,16 @@
 
 namespace Belly.Objects
 {
-    public class Bell
+    public class Issue
     {
-        public Bell(string Name, TimeOnly StartTime, TimeOnly EndTime, MediaFile Media) 
+        public Issue(string Name, TimeOnly StartTime, TimeOnly EndTime, MediaFile Media) 
         {
             this.Name = Name;
             this.StartTime = StartTime;
             this.EndTime = EndTime;
             this.Media = Media;
-
-
-            new TimeOnly();
         }
-        public Bell(string Name, TimeOnly StartTime, MediaFile Media)
+        public Issue(string Name, TimeOnly StartTime, MediaFile Media)
         {
             this.Name = Name;
             this.StartTime = StartTime;

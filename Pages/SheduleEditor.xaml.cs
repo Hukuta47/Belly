@@ -43,7 +43,7 @@ namespace Belly.Pages
         {
             var dialog = new AddScheduleWindow();
 
-            List<Bell> tempList = dataListSchedule.ItemsSource as List<Bell>;
+            List<Issue> tempList = dataListSchedule.ItemsSource as List<Issue>;
             if (dialog.ShowDialog() == true)
             {
                 tempList.Add(new Bell(dialog.Name, dialog.PlayTime, dialog.MediaData));
@@ -71,7 +71,7 @@ namespace Belly.Pages
             {
                 dataListSchedule.SelectedItem = changeBellData.SelectedItem;
 
-                List<Bell> bells = (List<Bell>)dataListSchedule.ItemsSource;
+                List<Issue> bells = (List<Issue>)dataListSchedule.ItemsSource;
                 dataListSchedule.ItemsSource = null;
                 dataListSchedule.ItemsSource = bells;
             }
@@ -80,7 +80,7 @@ namespace Belly.Pages
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
 
-            ((List<Bell>)dataListSchedule.ItemsSource).RemoveRange(dataListSchedule.SelectedIndex, dataListSchedule.SelectedItems.Count);
+            ((List<Issue>)dataListSchedule.ItemsSource).RemoveRange(dataListSchedule.SelectedIndex, dataListSchedule.SelectedItems.Count);
 
             dataListSchedule.Items.Refresh();
 
