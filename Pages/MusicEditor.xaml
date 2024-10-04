@@ -10,47 +10,51 @@
 	  AllowDrop="True"
 	  Drop="Page_Drop">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+	<Grid>
+
+
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
-        
-		<TabControl Grid.ColumnSpan="2">
-			<TabItem Header="5 Минут">
-				<DataGrid AutoGenerateColumns="False" x:Name="DataGrid5Min">
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="auto"/>
+		</Grid.RowDefinitions>
+
+
+
+		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="0">
+			<StackPanel>
+				
+			</StackPanel>
+		</ScrollViewer>
+
+		<StackPanel Grid.Row="1" Grid.Column="0">
+			<Button Content="Удалить" Click="DeleteClick"/>
+			<Button Content="Сохранить приоритет" Click="SaveClick"/>
+		</StackPanel>
+
+
+		<TabControl Grid.RowSpan="2" Grid.Column="1">
+			<TabItem Header="Музыка">
+				<DataGrid>
 					<DataGrid.Columns>
-                        <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
-						<DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="auto"/>
+						<DataGridTextColumn Header="Название файла" IsReadOnly="True"/>
+						<DataGridTextColumn Header="Длительность" IsReadOnly="True"/>
+						<DataGridTextColumn Header="Приоритет"/>
 					</DataGrid.Columns>
 				</DataGrid>
 			</TabItem>
-			<TabItem Header="10 Минут">
-                <DataGrid AutoGenerateColumns="False" x:Name="DataGrid10Min">
+			<TabItem Header="Аудио">
+				<DataGrid>
 					<DataGrid.Columns>
-                        <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
-						<DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="auto"/>
-					</DataGrid.Columns>
-				</DataGrid>
-			</TabItem>
-			<TabItem Header="40 Минут">
-                <DataGrid AutoGenerateColumns="False" x:Name="DataGrid40Min">
-					<DataGrid.Columns>
-						<DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
-						<DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="auto"/>
+						<DataGridTextColumn Header="Название файла" IsReadOnly="True"/>
+						<DataGridTextColumn Header="Длительность" IsReadOnly="True"/>
 					</DataGrid.Columns>
 				</DataGrid>
 			</TabItem>
 		</TabControl>
-
-        <Button Grid.Row="1" Grid.Column="0" Content="Удалить" Click="DeleteClick"/>
-		<Button Grid.Row="1" Grid.Column="1" Content="Сохранить приоритет" Click="SaveClick"/>
-
-
 
     </Grid>
 </Page>

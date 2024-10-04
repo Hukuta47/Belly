@@ -28,8 +28,7 @@ namespace Belly
             syncTime().Start();
             InitializeFolders();
             InitializeFiles();
-            Player = new Player(SettingsValues.normalVolume, SettingsValues.ssintroOutroVolume);
-            pageControl = new PageControl(frame);
+            InitializeClasses();
 
             Player.SyncSettings();
 
@@ -43,6 +42,11 @@ namespace Belly
             }
             if (Directory.Exists("Other media")) Directory.CreateDirectory("Other media");
 
+        }
+        void InitializeClasses()
+        {
+            Player = new Player(SettingsValues.normalVolume, SettingsValues.ssintroOutroVolume);
+            pageControl = new PageControl(frame);
         }
         void InitializeFiles()
         {

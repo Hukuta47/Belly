@@ -1,4 +1,4 @@
-﻿<Window x:Class="Belly.Dialogs.AddIssueWindow"
+﻿<Window x:Class="Belly.Dialogs.IssueWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -24,8 +24,8 @@
 
 		<GroupBox Grid.Row="1" Header="Задача:">
 			<StackPanel Grid.Row="1" Grid.Column="1">
-				<RadioButton Content="Играть музыку"/>
-				<RadioButton Content="Проиграть файл"/>
+				<RadioButton Content="Играть музыку" Checked="RadioButton_Checked"  Tag="MusicFile"/>
+				<RadioButton Content="Проиграть файл" Checked="RadioButton_Checked" Tag="AudioFile"/>
 			</StackPanel>
 		</GroupBox>
 
@@ -39,12 +39,12 @@
 
 				<TextBox Grid.Column="0" Text="00:00" TextAlignment="Center"/>
 				<TextBlock Grid.Column="1" Text="-" Margin="10 0 10 0"/>
-				<TextBox Grid.Column="2" Text="00:00" TextAlignment="Center"/>
+				<TextBox Grid.Column="2" Text="00:00" TextAlignment="Center" x:Name="TextBox_EndTime"/>
 
 			</Grid>
 		</GroupBox>
 
-		<GroupBox Grid.Row="3" Header="Файл">
+		<GroupBox Grid.Row="3" Header="Файл" x:Name="GroupBox_File">
 			<ListBox/>
 		</GroupBox>
 
