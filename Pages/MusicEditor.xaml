@@ -13,8 +13,8 @@
 
 
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="auto"/>
-			<ColumnDefinition/>
+			<ColumnDefinition Width="1*" />
+			<ColumnDefinition Width="3*" />
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
 			<RowDefinition/>
@@ -25,10 +25,13 @@
 
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="0">
 			<StackPanel>
-				<TextBox />
+
+				<Label Content="Окно свойств" />
 			</StackPanel>
 		</ScrollViewer>
 
+		
+		
 		<StackPanel Grid.Row="1" Grid.Column="0">
 			<Button Content="Удалить"/>
 			<Button Content="Сохранить приоритет"/>
