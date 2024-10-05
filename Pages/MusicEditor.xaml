@@ -7,14 +7,13 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="600"
       Title="MusicEditor"
-	  AllowDrop="True"
-	  Drop="Page_Drop">
+	  AllowDrop="True">
 
 	<Grid>
 
 
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition/>
+			<ColumnDefinition Width="auto"/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
@@ -26,16 +25,16 @@
 
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="0">
 			<StackPanel>
-				
+				<TextBox />
 			</StackPanel>
 		</ScrollViewer>
 
 		<StackPanel Grid.Row="1" Grid.Column="0">
-			<Button Content="Удалить" Click="DeleteClick"/>
-			<Button Content="Сохранить приоритет" Click="SaveClick"/>
+			<Button Content="Удалить"/>
+			<Button Content="Сохранить приоритет"/>
 		</StackPanel>
-
-
+		
+		
 		<TabControl Grid.RowSpan="2" Grid.Column="1">
 			<TabItem Header="Музыка">
 				<DataGrid>

@@ -15,7 +15,7 @@
 			<RowDefinition Height="auto"/>
 		</Grid.RowDefinitions>
 
-		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" > 
+		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
 			<Label Content="10:08" HorizontalContentAlignment="Center" x:Name="TimeLabel" FontFamily="Arial Black" FontSize="72"/>
 		</StackPanel>
 
@@ -34,7 +34,7 @@
 								<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*" CanUserSort="False" CanUserReorder="False" CanUserResize="False"/>
 							</DataGrid.Columns>
 						</DataGrid>
-						<ComboBox Grid.Row="1" x:Name="Monday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
+						<ComboBox Grid.Row="1" x:Name="Monday_Schedules" DisplayMemberPath="Name"/>
 					</Grid>
 				</TabItem>
 
@@ -51,7 +51,7 @@
 								<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*" CanUserSort="False" CanUserReorder="False" CanUserResize="False"/>
 							</DataGrid.Columns>
 						</DataGrid>
-						<ComboBox Grid.Row="1" x:Name="Tuesday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
+						<ComboBox Grid.Row="1" x:Name="Tuesday_Schedules" DisplayMemberPath="Name"/>
 					</Grid>
 				</TabItem>
 
@@ -68,7 +68,7 @@
 								<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*" CanUserSort="False" CanUserReorder="False" CanUserResize="False"/>
 							</DataGrid.Columns>
 						</DataGrid>
-						<ComboBox Grid.Row="1" x:Name="Wednesday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
+						<ComboBox Grid.Row="1" x:Name="Wednesday_Schedules" DisplayMemberPath="Name"/>
 					</Grid>
 				</TabItem>
 
@@ -85,7 +85,7 @@
 								<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*" CanUserSort="False" CanUserReorder="False" CanUserResize="False"/>
 							</DataGrid.Columns>
 						</DataGrid>
-						<ComboBox Grid.Row="1" x:Name="Thursday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
+						<ComboBox Grid.Row="1" x:Name="Thursday_Schedules" DisplayMemberPath="Name"/>
 					</Grid>
 				</TabItem>
 
@@ -102,7 +102,7 @@
 								<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*" CanUserSort="False" CanUserReorder="False" CanUserResize="False"/>
 							</DataGrid.Columns>
 						</DataGrid>
-						<ComboBox Grid.Row="1" x:Name="Friday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
+						<ComboBox Grid.Row="1" x:Name="Friday_Schedules" DisplayMemberPath="Name"/>
 					</Grid>
 				</TabItem>
 
@@ -119,7 +119,7 @@
 								<DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*" CanUserSort="False" CanUserReorder="False" CanUserResize="False"/>
 							</DataGrid.Columns>
 						</DataGrid>
-						<ComboBox Grid.Row="1" x:Name="Saturday_Schedules" DisplayMemberPath="Name" SelectionChanged="Schedules_SelectionChanged"/>
+						<ComboBox Grid.Row="1" x:Name="Saturday_Schedules" DisplayMemberPath="Name"/>
 					</Grid>
 				</TabItem>
 			</TabControl>
@@ -129,7 +129,7 @@
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
-			<Button Content="Сохранить неделю" Click="SaveWeek_Click"/>
+			<Button Content="Сохранить неделю"/>
 		</Grid>
 	</Grid>
 </Page>

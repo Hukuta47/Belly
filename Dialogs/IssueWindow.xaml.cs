@@ -8,49 +8,20 @@ namespace Belly.Dialogs
 {
     public partial class IssueWindow : Window
     {
-        public string NameIssue;
-        public TimeOnly StartTime;
-        public TimeOnly? EndTime;
-        public MediaFile MediaFile;
-
+        public Issue Issue;
 
         public IssueWindow(string TextButton)
         {
             InitializeComponent();
             Button_Accept.Content = TextButton;
         }
-        public IssueWindow(
-            string TextButton,
-            string NameIssue,
-            TimeOnly StartTime,
-            TimeOnly EndTime,
-            MediaFile MediaFile)
+        public IssueWindow(string TextButton, Issue Issue)
         {
             InitializeComponent();
             Button_Accept.Content = TextButton;
 
-            this.NameIssue = NameIssue;
-            this.StartTime = StartTime;
-            this.EndTime = EndTime;
-            this.MediaFile = MediaFile;
+            this.Issue = Issue;
         }
-        public IssueWindow(
-            string TextButton,
-            string NameIssue,
-            TimeOnly StartTime,
-            MediaFile MediaFile)
-        {
-            InitializeComponent();
-            Button_Accept.Content = TextButton;
-
-            this.NameIssue = NameIssue;
-            this.StartTime = StartTime;
-            this.MediaFile = MediaFile;
-        }
-
-
-
-
 
 
         private void Create_Click(object sender, RoutedEventArgs e)

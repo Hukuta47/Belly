@@ -8,7 +8,7 @@ namespace Belly.Classes
     {
         Page musicEditor = new MusicEditor();
         Page sheduleEditor = new SheduleEditor();
-        Page mainPage = new MainPage();
+        public Page mainPage = new MainPage();
         Page settings = new Settings();
 
         Frame mainFrame;

@@ -11,7 +11,7 @@ namespace Belly.Objects
             this.EndTime = EndTime;
             this.Media = Media;
         }
-        public Issue(string Name, TimeOnly StartTime, MediaFile Media)
+        public Issue(string Name, TimeOnly StartTime, TimeOnly? endTime, MediaFile Media)
         {
             this.Name = Name;
             this.StartTime = StartTime;

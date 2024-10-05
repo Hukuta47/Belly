@@ -41,12 +41,12 @@ namespace Belly.Pages
 
         private void CreateBell(object sender, System.Windows.RoutedEventArgs e)
         {
-            var dialog = new AddScheduleWindow();
+            var dialog = new IssueWindow("Создать");
 
             List<Issue> tempList = dataListSchedule.ItemsSource as List<Issue>;
             if (dialog.ShowDialog() == true)
             {
-                tempList.Add(new Bell(dialog.Name, dialog.PlayTime, dialog.MediaData));
+                tempList.Add(new Issue(dialog.Name, dialog.Issue.StartTime, dialog.Issue.EndTime, dialog.Issue.Media));
             }
 
             dataListSchedule.ItemsSource = tempList;
@@ -65,11 +65,13 @@ namespace Belly.Pages
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            SetBellData changeBellData = new SetBellData(dataListSchedule.SelectedItem);
+            Issue issue = dataListSchedule.SelectedItem as Issue;
 
-            if (changeBellData.ShowDialog() == true)
+            IssueWindow IssueData = new IssueWindow("Сохранить", issue);
+
+            if (IssueData.ShowDialog() == true)
             {
-                dataListSchedule.SelectedItem = changeBellData.SelectedItem;
+                dataListSchedule.SelectedItem = IssueData;
 
                 List<Issue> bells = (List<Issue>)dataListSchedule.ItemsSource;
                 dataListSchedule.ItemsSource = null;

@@ -1,9 +1,11 @@
 ﻿using Belly.Classes;
 using Belly.Classes.StaticClasses;
 using Belly.Objects;
+using Belly.Pages;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,34 +21,49 @@ namespace Belly
         public static Player Player;
         public static PageControl pageControl;
         public static TimeOnly TimeNow;
+        public static List<Music> MusicList;
+        public static List<Audio> AudioList;
 
 
         public MainWindow()
         {
 
             InitializeComponent();
-            syncTime().Start();
+            InitializeTime();
             InitializeFolders();
             InitializeFiles();
             InitializeClasses();
 
+
             Player.SyncSettings();
 
         }
+        async void InitializeTime()
+        {
+            await syncTime();
+        }
         void InitializeFolders()
         {
-            if (Directory.Exists("Music"))
+            if (!Directory.Exists("Music"))
             {
                 Directory.CreateDirectory("Music");
                 File.WriteAllText($"Music\\listInfo.json", "[]");
             }
-            if (Directory.Exists("Other media")) Directory.CreateDirectory("Other media");
+            if (!Directory.Exists("Audio")) Directory.CreateDirectory("Audio");
 
         }
         void InitializeClasses()
         {
             Player = new Player(SettingsValues.normalVolume, SettingsValues.ssintroOutroVolume);
             pageControl = new PageControl(frame);
+
+            MusicList = JsonConvert.DeserializeObject<List<Music>>(File.ReadAllText("Music\\listInfo.json"));
+            AudioList = new List<Audio>(new DirectoryInfo("Audio").GetFiles("*.mp3").Length);
+            foreach (FileInfo file in new DirectoryInfo("Audio").GetFiles("*.mp3"))
+            {
+                AudioList.Add(new Audio(file.FullName));
+            }
+
         }
         void InitializeFiles()
         {
@@ -121,7 +138,12 @@ namespace Belly
         {
             while (true)
             {
-                TimeNow = TimeOnly.FromDateTime(DateTime.Now);
+                if (TimeNow != TimeOnly.FromDateTime(DateTime.Now))
+                {
+                    TimeNow = TimeOnly.FromDateTime(DateTime.Now);
+                    if (MainPage.timeText != null) MainPage.timeText.Content = TimeNow.ToString();
+                }
+                Debug.WriteLine(TimeNow.Minute);
                 await Task.Delay(1);
             }
         }
