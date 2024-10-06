@@ -24,20 +24,33 @@ namespace Belly.Dialogs
         public IssueWindow(string TextButton, Issue Issue)
         {
             InitializeComponent();
+            this.Issue = Issue;
+
 
             ListBox_AudioList.ItemsSource = MainWindow.AudioList;
             Button_Accept.Content = TextButton;
-            switch (Issue.Media.Type)
+
+            TextBox_NameIssue.Text = Issue.Name;
+            TextBox_StartTime.Text = Issue.text_StartTime;
+            TextBox_EndTime.Text = Issue.text_EndTime;
+            CheckBox_EnabledIO.IsChecked = Issue.VolumeUpDown;
+
+            if (Issue.Media == null)
             {
-                case TypeMediaFile.Track:
-                    RadioButton_PlayMusic.IsChecked = true;
-                    break;
-                case TypeMediaFile.Audio:
-                    RadioButton_PlayAudio.IsChecked = true;
-                    break;
+                RadioButton_PlayMusic.IsChecked = true;
             }
-            ListBox_AudioList.SelectedItem = (Audio)Issue.Media;
-            this.Issue = Issue;
+            else
+            {
+                RadioButton_PlayAudio.IsChecked = true;
+                CheckBox_EnabledIO.IsChecked = false;
+                ListBox_AudioList.SelectedItem = (Audio)Issue.Media;
+            }
+
+            
+
+
+
+
         }
 
 

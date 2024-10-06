@@ -30,9 +30,10 @@
 			<ListBox Grid.Row="0" x:Name="ListBox_ListSchedules" DisplayMemberPath="Name" SelectionChanged="SelectedSchedule_SelectionChanged"/>
 
 			<StackPanel Grid.Row="1" Orientation="Vertical">
-				<Button Content="Создать задачу" Grid.ColumnSpan="2" Grid.Row="3" Click="CreateIssue_Click"/>
-				<Button Content="Сохранить" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="3" Click="Save_Click"/>
-				<Button Content="Удалить" Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="3" />
+				<Button Content="Изменить задачу" Click="ChangeIssue_Click"/>
+				<Button Content="Создать задачу" Click="CreateIssue_Click"/>
+				<Button Content="Сохранить" Click="Save_Click"/>
+				<Button Content="Удалить" Click="Delete_Click"/>
 			</StackPanel>
 		</Grid>
 

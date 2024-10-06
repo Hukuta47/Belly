@@ -5,6 +5,7 @@ namespace Belly.Objects
 {
     public class Issue
     {
+        public Issue() {}
         public Issue(string Name, TimeOnly StartTime, TimeOnly EndTime, bool VolumeUpDown) 
         {
             issueType = IssueType.Music;
