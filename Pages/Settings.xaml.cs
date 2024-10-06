@@ -22,7 +22,7 @@ namespace Belly.Pages
             MainWindow.SettingsValues = JsonConvert.DeserializeObject<SettingsValues>(jsonRead);
 
             slider_Basic.Value = MainWindow.SettingsValues.normalVolume * 100;
-            slider_IO.Value = MainWindow.Player._settings.ssintroOutroVolume * 100;
+            slider_IO.Value = MainWindow.Player._settings.introOutroVolume * 100;
 
         }
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -34,7 +34,7 @@ namespace Belly.Pages
             }
             if (slider_IO != null)
             {
-                MainWindow.SettingsValues.ssintroOutroVolume = (float)(slider_IO.Value / 100);
+                MainWindow.SettingsValues.introOutroVolume = (float)(slider_IO.Value / 100);
                 if (IOLabel != null) IOLabel.Content = $"{Math.Round(slider_IO.Value, 0)}%";
             }
             MainWindow.Player.SyncSettings();
@@ -45,7 +45,7 @@ namespace Belly.Pages
             var settings = new
             {
                 MainWindow.SettingsValues.normalVolume,
-                MainWindow.SettingsValues.ssintroOutroVolume
+                MainWindow.SettingsValues.introOutroVolume
             };
 
             var json = JsonConvert.SerializeObject(settings, Formatting.Indented);

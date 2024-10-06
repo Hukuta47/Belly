@@ -4,7 +4,7 @@
     {
         
         public float normalVolume { get; set;}
-        public float ssintroOutroVolume { get; set; }
+        public float introOutroVolume { get; set; }
 
     }
 }

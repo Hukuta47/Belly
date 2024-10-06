@@ -2,6 +2,7 @@
 using Belly.Classes.StaticClasses;
 using Belly.Objects;
 using Belly.Pages;
+using NAudio.Mixer;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,8 @@ namespace Belly
         public static TimeOnly TimeNow;
         public static List<Music> MusicList;
         public static List<Audio> AudioList;
+        public static List<Schedule> ScheduleList;
+
 
 
         public MainWindow()
@@ -54,11 +57,13 @@ namespace Belly
         }
         void InitializeClasses()
         {
-            Player = new Player(SettingsValues.normalVolume, SettingsValues.ssintroOutroVolume);
+            Player = new Player(SettingsValues.normalVolume, SettingsValues.introOutroVolume);
             pageControl = new PageControl(frame);
 
             MusicList = JsonConvert.DeserializeObject<List<Music>>(File.ReadAllText("Music\\listInfo.json"));
             AudioList = new List<Audio>(new DirectoryInfo("Audio").GetFiles("*.mp3").Length);
+
+
             foreach (FileInfo file in new DirectoryInfo("Audio").GetFiles("*.mp3"))
             {
                 AudioList.Add(new Audio(file.FullName));
@@ -69,16 +74,20 @@ namespace Belly
         {
             if (!File.Exists("sheduleList.json"))
             {
-                List<Schedule> schedules = new List<Schedule>()
+                ScheduleList = new List<Schedule>()
                 {
                     new Schedule("Обычный день"),
                     new Schedule("Сокращенный день"),
                     new Schedule("Корпоративный день")
                 };
 
-                var json = JsonConvert.SerializeObject(schedules, Formatting.Indented);
+                var json = JsonConvert.SerializeObject(ScheduleList, Formatting.Indented);
 
                 File.WriteAllText("sheduleList.json", json);
+            }
+            else
+            {
+                ScheduleList = JsonConvert.DeserializeObject<List<Schedule>>(File.ReadAllText("sheduleList.json"));
             }
 
             if (!File.Exists("weekList.json"))
@@ -92,13 +101,13 @@ namespace Belly
                 SettingsValues = new();
 
                 SettingsValues.normalVolume = 0.5f;
-                SettingsValues.ssintroOutroVolume = 0.5f;
+                SettingsValues.introOutroVolume = 0.5f;
 
 
                 var settings = new
                 {
                     SettingsValues.normalVolume,
-                    SettingsValues.ssintroOutroVolume
+                    SettingsValues.introOutroVolume
                 };
 
                 var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
@@ -120,22 +129,23 @@ namespace Belly
             switch (button.Tag)
             {
                 case "music":
-                    MainWindow.pageControl.ChangePage(PageControl.Pages.musicEditor);
+                    pageControl.ChangePage(PageControl.Pages.musicEditor);
                     break;
                 case "schedule":
-                    MainWindow.pageControl.ChangePage(PageControl.Pages.sheduleEditor);
+                    pageControl.ChangePage(PageControl.Pages.sheduleEditor);
                     break;
                 case "main":
-                    MainWindow.pageControl.ChangePage(PageControl.Pages.mainPage);
+                    pageControl.ChangePage(PageControl.Pages.mainPage);
                     break;
                 case "settings":
-                    MainWindow.pageControl.ChangePage(PageControl.Pages.settings);
+                    pageControl.ChangePage(PageControl.Pages.settings);
                     break;
             }
         }
 
         async Task syncTime()
         {
+
             while (true)
             {
                 if (TimeNow != TimeOnly.FromDateTime(DateTime.Now))
@@ -144,7 +154,7 @@ namespace Belly
                     if (MainPage.timeText != null) MainPage.timeText.Content = TimeNow.ToString();
                 }
                 Debug.WriteLine(TimeNow.Minute);
-                await Task.Delay(1);
+                await Task.Delay(100);
             }
         }
     }

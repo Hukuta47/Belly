@@ -10,6 +10,7 @@ namespace Belly.Classes.StaticClasses
         public SettingsValues _settings;
 
         public WaveOut waveOut;
+
         public Mp3FileReader reader;
 
 
@@ -23,7 +24,7 @@ namespace Belly.Classes.StaticClasses
             _settings = MainWindow.SettingsValues;
 
             _settings.normalVolume = norm;
-            _settings.ssintroOutroVolume = io;
+            _settings.introOutroVolume = io;
         }
 
 
@@ -57,12 +58,12 @@ namespace Belly.Classes.StaticClasses
                 if (currentTime <= firstMinute)
                 {
                     // Увеличиваем громкость на первую минуту
-                    wave.Volume = _settings.ssintroOutroVolume;
+                    wave.Volume = _settings.introOutroVolume;
                 }
                 else if (currentTime >= lastMinute)
                 {
                     // Увеличиваем громкость на последнюю минуту
-                    wave.Volume = _settings.ssintroOutroVolume;
+                    wave.Volume = _settings.introOutroVolume;
                 }
                 else
                 {

@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:Belly.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="320"
-      Title="Settings">
+      Title="Settings"
+	  Background="White">
 
 	<Grid>
 		<Grid.RowDefinitions>
@@ -53,7 +54,26 @@
 						</StackPanel>
 					</Border>
 				</Expander>
+
+				<Expander 
+				Header="Логирование" 
+				Background="White" 
+				BorderBrush="Black"
+				Padding="5"
+				Margin="10">
+					<Border BorderThickness="1" CornerRadius="10" BorderBrush="Black" Padding="10" Margin="10">
+						<StackPanel>
+							<TextBox IsReadOnly="True" Height="250"/>
+						</StackPanel>
+					</Border>
+				</Expander>
 			</StackPanel>
+			
+			
+			
+			
+			
+			
 		</ScrollViewer>
 
 		<Button Grid.Row="1" Content="Сохранить настройки" Margin="5" Padding="5" Click="SaveValues_Click"/>

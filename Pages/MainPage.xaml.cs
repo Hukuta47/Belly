@@ -11,6 +11,7 @@ namespace Belly.Pages
             InitializeComponent();
             timeText = TimeLabel;
             TimeLabel.Content = MainWindow.TimeNow.ToString();
+
         }
 
     }

@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:Belly.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="365"
-      Title="MainPage">
+      Title="MainPage"
+	  Background="White">
 
 	<Grid>
 		<Grid.RowDefinitions>

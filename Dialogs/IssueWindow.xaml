@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Belly.Dialogs"
         mc:Ignorable="d"
-        Title="AddIssueWindow" d:DesignHeight="260">
+        Title="AddIssueWindow" d:DesignHeight="260" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" SizeToContent="Width">
 	<Grid>
 		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
 			<RowDefinition Height="auto"/>
@@ -24,8 +25,8 @@
 
 		<GroupBox Grid.Row="1" Header="Задача:">
 			<StackPanel Grid.Row="1" Grid.Column="1">
-				<RadioButton Content="Играть музыку" Checked="RadioButton_Checked"  Tag="MusicFile"/>
-				<RadioButton Content="Проиграть файл" Checked="RadioButton_Checked" Tag="AudioFile"/>
+				<RadioButton Content="Играть музыку" Checked="RadioButton_Checked"  Tag="MusicFile" x:Name="RadioButton_PlayMusic"/>
+				<RadioButton Content="Проиграть файл" Checked="RadioButton_Checked" Tag="AudioFile" x:Name="RadioButton_PlayAudio"/>
 			</StackPanel>
 		</GroupBox>
 
@@ -37,19 +38,25 @@
 					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
 
-				<TextBox Grid.Column="0" Text="00:00" TextAlignment="Center"/>
+				<TextBox Grid.Column="0" Text="00:00" TextAlignment="Center" x:Name="TextBox_StartTime"/>
 				<TextBlock Grid.Column="1" Text="-" Margin="10 0 10 0"/>
 				<TextBox Grid.Column="2" Text="00:00" TextAlignment="Center" x:Name="TextBox_EndTime"/>
 
 			</Grid>
 		</GroupBox>
 
-		<GroupBox Grid.Row="3" Header="Файл" x:Name="GroupBox_File">
-			<ListBox/>
+		<GroupBox Grid.Row="3" Header="Дополнительно" x:Name="GroupBox_Other">
+			<CheckBox Content="Прибавлять начало/конец?" x:Name="CheckBox_EnabledIO"/>
 		</GroupBox>
 
+		<GroupBox Grid.Row="4" Header="Файл" x:Name="GroupBox_File">
+			<ListBox x:Name="ListBox_AudioList" DisplayMemberPath="Name"/>
+		</GroupBox>
 
-		<StackPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
+		
+
+
+		<StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
 			<Button x:Name="Button_Accept" Content="*текст*" Width="100" Margin="5 5 2.5 5" Click="Create_Click"/>
 			<Button Content="Отмена" Width="100" Margin="2.5 5 5 5" Click="Cancel_Click"/>
 		</StackPanel>
