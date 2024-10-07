@@ -1,10 +1,12 @@
-﻿using Belly.Objects;
+﻿using Newtonsoft.Json;
+using System.IO;
+using Belly.Objects;
 using System.Windows.Controls;
+using System.Collections.Generic;
 using System.Windows;
 using Belly.Dialogs;
-using Newtonsoft.Json;
-using System.IO;
-using System.Diagnostics.Metrics;
+using Belly.Classes.StaticClasses;
+using NAudio.Mixer;
 
 namespace Belly.Pages
 {
@@ -14,57 +16,78 @@ namespace Belly.Pages
         public SheduleEditor()
         {
             InitializeComponent();
-            InitializeSchedules();
+
+            LoadList();
+
         }
-        void InitializeSchedules()
+
+        void LoadList()
         {
-            ListBox_ListSchedules.ItemsSource = MainWindow.ScheduleList;
+            var jsonRead = JsonConvert.DeserializeObject<List<Schedule>>(File.ReadAllText("sheduleList.json"));
+            
+            schedules.ItemsSource = jsonRead;
+
+            sheduleList.basicSchedule = jsonRead[0];
+            sheduleList.shortSchedule = jsonRead[1];
+            sheduleList.exclusiveSchedule = jsonRead[2];
+
+            schedules.SelectedIndex = 0;
         }
 
-        
-
-        private void SelectedSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void schedules_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataGrid_Schedules.ItemsSource = ((Schedule)ListBox_ListSchedules.SelectedItem).Issues;
+            dataListSchedule.ItemsSource = ((Schedule)schedules.SelectedItem).bells;
         }
 
-        private void Save_Click(object sender, RoutedEventArgs e)
-        {
-            var jsonReady = JsonConvert.SerializeObject(MainWindow.ScheduleList, Formatting.Indented);
-
-            File.WriteAllText("sheduleList.json", jsonReady);
-        }
-        private void CreateIssue_Click(object sender, RoutedEventArgs e)
+        private void CreateBell(object sender, System.Windows.RoutedEventArgs e)
         {
             var dialog = new IssueWindow("Создать");
+
+            List<Issue> tempList = dataListSchedule.ItemsSource as List<Issue>;
             if (dialog.ShowDialog() == true)
             {
-                MainWindow.ScheduleList[ListBox_ListSchedules.SelectedIndex].Issues.Add(dialog.Issue);
+                tempList.Add(new Issue(dialog.Name, dialog.Issue.StartTime, dialog.Issue.EndTime, dialog.Issue.MediaFile));
             }
-            DataGrid_Schedules.Items.Refresh();
+
+            dataListSchedule.ItemsSource = tempList;
+            dataListSchedule.Items.Refresh();
+
         }
 
-        private void ChangeIssue_Click(object sender, RoutedEventArgs e)
+        private void SaveClick(object sender, RoutedEventArgs e)
         {
-            var dialog = new IssueWindow("Изменить", (Issue)DataGrid_Schedules.SelectedItem);
+            List<Schedule> schedulesList = schedules.ItemsSource as List<Schedule>;
 
-            var issuesList = MainWindow.ScheduleList[ListBox_ListSchedules.SelectedIndex].Issues;
-            int index = issuesList.FindIndex(obj => obj.Name == dialog.Issue.Name);
+            var jsonWrite = JsonConvert.SerializeObject(schedulesList, Formatting.Indented);
 
-            if (dialog.ShowDialog() == true)
+            File.WriteAllText("sheduleList.json", jsonWrite);
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Issue issue = dataListSchedule.SelectedItem as Issue;
+
+            IssueWindow IssueData = new IssueWindow("Сохранить", issue);
+
+            if (IssueData.ShowDialog() == true)
             {
-                if (index != -1)
-                {
-                    issuesList[index] = dialog.Issue;
-                }
+                dataListSchedule.SelectedItem = IssueData;
+
+                List<Issue> bells = (List<Issue>)dataListSchedule.ItemsSource;
+                dataListSchedule.ItemsSource = null;
+                dataListSchedule.ItemsSource = bells;
             }
-            DataGrid_Schedules.Items.Refresh();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.ScheduleList[ListBox_ListSchedules.SelectedIndex].Issues.Remove((Issue)DataGrid_Schedules.SelectedItem);
-            DataGrid_Schedules.Items.Refresh();
+
+            ((List<Issue>)dataListSchedule.ItemsSource).RemoveRange(dataListSchedule.SelectedIndex, dataListSchedule.SelectedItems.Count);
+
+            dataListSchedule.Items.Refresh();
+
+
+
         }
     }
 }
