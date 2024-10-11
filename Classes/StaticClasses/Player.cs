@@ -15,20 +15,15 @@ namespace Belly.Classes.StaticClasses
 
         public Mp3FileReader reader;
 
-        public async Task Play(IssueType issueType, 4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     MediaFile mediaFile)
+
+        public async Task Play(MediaFile PathMediaFile, int miliseconds)
         {
-            switch (issueType)
-            {
-                case IssueType.Music:
-                    break;
-                case IssueType.Audio:
-                    break;
-            }
+
         }
+        public async Task Play(MediaFile PathMediaFile)
+        {
 
-
-
-
+        }
     }
 
 }

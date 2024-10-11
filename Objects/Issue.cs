@@ -23,6 +23,22 @@ namespace Belly.Objects
             this.StartTime = StartTime;
             this.MediaFile = MediaFile;
         }
+        public async void Start()
+        {
+            switch (IssueType)
+            {
+                case IssueType.Music:
+
+                    break;
+                case IssueType.Audio:
+
+                    break;
+            }
+        }
+
+
+
+
         public IssueType IssueType { get; set; }
         public string Name { get; set; }
         public TimeOnly StartTime { get; set; }
@@ -31,7 +47,7 @@ namespace Belly.Objects
         {
             get
             {
-
+                return EndTime.Value.Millisecond - StartTime.Millisecond;
             }
         }
         public bool? VolumeUpDown { get; set; }
@@ -50,26 +66,5 @@ namespace Belly.Objects
                 return EndTime.ToString();
             }
         }
-
-        public async void Start()
-        {
-            await StartPlay();
-        }
-        async Task StartPlay()
-        {
-            switch (IssueType)
-            {
-                case IssueType.Music:
-                    await Task.Delay(1);
-                break;
-                case IssueType.Audio:
-                    await MainWindow.Player.Play(MediaFile.Path, VolumeUpDown);
-                break;
-            }
-            
-            //stop
-        }
-
-
     }
 }
