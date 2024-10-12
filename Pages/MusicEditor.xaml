@@ -31,7 +31,7 @@
 		</StackPanel>
 
 		<GroupBox Header="Музыка" Grid.Row="0" Grid.ColumnSpan="2">
-			<DataGrid AllowDrop="True" Drop="DataGrid_Drop" x:Name="DataGrid_MusicList" Tag="Music">
+			<DataGrid AllowDrop="True" Drop="DataGrid_Drop" x:Name="DataGrid_MusicList" Tag="Music" AutoGenerateColumns="False">
 				<DataGrid.Columns>
 					<DataGridTextColumn Binding="{Binding Name}" Header="Название файла" IsReadOnly="True"/>
 					<DataGridTextColumn Binding="{Binding Duration}" Header="Длительность" IsReadOnly="True"/>
@@ -41,7 +41,7 @@
 		</GroupBox>
 	
 		<GroupBox Grid.Row="1" Grid.ColumnSpan="2" Header="Аудио">
-			<DataGrid AllowDrop="True" Drop="DataGrid_Drop" x:Name="DataGrid_AudioList" Tag="Audio">
+			<DataGrid AllowDrop="True" Drop="DataGrid_Drop" x:Name="DataGrid_AudioList" Tag="Audio" AutoGenerateColumns="False">
 				<DataGrid.Columns>
 					<DataGridTextColumn Binding="{Binding Name}" Header="Название файла" IsReadOnly="True"/>
 					<DataGridTextColumn Binding="{Binding Duration}" Header="Длительность" IsReadOnly="True"/>

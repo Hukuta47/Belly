@@ -1,4 +1,5 @@
 ﻿using Belly.Objects;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -31,20 +32,23 @@ namespace Belly.Pages
                         {
                             case "Music":
                                 MainWindow.MusicList.Add(new Music(file));
-                                DataGrid_MusicList.Items.Refresh();
+
+                                DataGrid_MusicList.ItemsSource = null;
+                                DataGrid_MusicList.ItemsSource = MainWindow.MusicList;
                             break;
                             case "Audio": 
                                 Audio audio = new Audio(file);
                                 MainWindow.AudioList.Add(audio);
-                                File.Copy(file, $@"Audio\{audio.Name}");
-                                DataGrid_AudioList.Items.Refresh();
-                            break;
+                                File.Copy(file, $@"Audio\{audio.Name}", true);
+
+                                DataGrid_AudioList.ItemsSource = null;
+                                DataGrid_AudioList.ItemsSource = MainWindow.AudioList;
+                                break;
                         }
 
                     }
                 }
             }
-
         }
     }
 }
