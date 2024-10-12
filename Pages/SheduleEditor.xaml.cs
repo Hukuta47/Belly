@@ -1,12 +1,9 @@
-﻿using Newtonsoft.Json;
-using System.IO;
-using Belly.Objects;
+﻿using Belly.Objects;
 using System.Windows.Controls;
-using System.Collections.Generic;
 using System.Windows;
 using Belly.Dialogs;
-using Belly.Classes.StaticClasses;
-using NAudio.Mixer;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Belly.Pages
 {
@@ -24,9 +21,9 @@ namespace Belly.Pages
 
             if (dialog.ShowDialog() == true)
             {
-
+                ((Schedule)ListBox_ListSchedules.SelectedItem).Issues[DataGrid_Schedules.SelectedIndex] = dialog.Issue;
             }
-
+            DataGrid_Schedules.Items.Refresh();
 
         }
         private void CreateIssue_Click(object sender, RoutedEventArgs e)
@@ -43,11 +40,14 @@ namespace Belly.Pages
         }
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            var json = JsonConvert.SerializeObject(MainWindow.ScheduleList, Formatting.Indented);
+            File.WriteAllText("sheduleList.json", json);
 
         }
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow.ScheduleList[ListBox_ListSchedules.SelectedIndex].Issues.Remove((Issue)DataGrid_Schedules.SelectedItem);
+            DataGrid_Schedules.Items.Refresh();
         }
         private void SelectedSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

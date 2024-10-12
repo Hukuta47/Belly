@@ -19,45 +19,36 @@
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
 			<RowDefinition/>
+			<RowDefinition/>
 			<RowDefinition Height="auto"/>
 		</Grid.RowDefinitions>
 
 
 
-		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="0">
-			<StackPanel>
-
-				<Label Content="Окно свойств" />
-			</StackPanel>
-		</ScrollViewer>
-
-		
-		
-		<StackPanel Grid.Row="1" Grid.Column="0">
+		<StackPanel Grid.Row="4" Grid.Column="0">
 			<Button Content="Удалить"/>
 			<Button Content="Сохранить приоритет"/>
 		</StackPanel>
-		
-		
-		<TabControl Grid.RowSpan="2" Grid.Column="1">
-			<TabItem Header="Музыка">
-				<DataGrid>
-					<DataGrid.Columns>
-						<DataGridTextColumn Header="Название файла" IsReadOnly="True"/>
-						<DataGridTextColumn Header="Длительность" IsReadOnly="True"/>
-						<DataGridTextColumn Header="Приоритет"/>
-					</DataGrid.Columns>
-				</DataGrid>
-			</TabItem>
-			<TabItem Header="Аудио">
-				<DataGrid>
-					<DataGrid.Columns>
-						<DataGridTextColumn Header="Название файла" IsReadOnly="True"/>
-						<DataGridTextColumn Header="Длительность" IsReadOnly="True"/>
-					</DataGrid.Columns>
-				</DataGrid>
-			</TabItem>
-		</TabControl>
 
-    </Grid>
+		<GroupBox Header="Музыка" Grid.Row="0" Grid.ColumnSpan="2">
+			<DataGrid AllowDrop="True" Drop="DataGrid_Drop" x:Name="DataGrid_MusicList" Tag="Music">
+				<DataGrid.Columns>
+					<DataGridTextColumn Binding="{Binding Name}" Header="Название файла" IsReadOnly="True"/>
+					<DataGridTextColumn Binding="{Binding Duration}" Header="Длительность" IsReadOnly="True"/>
+					<DataGridTextColumn Binding="{Binding Priority}" Header="Приоритет"/>
+				</DataGrid.Columns>
+			</DataGrid>
+		</GroupBox>
+	
+		<GroupBox Grid.Row="1" Grid.ColumnSpan="2" Header="Аудио">
+			<DataGrid AllowDrop="True" Drop="DataGrid_Drop" x:Name="DataGrid_AudioList" Tag="Audio">
+				<DataGrid.Columns>
+					<DataGridTextColumn Binding="{Binding Name}" Header="Название файла" IsReadOnly="True"/>
+					<DataGridTextColumn Binding="{Binding Duration}" Header="Длительность" IsReadOnly="True"/>
+				</DataGrid.Columns>
+			</DataGrid>
+		</GroupBox>
+
+
+	</Grid>
 </Page>

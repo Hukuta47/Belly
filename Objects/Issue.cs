@@ -35,10 +35,6 @@ namespace Belly.Objects
                     break;
             }
         }
-
-
-
-
         public IssueType IssueType { get; set; }
         public string Name { get; set; }
         public TimeOnly StartTime { get; set; }

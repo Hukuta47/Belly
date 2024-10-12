@@ -11,8 +11,6 @@ namespace Belly.Objects
             priority = 1;
         }
         private int priority { get; set; }
-
-        
         new public string Name 
         { 
             get 

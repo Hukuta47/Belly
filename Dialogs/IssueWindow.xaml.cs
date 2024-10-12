@@ -30,10 +30,10 @@ namespace Belly.Dialogs
             ListBox_AudioList.ItemsSource = MainWindow.AudioList;
             Button_Accept.Content = TextButton;
 
-            TextBox_NameIssue.Text = Issue.Name;
-            TextBox_StartTime.Text = Issue.text_StartTime;
-            TextBox_EndTime.Text = Issue.text_EndTime;
-            CheckBox_EnabledIO.IsChecked = Issue.VolumeUpDown;
+            TextBox_NameIssue.Text = this.Issue.Name;
+            TextBox_StartTime.Text = this.Issue.text_StartTime;
+            TextBox_EndTime.Text = this.Issue.text_EndTime;
+            CheckBox_EnabledIO.IsChecked = this.Issue.VolumeUpDown;
 
             if (Issue.MediaFile == null)
             {
@@ -45,19 +45,7 @@ namespace Belly.Dialogs
                 CheckBox_EnabledIO.IsChecked = false;
                 ListBox_AudioList.SelectedItem = (Audio)Issue.MediaFile;
             }
-
-            
-
-
-
-
         }
-
-
-
-
-
-
         private void Create_Click(object sender, RoutedEventArgs e)
         {
             string StartTime_text = TextBox_StartTime.Text;
@@ -115,7 +103,6 @@ namespace Belly.Dialogs
                     CheckBox_EnabledIO.IsEnabled = true;
                     GroupBox_File.IsEnabled = false;
 
-                    TextBox_EndTime.Text = "00:00";
                     break;
                 case "AudioFile":
 
