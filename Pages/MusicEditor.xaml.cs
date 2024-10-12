@@ -1,5 +1,5 @@
 ﻿using Belly.Objects;
-using System.Collections.Generic;
+using Newtonsoft.Json;
 using System.IO;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -24,6 +24,7 @@ namespace Belly.Pages
             {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
+
                 foreach (string file in files)
                 {
                     if (System.IO.Path.GetExtension(file).ToLower() == ".mp3")
@@ -31,18 +32,30 @@ namespace Belly.Pages
                         switch (((DataGrid)sender).Tag)
                         {
                             case "Music":
-                                MainWindow.MusicList.Add(new Music(file));
 
-                                DataGrid_MusicList.ItemsSource = null;
-                                DataGrid_MusicList.ItemsSource = MainWindow.MusicList;
-                            break;
-                            case "Audio": 
-                                Audio audio = new Audio(file);
-                                MainWindow.AudioList.Add(audio);
-                                File.Copy(file, $@"Audio\{audio.Name}", true);
+                                if (!MainWindow.MusicList.Exists(f => f.Name == Path.GetFileName(file)))
+                                {
+                                    Music music = new Music(file);
 
-                                DataGrid_AudioList.ItemsSource = null;
-                                DataGrid_AudioList.ItemsSource = MainWindow.AudioList;
+                                    MainWindow.MusicList.Add(music);
+                                    File.Copy(file, $@"Music\{music.Name}", true);
+
+                                    DataGrid_MusicList.Items.Refresh();
+
+                                    var json = JsonConvert.SerializeObject(MainWindow.MusicList, Formatting.Indented);
+                                    File.WriteAllText(@"Music\listInfo.json", json);
+                                }
+                                break;
+                            case "Audio":
+                                if (!MainWindow.AudioList.Exists(f => f.Name == Path.GetFileName(file)))
+                                {
+                                    Audio audio = new Audio(file);
+
+                                    MainWindow.AudioList.Add(audio);
+                                    File.Copy(file, $@"Audio\{audio.Name}", true);
+
+                                    DataGrid_AudioList.Items.Refresh();
+                                }
                                 break;
                         }
 

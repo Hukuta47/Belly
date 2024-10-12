@@ -2,7 +2,6 @@
 using Belly.Classes.StaticClasses;
 using Belly.Objects;
 using Belly.Pages;
-using NAudio.Mixer;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -30,15 +29,12 @@ namespace Belly
 
         public MainWindow()
         {
-
             InitializeComponent();
+
             InitializeTime();
             InitializeFolders();
             InitializeFiles();
             InitializeClasses();
-
-
-
         }
         async void InitializeTime()
         {
@@ -46,28 +42,25 @@ namespace Belly
         }
         void InitializeFolders()
         {
-            if (!Directory.Exists("Music"))
-            {
-                Directory.CreateDirectory("Music");
-                File.WriteAllText($"Music\\listInfo.json", "[]");
-            }
+            if (!Directory.Exists("Music")) Directory.CreateDirectory("Music");
+            if (!File.Exists($"Music\\listInfo.json")) File.WriteAllText($"Music\\listInfo.json", "[]");
+            
             if (!Directory.Exists("Audio")) Directory.CreateDirectory("Audio");
 
         }
         void InitializeClasses()
         {
             Player = new Player(SettingsValues.normalVolume, SettingsValues.introOutroVolume);
-            pageControl = new PageControl(frame);
 
-            MusicList = JsonConvert.DeserializeObject<List<Music>>(File.ReadAllText("Music\\listInfo.json"));
+            MusicList = JsonConvert.DeserializeObject<List<Music>>(File.ReadAllText(@"Music\\listInfo.json"));
             AudioList = new List<Audio>(new DirectoryInfo("Audio").GetFiles("*.mp3").Length);
 
+            pageControl = new PageControl(frame);
 
             foreach (FileInfo file in new DirectoryInfo("Audio").GetFiles("*.mp3"))
             {
                 AudioList.Add(new Audio(file.FullName));
             }
-
         }
         void InitializeFiles()
         {
@@ -119,7 +112,6 @@ namespace Belly
                 SettingsValues = JsonConvert.DeserializeObject<SettingsValues>(jsonRead);
             }
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
@@ -141,7 +133,6 @@ namespace Belly
                     break;
             }
         }
-
         async Task syncTime()
         {
 
