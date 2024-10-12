@@ -1,31 +1,34 @@
 ﻿
 using System.Threading.Tasks;
 using Belly.Objects;
-using Belly;
 using NAudio.Wave;
-using System.Windows.Documents;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-using System.Data;
+
 
 namespace Belly.Classes.StaticClasses
 {
     public class Player
     {
-
         public SettingsValues _settings;
-
         public WaveOutEvent OutputDevice;
-
         public AudioFileReader AudioFile;
 
 
-        public Player() => OutputDevice = new WaveOutEvent();
+        public Player(float normalVolume, float introOutroVolume)
+        {
+            OutputDevice = new WaveOutEvent();
+            OutputDevice.Volume = normalVolume;
+        }
 
-        public async Task PlayMusic(int miliseconds)
+        public async Task PlayMusic(int miliseconds, bool volumeUpDown)
         {
             int countMilliseconds = miliseconds;
+
+            startVolumeUpDown(miliseconds);
+
+
             while (true)
             {
                 if (AudioFile != null)
@@ -53,9 +56,16 @@ namespace Belly.Classes.StaticClasses
             }
 
         }
-        public async Task Play(MediaFile PathMediaFile)
+        public async Task Play(MediaFile MediaFile)
         {
-
+            if (AudioFile != null)
+            {
+                AudioFile.Dispose();
+            }
+            AudioFile = new AudioFileReader(MediaFile.Path);
+            OutputDevice.Init(AudioFile);
+            OutputDevice.Play();
+            await Task.CompletedTask;
         }
         string GetPathOnPriority(List<Music> items)
         {
@@ -72,6 +82,16 @@ namespace Belly.Classes.StaticClasses
                 randomValue -= music.Priority;
             }
             return default(string);
+        }
+        async Task startVolumeUpDown(int miliseconds)
+        {
+            OutputDevice.Volume = MainWindow.SettingsValues.introOutroVolume;
+            await Task.Delay(60000);
+            OutputDevice.Volume = MainWindow.SettingsValues.normalVolume;
+            await Task.Delay(miliseconds - 60000);
+            OutputDevice.Volume = MainWindow.SettingsValues.introOutroVolume;
+            await Task.Delay(60000);
+            OutputDevice.Volume = MainWindow.SettingsValues.normalVolume;
         }
     }
 

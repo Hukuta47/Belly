@@ -38,7 +38,6 @@ namespace Belly
             InitializeClasses();
 
 
-            Player.SyncSettings();
 
         }
         async void InitializeTime()

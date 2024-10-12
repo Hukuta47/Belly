@@ -13,31 +13,31 @@ namespace Belly.Pages
         public Settings()
         {
             InitializeComponent();
+
             InitializeSettings();
         }
         void InitializeSettings()
         {
+            slider_Basic.ValueChanged -= Slider_ValueChanged;
+            slider_IO.ValueChanged -= Slider_ValueChanged;
 
-            var jsonRead = File.ReadAllText("settings.json");
-            MainWindow.SettingsValues = JsonConvert.DeserializeObject<SettingsValues>(jsonRead);
 
             slider_Basic.Value = MainWindow.SettingsValues.normalVolume * 100;
-            slider_IO.Value = MainWindow.Player._settings.introOutroVolume * 100;
+            slider_IO.Value = MainWindow.SettingsValues.introOutroVolume * 100;
+            
+            BasicLabel.Content = $"{Math.Round(slider_Basic.Value, 0)}%";
+            IOLabel.Content = $"{Math.Round(slider_IO.Value, 0)}%";
 
+            slider_Basic.ValueChanged += Slider_ValueChanged;
+            slider_IO.ValueChanged += Slider_ValueChanged;
         }
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (slider_Basic != null)
-            {
-                MainWindow.SettingsValues.normalVolume = (float)(slider_Basic.Value / 100);
-                if (BasicLabel != null) BasicLabel.Content = $"{Math.Round(slider_Basic.Value, 0)}%";
-            }
-            if (slider_IO != null)
-            {
-                MainWindow.SettingsValues.introOutroVolume = (float)(slider_IO.Value / 100);
-                if (IOLabel != null) IOLabel.Content = $"{Math.Round(slider_IO.Value, 0)}%";
-            }
-            MainWindow.Player.SyncSettings();
+            MainWindow.SettingsValues.normalVolume = (float)(slider_Basic.Value / 100);
+            BasicLabel.Content = $"{Math.Round(slider_Basic.Value, 0)}%";
+
+            MainWindow.SettingsValues.introOutroVolume = (float)(slider_IO.Value / 100);
+            IOLabel.Content = $"{Math.Round(slider_IO.Value, 0)}%";
         }
 
         private void SaveValues_Click(object sender, RoutedEventArgs e)

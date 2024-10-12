@@ -35,7 +35,7 @@ namespace Belly.Dialogs
             TextBox_EndTime.Text = Issue.text_EndTime;
             CheckBox_EnabledIO.IsChecked = Issue.VolumeUpDown;
 
-            if (Issue.Media == null)
+            if (Issue.MediaFile == null)
             {
                 RadioButton_PlayMusic.IsChecked = true;
             }
@@ -43,7 +43,7 @@ namespace Belly.Dialogs
             {
                 RadioButton_PlayAudio.IsChecked = true;
                 CheckBox_EnabledIO.IsChecked = false;
-                ListBox_AudioList.SelectedItem = (Audio)Issue.Media;
+                ListBox_AudioList.SelectedItem = (Audio)Issue.MediaFile;
             }
 
             

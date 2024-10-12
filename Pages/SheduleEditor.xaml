@@ -40,7 +40,7 @@
 		<DataGrid Grid.Column="1" AutoGenerateColumns="False" SelectionMode="Extended" IsReadOnly="True" x:Name="DataGrid_Schedules">
 			<DataGrid.Columns>
 				<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="auto"/>
-				<DataGridTextColumn Binding="{Binding issueType}" Header="Тип" Width="50"/>
+				<DataGridTextColumn Binding="{Binding IssueType}" Header="Тип" Width="50"/>
 				<DataGridTextColumn Binding="{Binding text_StartTime}" Header="Начало" Width="50"/>
 				<DataGridTextColumn Binding="{Binding text_EndTime}" Header="Конец" Width="50"/>
 				<DataGridCheckBoxColumn Binding="{Binding VolumeUpDown}" Header="Прибавление громкости в начале/конце" Width="auto"/>
