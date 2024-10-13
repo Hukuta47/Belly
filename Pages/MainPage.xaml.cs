@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Belly.Objects;
+using System.Windows.Controls;
 
 namespace Belly.Pages
 {
@@ -12,8 +13,13 @@ namespace Belly.Pages
             timeText = TimeLabel;
             TimeLabel.Content = MainWindow.TimeNow.ToString();
 
+            ListBox_Schedules.ItemsSource = MainWindow.ScheduleList;
         }
 
+        private void ListBox_Schedules_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid_IssueList.ItemsSource = ((Schedule)ListBox_Schedules.SelectedItem).Issues;
+        }
     }
 }
  

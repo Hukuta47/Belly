@@ -11,7 +11,6 @@ namespace Belly.Classes.StaticClasses
 {
     public class Player
     {
-        public SettingsValues _settings;
         public WaveOutEvent OutputDevice;
         public AudioFileReader AudioFile;
 

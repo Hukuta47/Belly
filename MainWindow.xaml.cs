@@ -2,6 +2,7 @@
 using Belly.Classes.StaticClasses;
 using Belly.Objects;
 using Belly.Pages;
+using NAudio.Mixer;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace Belly
         public static List<Music> MusicList;
         public static List<Audio> AudioList;
         public static List<Schedule> ScheduleList;
+        public static List<int> Week;
 
 
 
@@ -35,6 +37,7 @@ namespace Belly
             InitializeFolders();
             InitializeFiles();
             InitializeClasses();
+            pageControl.ChangePage(PageControl.Pages.mainPage);
         }
         async void InitializeTime()
         {
@@ -50,17 +53,25 @@ namespace Belly
         }
         void InitializeClasses()
         {
+            SettingsValues = JsonConvert.DeserializeObject<SettingsValues>(File.ReadAllText("settings.json"));
+            MusicList = JsonConvert.DeserializeObject<List<Music>>(File.ReadAllText(@"Music\\listInfo.json"));
+            Week = JsonConvert.DeserializeObject<List<int>>(File.ReadAllText("weekList.json"));
+            
             Player = new Player(SettingsValues.normalVolume, SettingsValues.introOutroVolume);
 
-            MusicList = JsonConvert.DeserializeObject<List<Music>>(File.ReadAllText(@"Music\\listInfo.json"));
             AudioList = new List<Audio>(new DirectoryInfo("Audio").GetFiles("*.mp3").Length);
-
-            pageControl = new PageControl(frame);
+            
 
             foreach (FileInfo file in new DirectoryInfo("Audio").GetFiles("*.mp3"))
             {
                 AudioList.Add(new Audio(file.FullName));
             }
+
+            
+
+            pageControl = new PageControl(frame);
+
+
         }
         void InitializeFiles()
         {
@@ -105,11 +116,6 @@ namespace Belly
                 var json = JsonConvert.SerializeObject(settings, Formatting.Indented);
 
                 File.WriteAllText("settings.json", json);
-            }
-            else
-            {
-                var jsonRead = File.ReadAllText("settings.json");
-                SettingsValues = JsonConvert.DeserializeObject<SettingsValues>(jsonRead);
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
