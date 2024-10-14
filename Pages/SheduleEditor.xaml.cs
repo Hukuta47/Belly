@@ -58,7 +58,5 @@ namespace Belly.Pages
         {
             ListBox_ListSchedules.ItemsSource = MainWindow.ScheduleList;
         }
-
-        
     }
 }

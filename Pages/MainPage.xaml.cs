@@ -18,7 +18,12 @@ namespace Belly.Pages
 
         private void ListBox_Schedules_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataGrid_IssueList.ItemsSource = ((Schedule)ListBox_Schedules.SelectedItem).Issues;
+
+        }
+
+        private void TabControl_weekList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

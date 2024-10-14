@@ -2,7 +2,6 @@
 using Belly.Classes.StaticClasses;
 using Belly.Objects;
 using Belly.Pages;
-using NAudio.Mixer;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -95,7 +94,12 @@ namespace Belly
 
             if (!File.Exists("weekList.json"))
             {
-                var json = JsonConvert.SerializeObject(weekList.Week, Formatting.Indented);
+                Week = new List<int>
+                {
+                    0,0,0,0,0,0
+                };
+
+                var json = JsonConvert.SerializeObject(Week, Formatting.Indented);
 
                 File.WriteAllText("weekList.json", json);
             }

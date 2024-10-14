@@ -20,25 +20,81 @@
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
 
-		<GroupBox Grid.Row="0" Grid.Column="0" Header="Дни недели">
-			<ListBox x:Name="ListBox_DayOfWeek">
-				<ListBoxItem Content="Понидельник"/>
-				<ListBoxItem Content="Вторник"/>
-				<ListBoxItem Content="Среда"/>
-				<ListBoxItem Content="Четверг"/>
-				<ListBoxItem Content="Пятница"/>
-				<ListBoxItem Content="Суббота"/>
-			</ListBox>
-		</GroupBox>
 
-		<GroupBox Grid.Row="1" Grid.Column="0" Header="Пресеты">
+		<GroupBox Grid.RowSpan="2" Grid.Column="0" Header="Пресеты">
 			<ListBox x:Name="ListBox_Schedules" DisplayMemberPath="Name" SelectionChanged="ListBox_Schedules_SelectionChanged"/>
 		</GroupBox>
 
 		<GroupBox Grid.RowSpan="2" Grid.Column="1" Header="Список задач">
-			<DataGrid x:Name="DataGrid_IssueList">
+			<TabControl x:Name="TabControl_weekList" SelectionChanged="TabControl_weekList_SelectionChanged">
+				<TabItem Header="Понидельник">
+					<DataGrid x:Name="DataGrid_MondayIssueList" AutoGenerateColumns="False">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="auto"/>
+							<DataGridTextColumn Binding="{Binding IssueType}" Header="Тип" Width="50"/>
+							<DataGridTextColumn Binding="{Binding text_StartTime}" Header="Начало" Width="50"/>
+							<DataGridTextColumn Binding="{Binding text_EndTime}" Header="Конец" Width="50"/>
+							<DataGridCheckBoxColumn Binding="{Binding VolumeUpDown}" Header="Прибавление громкости в начале/конце" Width="auto"/>
+						</DataGrid.Columns>
+					</DataGrid>
+				</TabItem>
+				<TabItem Header="Вторник">
+					<DataGrid x:Name="DataGrid_TuesdayIssueList" AutoGenerateColumns="False">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="auto"/>
+							<DataGridTextColumn Binding="{Binding IssueType}" Header="Тип" Width="50"/>
+							<DataGridTextColumn Binding="{Binding text_StartTime}" Header="Начало" Width="50"/>
+							<DataGridTextColumn Binding="{Binding text_EndTime}" Header="Конец" Width="50"/>
+							<DataGridCheckBoxColumn Binding="{Binding VolumeUpDown}" Header="Прибавление громкости в начале/конце" Width="auto"/>
+						</DataGrid.Columns>
+					</DataGrid>
+				</TabItem>
+				<TabItem Header="Среда">
+					<DataGrid x:Name="DataGrid_WednesdayIssueList" AutoGenerateColumns="False">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="auto"/>
+							<DataGridTextColumn Binding="{Binding IssueType}" Header="Тип" Width="50"/>
+							<DataGridTextColumn Binding="{Binding text_StartTime}" Header="Начало" Width="50"/>
+							<DataGridTextColumn Binding="{Binding text_EndTime}" Header="Конец" Width="50"/>
+							<DataGridCheckBoxColumn Binding="{Binding VolumeUpDown}" Header="Прибавление громкости в начале/конце" Width="auto"/>
+						</DataGrid.Columns>
+					</DataGrid>
+				</TabItem>
+				<TabItem Header="Четверг">
+					<DataGrid x:Name="DataGrid_ThursdayIssueList" AutoGenerateColumns="False">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="auto"/>
+							<DataGridTextColumn Binding="{Binding IssueType}" Header="Тип" Width="50"/>
+							<DataGridTextColumn Binding="{Binding text_StartTime}" Header="Начало" Width="50"/>
+							<DataGridTextColumn Binding="{Binding text_EndTime}" Header="Конец" Width="50"/>
+							<DataGridCheckBoxColumn Binding="{Binding VolumeUpDown}" Header="Прибавление громкости в начале/конце" Width="auto"/>
+						</DataGrid.Columns>
+					</DataGrid>
+				</TabItem>
+				<TabItem Header="Пятница">
+					<DataGrid x:Name="DataGrid_FridayIssueList" AutoGenerateColumns="False">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="auto"/>
+							<DataGridTextColumn Binding="{Binding IssueType}" Header="Тип" Width="50"/>
+							<DataGridTextColumn Binding="{Binding text_StartTime}" Header="Начало" Width="50"/>
+							<DataGridTextColumn Binding="{Binding text_EndTime}" Header="Конец" Width="50"/>
+							<DataGridCheckBoxColumn Binding="{Binding VolumeUpDown}" Header="Прибавление громкости в начале/конце" Width="auto"/>
+						</DataGrid.Columns>
+					</DataGrid>
+				</TabItem>
+				<TabItem Header="Суббота">
+					<DataGrid x:Name="DataGrid_SaturdayIssueList" AutoGenerateColumns="False">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="auto"/>
+							<DataGridTextColumn Binding="{Binding IssueType}" Header="Тип" Width="50"/>
+							<DataGridTextColumn Binding="{Binding text_StartTime}" Header="Начало" Width="50"/>
+							<DataGridTextColumn Binding="{Binding text_EndTime}" Header="Конец" Width="50"/>
+							<DataGridCheckBoxColumn Binding="{Binding VolumeUpDown}" Header="Прибавление громкости в начале/конце" Width="auto"/>
+						</DataGrid.Columns>
+					</DataGrid>
+				</TabItem>
 
-			</DataGrid>
+			</TabControl>
 		</GroupBox>
 
 		<Label Content="10:08" HorizontalContentAlignment="Center" x:Name="TimeLabel" FontFamily="Arial Black" FontSize="164" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
