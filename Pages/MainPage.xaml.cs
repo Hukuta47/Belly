@@ -13,7 +13,7 @@ namespace Belly.Pages
             timeText = TimeLabel;
             TimeLabel.Content = MainWindow.TimeNow.ToString();
 
-            ListBox_Schedules.ItemsSource = MainWindow.ScheduleList;
+            //ListBox_Schedules.ItemsSource = MainWindow.ScheduleList;
         }
 
         private void ListBox_Schedules_SelectionChanged(object sender, SelectionChangedEventArgs e)

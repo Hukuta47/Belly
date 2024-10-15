@@ -24,7 +24,7 @@ namespace Belly
         public static List<Music> MusicList;
         public static List<Audio> AudioList;
         public static List<Schedule> ScheduleList;
-        public static List<int> Week;
+        public static List<Day> Week;
 
 
 
@@ -54,7 +54,7 @@ namespace Belly
         {
             SettingsValues = JsonConvert.DeserializeObject<SettingsValues>(File.ReadAllText("settings.json"));
             MusicList = JsonConvert.DeserializeObject<List<Music>>(File.ReadAllText(@"Music\\listInfo.json"));
-            Week = JsonConvert.DeserializeObject<List<int>>(File.ReadAllText("weekList.json"));
+            Week = JsonConvert.DeserializeObject<List<Day>>(File.ReadAllText("weekList.json"));
             
             Player = new Player(SettingsValues.normalVolume, SettingsValues.introOutroVolume);
 
@@ -94,9 +94,9 @@ namespace Belly
 
             if (!File.Exists("weekList.json"))
             {
-                Week = new List<int>
+                Week = new List<Day>
                 {
-                    0,0,0,0,0,0
+                    new Day(DayOfWeek.Monday)
                 };
 
                 var json = JsonConvert.SerializeObject(Week, Formatting.Indented);
