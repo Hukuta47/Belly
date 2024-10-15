@@ -19,6 +19,7 @@
         <Grid.RowDefinitions>
 			<RowDefinition	/>
 		</Grid.RowDefinitions>
+
 		
 
 		<Grid Grid.RowSpan="2" Grid.Column="0">
@@ -27,25 +28,37 @@
 				<RowDefinition Height="auto"/>
 			</Grid.RowDefinitions>
 
-			<ListBox Grid.Row="0" x:Name="ListBox_ListSchedules" DisplayMemberPath="Name" SelectionChanged="SelectedSchedule_SelectionChanged"/>
+			<GroupBox Padding="10" Margin="10" Grid.Row="0" Header="Список пресетов">
+				<ListBox x:Name="ListBox_ListSchedules" DisplayMemberPath="Name" SelectionChanged="SelectedSchedule_SelectionChanged"/>
+			</GroupBox>
 
-			<StackPanel Grid.Row="1" Orientation="Vertical">
-				<Button Content="Изменить задачу" Click="ChangeIssue_Click"/>
-				<Button Content="Создать задачу" Click="CreateIssue_Click"/>
-				<Button Content="Сохранить" Click="Save_Click"/>
-				<Button Content="Удалить" Click="Delete_Click"/>
-			</StackPanel>
+			<Border Padding="10" Margin="10" Grid.Row="1" BorderBrush="Gray" BorderThickness="1" CornerRadius="10">
+				<StackPanel Orientation="Vertical">
+					<Button Content="Изменить задачу" Click="ChangeIssue_Click"/>
+					<Button Content="Создать задачу" Click="CreateIssue_Click"/>
+					<Button Content="Сохранить" Click="Save_Click"/>
+					<Button Content="Удалить" Click="Delete_Click"/>
+				</StackPanel>
+			</Border>
+
+			
 		</Grid>
 
-		<DataGrid Grid.Column="1" AutoGenerateColumns="False" SelectionMode="Extended" IsReadOnly="True" x:Name="DataGrid_Schedules">
-			<DataGrid.Columns>
-				<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="auto"/>
-				<DataGridTextColumn Binding="{Binding IssueType}" Header="Тип" Width="50"/>
-				<DataGridTextColumn Binding="{Binding text_StartTime}" Header="Начало" Width="50"/>
-				<DataGridTextColumn Binding="{Binding text_EndTime}" Header="Конец" Width="50"/>
-				<DataGridCheckBoxColumn Binding="{Binding VolumeUpDown}" Header="Прибавление громкости в начале/конце" Width="auto"/>
-			</DataGrid.Columns>
-		</DataGrid>
+		
+		
+		<GroupBox Padding="10" Margin="10" Grid.Column="1" Header="Список задач">
+			<DataGrid AutoGenerateColumns="False" SelectionMode="Extended" IsReadOnly="True" x:Name="DataGrid_Schedules">
+				<DataGrid.Columns>
+					<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="auto"/>
+					<DataGridTextColumn Binding="{Binding IssueType}" Header="Тип" Width="50"/>
+					<DataGridTextColumn Binding="{Binding text_StartTime}" Header="Начало" Width="50"/>
+					<DataGridTextColumn Binding="{Binding text_EndTime}" Header="Конец" Width="50"/>
+					<DataGridCheckBoxColumn Binding="{Binding VolumeUpDown}" Header="Прибавление громкости в начале/конце" Width="auto"/>
+				</DataGrid.Columns>
+			</DataGrid>
+		</GroupBox>
+		
+		
 
 
 

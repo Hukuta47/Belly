@@ -9,7 +9,8 @@ namespace Belly.Objects
         {
             this.DayOfWeek = DayOfWeek;
         }
-        public DayOfWeek DayOfWeek;
+        public DayOfWeek DayOfWeek { get; }
+        public Schedule Schedule { get; set; }
         
     }
 }

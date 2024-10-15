@@ -96,7 +96,12 @@ namespace Belly
             {
                 Week = new List<Day>
                 {
-                    new Day(DayOfWeek.Monday)
+                    new Day(DayOfWeek.Monday),
+                    new Day(DayOfWeek.Tuesday),
+                    new Day(DayOfWeek.Wednesday),
+                    new Day(DayOfWeek.Thursday),
+                    new Day(DayOfWeek.Friday),
+                    new Day(DayOfWeek.Saturday)
                 };
 
                 var json = JsonConvert.SerializeObject(Week, Formatting.Indented);
