@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Controls;
 
 namespace Belly.Objects
 {
@@ -10,6 +9,22 @@ namespace Belly.Objects
             this.DayOfWeek = DayOfWeek;
         }
         public DayOfWeek DayOfWeek { get; }
+        public string Name
+        {
+            get
+            {
+                switch (DayOfWeek)
+                {
+                    case DayOfWeek.Monday: return "Понидельник";
+                    case DayOfWeek.Tuesday: return "Вторник";
+                    case DayOfWeek.Wednesday: return "Среда";
+                    case DayOfWeek.Thursday: return "Четверг";
+                    case DayOfWeek.Friday: return "Пятница";
+                    case DayOfWeek.Saturday: return "Суббота";
+                }
+                return Name;
+            }
+        }
         public Schedule Schedule { get; set; }
         
     }

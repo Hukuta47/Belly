@@ -24,15 +24,8 @@
 
 
 
-		<GroupBox Header="День недели:" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" Margin="10">
-			<StackPanel>
-				<RadioButton Tag="Monday"    Content="Понидельник" x:Name="RadioButton_Monday"/>
-				<RadioButton Tag="Tuesday"   Content="Вторник"     Checked="RadioButton_Click"/>
-				<RadioButton Tag="Wednesday" Content="Среда"       Checked="RadioButton_Click"/>
-				<RadioButton Tag="Thursday"  Content="Четверг"     Checked="RadioButton_Click"/>
-				<RadioButton Tag="Friday"    Content="Пятница"     Checked="RadioButton_Click"/>
-				<RadioButton Tag="Saturday"  Content="Суббота"     Checked="RadioButton_Click"/>
-			</StackPanel>
+		<GroupBox Header="День недели:" Grid.Column="0" Grid.RowSpan="2" Padding="10" Margin="10">
+			<ListBox x:Name="ListBox_WeekList" DisplayMemberPath="Name" SelectionChanged="DayOfWeekChanged"/>
 		</GroupBox>
 
 		<GridSplitter Grid.RowSpan="2" Grid.Column="1" Width="10" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>

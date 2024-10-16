@@ -158,7 +158,6 @@ namespace Belly
                     TimeNow = TimeOnly.FromDateTime(DateTime.Now);
                     if (MainPage.timeText != null) MainPage.timeText.Content = TimeNow.ToString();
                 }
-                Debug.WriteLine(TimeNow.Minute);
                 await Task.Delay(100);
             }
         }
