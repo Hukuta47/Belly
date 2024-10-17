@@ -43,7 +43,7 @@
 				</Grid.RowDefinitions>
 				
 				<ComboBox SelectedIndex="0" Grid.Row="0" x:Name="Combobox_SelectSchedule" DisplayMemberPath="Name"/>
-				<DataGrid AutoGenerateColumns="False" Grid.Row="1">
+				<DataGrid AutoGenerateColumns="False" Grid.Row="1" x:Name="DataGrid_IssueList">
 					<DataGrid.Columns>
 						<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="auto"/>
 						<DataGridTextColumn Binding="{Binding IssueType}" Header="Тип" Width="50"/>
