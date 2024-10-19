@@ -12,48 +12,54 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition/>
-			<RowDefinition/>
+			<RowDefinition Height="auto"/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="auto"/>
-			<ColumnDefinition Width="auto"/>
-			<ColumnDefinition/>
-			<ColumnDefinition Width="auto"/>
-			<ColumnDefinition Width="auto"/>
 		</Grid.ColumnDefinitions>
 
-
-
-		<GroupBox Header="День недели:" Grid.Column="0" Grid.RowSpan="2" Padding="10" Margin="10">
-			<ListBox x:Name="ListBox_WeekList" DisplayMemberPath="Name" SelectionChanged="DayOfWeekChanged"/>
-		</GroupBox>
-
-		<GridSplitter Grid.RowSpan="2" Grid.Column="1" Width="10" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
-
-		<Label Content="10:08" HorizontalContentAlignment="Center" VerticalAlignment="Center" x:Name="TimeLabel" FontFamily="Arial Black" FontSize="164" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"/>
-
-		<GridSplitter Grid.RowSpan="2" Grid.Column="3" Width="10" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
-
-		<GroupBox Header="Список задач:" Grid.Column="4" Grid.RowSpan="2" Padding="10" Margin="10">
+		<Expander Grid.Row="1" ExpandDirection="Up" BorderBrush="Black" Padding="5" Margin="10" Header="Свойства">
 			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="200px"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
 
-				<Grid.RowDefinitions>
-					<RowDefinition Height="auto"/>
-					<RowDefinition/>
-				</Grid.RowDefinitions>
+
+
+				<Grid Grid.Column="0">
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition Height="auto"/>
+					</Grid.RowDefinitions>
+
+					<GroupBox Header="День недели" Grid.Row="0" Padding="10" Margin="10">
+						<ListBox x:Name="ListBox_WeekList" DisplayMemberPath="Name" SelectionChanged="DayOfWeekChanged"/>
+					</GroupBox>
+
+					<GroupBox Header="Задача дня" Grid.Row="1" Padding="10" Margin="10">
+						<ComboBox SelectedIndex="0" Grid.Row="0" x:Name="Combobox_SelectSchedule" DisplayMemberPath="Name" />
+					</GroupBox>
+
+				</Grid>
+				<GroupBox Header="Информация" Grid.Column="1" Padding="10" Margin="10">
+					
+				</GroupBox>
 				
-				<ComboBox SelectedIndex="0" Grid.Row="0" x:Name="Combobox_SelectSchedule" DisplayMemberPath="Name"/>
-				<DataGrid AutoGenerateColumns="False" Grid.Row="1" x:Name="DataGrid_IssueList">
-					<DataGrid.Columns>
-						<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="auto"/>
-						<DataGridTextColumn Binding="{Binding IssueType}" Header="Тип" Width="50"/>
-						<DataGridTextColumn Binding="{Binding text_StartTime}" Header="Начало" Width="50"/>
-						<DataGridTextColumn Binding="{Binding text_EndTime}" Header="Конец" Width="50"/>
-						<DataGridCheckBoxColumn Binding="{Binding VolumeUpDown}" Header="Прибавление громкости в начале/конце" Width="auto"/>
-					</DataGrid.Columns>
-				</DataGrid>
+				
+
 			</Grid>
-		</GroupBox>
+		</Expander>
+		
+		
+		
+
+		
+
+
+		<Label Content="10:08" HorizontalContentAlignment="Center" VerticalAlignment="Center" x:Name="TimeLabel" FontFamily="Arial Black" FontSize="164" Grid.Row="0"/>
+
+
+		
 
 
 	</Grid>

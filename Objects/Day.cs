@@ -25,7 +25,6 @@ namespace Belly.Objects
                 return Name;
             }
         }
-        public Schedule Schedule { get; set; }
-        
+        public int scheduleNum { get; set; } = -1;
     }
 }

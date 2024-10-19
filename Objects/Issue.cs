@@ -24,13 +24,14 @@ namespace Belly.Objects
         }
         public async void Start()
         {
+
             switch (IssueType)
             {
                 case IssueType.Music:
-
+                    await MainWindow.Player.PlayMusic(PlayTime, VolumeUpDown);
                     break;
                 case IssueType.Audio:
-
+                    await MainWindow.Player.Play(MediaFile);
                     break;
             }
         }

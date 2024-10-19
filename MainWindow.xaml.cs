@@ -31,11 +31,12 @@ namespace Belly
         public MainWindow()
         {
             InitializeComponent();
-
             InitializeTime();
             InitializeFolders();
             InitializeFiles();
             InitializeClasses();
+            
+
             pageControl.ChangePage(PageControl.Pages.mainPage);
         }
         async void InitializeTime()
@@ -130,10 +131,9 @@ namespace Belly
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-
-
             switch (button.Tag)
             {
+
                 case "music":
                     pageControl.ChangePage(PageControl.Pages.musicEditor);
                     break;

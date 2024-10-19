@@ -35,12 +35,12 @@ namespace Belly.Classes
                 case Pages.sheduleEditor:
                     mainFrame.Navigate(sheduleEditor);
 
-                    mainPage.ResetData();
                     break;
                 case Pages.mainPage:
                     mainFrame.Navigate(mainPage);
 
-                    mainPage.RecoveryData();
+
+
                     break;
                 case Pages.settings:
                     mainFrame.Navigate(settings);

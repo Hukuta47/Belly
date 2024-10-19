@@ -1,6 +1,7 @@
 ﻿using Belly.Objects;
+using Newtonsoft.Json;
 using System;
-using System.Windows;
+using System.IO;
 using System.Windows.Controls;
 
 namespace Belly.Pages
@@ -16,7 +17,6 @@ namespace Belly.Pages
             timeText = TimeLabel;
             TimeLabel.Content = MainWindow.TimeNow.ToString();
             Combobox_SelectSchedule.SelectionChanged += Schedule_SelectionChanged;
-
         }
         void InitializeInterface()
         {
@@ -37,21 +37,12 @@ namespace Belly.Pages
 
         private void DayOfWeekChanged(object sender, SelectionChangedEventArgs e)
         {
-            Combobox_SelectSchedule.SelectedItem = ((Day)ListBox_WeekList.SelectedItem).Schedule;
+            Combobox_SelectSchedule.SelectedIndex = ((Day)ListBox_WeekList.SelectedItem).scheduleNum;
         }
         private void Schedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ((Day)ListBox_WeekList.SelectedItem).Schedule = (Schedule)Combobox_SelectSchedule.SelectedItem;
-            DataGrid_IssueList.ItemsSource = ((Schedule)Combobox_SelectSchedule.SelectedItem).Issues;
-        }
-        public void ResetData()
-        {
-            //DataGrid_IssueList = null;
-
-        }
-        public void RecoveryData()
-        {
-            //if ((Schedule)Combobox_SelectSchedule.SelectedItem != null) DataGrid_IssueList.ItemsSource = ((Schedule)Combobox_SelectSchedule.SelectedItem).Issues;
+            ((Day)ListBox_WeekList.SelectedItem).scheduleNum = Combobox_SelectSchedule.SelectedIndex;
+            File.WriteAllText("weekList.json", JsonConvert.SerializeObject(MainWindow.Week, Formatting.Indented));
         }
     }
 }

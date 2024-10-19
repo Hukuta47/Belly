@@ -21,7 +21,7 @@ namespace Belly.Classes.StaticClasses
             OutputDevice.Volume = normalVolume;
         }
 
-        public async Task PlayMusic(int miliseconds, bool volumeUpDown)
+        public async Task PlayMusic(int miliseconds, bool? volumeUpDown)
         {
             int countMilliseconds = miliseconds;
 
