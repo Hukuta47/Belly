@@ -5,7 +5,6 @@ using Belly.Pages;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,6 +24,8 @@ namespace Belly
         public static List<Audio> AudioList;
         public static List<Schedule> ScheduleList;
         public static List<Day> Week;
+        bool initialized = false;
+        bool messageShown = false;
 
 
 
@@ -37,7 +38,10 @@ namespace Belly
             InitializeClasses();
             
 
+
             pageControl.ChangePage(PageControl.Pages.mainPage);
+
+            initialized = true;
         }
         async void InitializeTime()
         {
@@ -71,7 +75,7 @@ namespace Belly
 
             pageControl = new PageControl(frame);
 
-
+            
         }
         void InitializeFiles()
         {
@@ -150,15 +154,41 @@ namespace Belly
         }
         async Task syncTime()
         {
-
             while (true)
             {
+
                 if (TimeNow != TimeOnly.FromDateTime(DateTime.Now))
                 {
                     TimeNow = TimeOnly.FromDateTime(DateTime.Now);
                     if (MainPage.timeText != null) MainPage.timeText.Content = TimeNow.ToString();
+
+
+
+                    if (initialized == true)
+                    {
+                        Schedule schedule = (Schedule)pageControl.mainPage.Combobox_SelectSchedule.SelectedItem;
+
+                        foreach (Issue item in schedule.Issues)
+                        {
+                            if (item.StartTime.Second == TimeNow.Second && !messageShown)
+                            {
+                                item.Start();
+                                messageShown = true; // Фиксируем, что сообщение показано
+                            }
+
+                            // Если время больше не совпадает, сбрасываем флаг
+                            if (item.StartTime.Second != TimeNow.Second)
+                            {
+                                messageShown = false;
+                            }
+                        }
+                    }
+
                 }
-                await Task.Delay(100);
+
+                
+                await Task.Delay(75);
+
             }
         }
     }

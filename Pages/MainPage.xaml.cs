@@ -10,6 +10,8 @@ namespace Belly.Pages
     public partial class MainPage : Page
     {
         public static Label timeText;
+        public static ComboBox selectedShedule;
+        public static int dayOfWeel;
         public MainPage()
         {
             InitializeComponent();
@@ -17,6 +19,7 @@ namespace Belly.Pages
             timeText = TimeLabel;
             TimeLabel.Content = MainWindow.TimeNow.ToString();
             Combobox_SelectSchedule.SelectionChanged += Schedule_SelectionChanged;
+            selectedShedule = Combobox_SelectSchedule;
         }
         void InitializeInterface()
         {
@@ -24,10 +27,10 @@ namespace Belly.Pages
             Combobox_SelectSchedule.ItemsSource = MainWindow.ScheduleList;
 
 
-            int _numDay = (int)DateTime.Now.DayOfWeek - 1;
-            if (_numDay <= 5)
+            dayOfWeel = (int)DateTime.Now.DayOfWeek - 1;
+            if (dayOfWeel <= 5)
             {
-                ListBox_WeekList.SelectedIndex = _numDay;
+                ListBox_WeekList.SelectedIndex = dayOfWeel;
             }
             else
             {

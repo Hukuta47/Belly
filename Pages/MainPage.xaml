@@ -49,14 +49,16 @@
 
 			</Grid>
 		</Expander>
-		
-		
-		
-
-		
 
 
-		<Label Content="10:08" HorizontalContentAlignment="Center" VerticalAlignment="Center" x:Name="TimeLabel" FontFamily="Arial Black" FontSize="164" Grid.Row="0"/>
+
+
+
+		<StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+			<Label Content="10:08" HorizontalContentAlignment="Center" VerticalAlignment="Center" x:Name="TimeLabel" FontFamily="Arial Black" FontSize="164" />
+			<Label Content="" HorizontalAlignment="Center" x:Name="Label_Status"/>
+		</StackPanel>
+
 
 
 		

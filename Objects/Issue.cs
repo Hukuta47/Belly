@@ -38,12 +38,12 @@ namespace Belly.Objects
         public IssueType IssueType { get; set; }
         public string Name { get; set; }
         public TimeOnly StartTime { get; set; }
-        public TimeOnly? EndTime { get; set; }
+        public TimeOnly EndTime { get; set; }
         private int PlayTime
         {
             get
             {
-                return EndTime.Value.Millisecond - StartTime.Millisecond;
+                return EndTime.Millisecond - StartTime.Millisecond;
             }
         }
         public bool? VolumeUpDown { get; set; }
