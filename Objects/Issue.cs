@@ -31,7 +31,7 @@ namespace Belly.Objects
                     await MainWindow.Player.PlayMusic(PlayTime, VolumeUpDown);
                     break;
                 case IssueType.Audio:
-                    await MainWindow.Player.Play(MediaFile);
+                    MainWindow.Player.Play(MediaFile);
                     break;
             }
         }
@@ -43,7 +43,8 @@ namespace Belly.Objects
         {
             get
             {
-                return EndTime.Millisecond - StartTime.Millisecond;
+                TimeSpan duration = EndTime.ToTimeSpan() - StartTime.ToTimeSpan();
+                return (int)duration.TotalMilliseconds;
             }
         }
         public bool? VolumeUpDown { get; set; }

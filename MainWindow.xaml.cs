@@ -157,27 +157,28 @@ namespace Belly
             while (true)
             {
 
-                if (TimeNow != TimeOnly.FromDateTime(DateTime.Now))
+                TimeNow = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute);
+                if (MainPage.timeText != null) MainPage.timeText.Content = TimeNow.ToString();
+
+
+
+                if (initialized == true)
                 {
-                    TimeNow = TimeOnly.FromDateTime(DateTime.Now);
-                    if (MainPage.timeText != null) MainPage.timeText.Content = TimeNow.ToString();
-
-
-
-                    if (initialized == true)
+                    Schedule schedule = (Schedule)pageControl.mainPage.Combobox_SelectSchedule.SelectedItem;
+                    if (schedule.Issues != null)
                     {
-                        Schedule schedule = (Schedule)pageControl.mainPage.Combobox_SelectSchedule.SelectedItem;
 
                         foreach (Issue item in schedule.Issues)
                         {
-                            if (item.StartTime.Second == TimeNow.Second && !messageShown)
+                            if (item.StartTime.ToTimeSpan().TotalSeconds == TimeNow.ToTimeSpan().TotalSeconds && !messageShown)
                             {
+
                                 item.Start();
                                 messageShown = true; // Фиксируем, что сообщение показано
                             }
 
                             // Если время больше не совпадает, сбрасываем флаг
-                            if (item.StartTime.Second != TimeNow.Second)
+                            if (item.StartTime.ToTimeSpan().TotalSeconds != TimeNow.ToTimeSpan().TotalSeconds)
                             {
                                 messageShown = false;
                             }
@@ -186,7 +187,7 @@ namespace Belly
 
                 }
 
-                
+
                 await Task.Delay(75);
 
             }

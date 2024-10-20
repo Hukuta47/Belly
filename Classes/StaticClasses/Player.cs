@@ -5,6 +5,7 @@ using NAudio.Wave;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Diagnostics;
 
 
 namespace Belly.Classes.StaticClasses
@@ -21,50 +22,44 @@ namespace Belly.Classes.StaticClasses
             OutputDevice.Volume = normalVolume;
         }
 
-        public async Task PlayMusic(int miliseconds, bool? volumeUpDown)
+        public async Task PlayMusic(int milliseconds, bool? volumeUpDown)
         {
-            int countMilliseconds = miliseconds;
+            int countMilliseconds = milliseconds;
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
 
-            startVolumeUpDown(miliseconds);
+            if (volumeUpDown == true) startVolumeUpDown(milliseconds);
 
+            // Инициализируем аудиофайл и воспроизведение один раз
+            AudioFile = new AudioFileReader(GetPathOnPriority(MainWindow.MusicList));
+            OutputDevice.Init(AudioFile);
+            OutputDevice.Play();
 
-            while (true)
+            while (countMilliseconds > 0)
             {
-                if (AudioFile != null)
-                {
-                    AudioFile.Dispose();
-                }
                 if (OutputDevice.PlaybackState != PlaybackState.Playing)
                 {
-                    AudioFile = new AudioFileReader(GetPathOnPriority(MainWindow.MusicList));
-
                     OutputDevice.Init(AudioFile);
                     OutputDevice.Play();
                 }
-                if (countMilliseconds < 0)
-                {
-                    AudioFile.Dispose ();
-                    OutputDevice.Dispose();
-                    break;
-                }
-                else
-                {
-                    await Task.Delay(1);
-                    countMilliseconds--;
-                }
+
+
+                await Task.Delay(75);
+
+                // Вычисляем оставшееся время
+                countMilliseconds = milliseconds - (int)stopwatch.ElapsedMilliseconds;
             }
 
+            // Останавливаем воспроизведение и освобождаем ресурсы
+            OutputDevice.Stop();
+            AudioFile.Dispose();
+            OutputDevice.Dispose();
         }
-        public async Task Play(MediaFile MediaFile)
+        public void Play(MediaFile MediaFile)
         {
-            if (AudioFile != null)
-            {
-                AudioFile.Dispose();
-            }
             AudioFile = new AudioFileReader(MediaFile.Path);
             OutputDevice.Init(AudioFile);
             OutputDevice.Play();
-            await Task.CompletedTask;
         }
         string GetPathOnPriority(List<Music> items)
         {
