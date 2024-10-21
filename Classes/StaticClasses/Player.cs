@@ -26,28 +26,24 @@ namespace Belly.Classes.StaticClasses
         {
             int countMilliseconds = milliseconds;
             var stopwatch = new Stopwatch();
+
             stopwatch.Start();
 
             if (volumeUpDown == true) startVolumeUpDown(milliseconds);
 
-            // Инициализируем аудиофайл и воспроизведение один раз
-            AudioFile = new AudioFileReader(GetPathOnPriority(MainWindow.MusicList));
-            OutputDevice.Init(AudioFile);
-            OutputDevice.Play();
 
-            while (countMilliseconds > 0)
+            while ((int)stopwatch.ElapsedMilliseconds < milliseconds)
             {
                 if (OutputDevice.PlaybackState != PlaybackState.Playing)
                 {
+                    AudioFile = new AudioFileReader(GetPathOnPriority(MainWindow.MusicList));
                     OutputDevice.Init(AudioFile);
                     OutputDevice.Play();
                 }
 
 
-                await Task.Delay(75);
+                await Task.Delay(1);
 
-                // Вычисляем оставшееся время
-                countMilliseconds = milliseconds - (int)stopwatch.ElapsedMilliseconds;
             }
 
             // Останавливаем воспроизведение и освобождаем ресурсы
@@ -80,12 +76,31 @@ namespace Belly.Classes.StaticClasses
         async Task startVolumeUpDown(int miliseconds)
         {
             OutputDevice.Volume = MainWindow.SettingsValues.introOutroVolume;
-            await Task.Delay(60000);
+            await Task.Delay(3000);
+            await SmoothChangeVolume(MainWindow.SettingsValues.normalVolume, 3);
+            await Task.Delay(miliseconds - (15000 + 1000));
+            await SmoothChangeVolume(MainWindow.SettingsValues.introOutroVolume, 3);
+            await Task.Delay(3000);
+            await SmoothChangeVolume(0, 3);
             OutputDevice.Volume = MainWindow.SettingsValues.normalVolume;
-            await Task.Delay(miliseconds - 60000);
-            OutputDevice.Volume = MainWindow.SettingsValues.introOutroVolume;
-            await Task.Delay(60000);
-            OutputDevice.Volume = MainWindow.SettingsValues.normalVolume;
+        }
+        async Task SmoothChangeVolume(double targetVolume, int duration_sec)
+        {
+            duration_sec *= 1000;
+
+            double startVolume = OutputDevice.Volume;
+            int steps = 100; // Количество шагов для изменения громкости
+            double stepSize = (targetVolume - startVolume) / steps;
+            int delay = duration_sec / steps;
+
+            for (int i = 0; i <= steps; i++)
+            {
+                OutputDevice.Volume += (float)stepSize;
+                await Task.Delay(delay);
+            }
+
+            // Убедимся, что громкость точно установлена в целевое значение
+            OutputDevice.Volume = (float)targetVolume;
         }
     }
 

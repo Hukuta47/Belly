@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Belly.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="320"
+      d:DesignWidth="1280" d:DesignHeight="720"
       Title="Settings"
 	  Background="White">
 
@@ -27,7 +27,7 @@
 					<Border BorderThickness="1" CornerRadius="10" BorderBrush="Black" Padding="10" Margin="10">
 						<StackPanel>
 
-							<GroupBox Header="Основная громкость">
+							<GroupBox Header="Основная громкость" Padding="10">
 								<Grid>
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition/>
@@ -39,7 +39,7 @@
 								</Grid>
 							</GroupBox>
 
-							<GroupBox Header="Начала/Конца громкость">
+							<GroupBox Header="Начала/Конца громкость" Padding="10">
 								<Grid>
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition/>
@@ -48,6 +48,26 @@
 
 									<Slider x:Name="slider_IO" ValueChanged="Slider_ValueChanged" Grid.Column="0" Minimum="0" Maximum="100" VerticalAlignment="Center" SmallChange="1"/>
 									<Label x:Name="IOLabel" Content="XXX%" Grid.Column="1"/>
+								</Grid>
+							</GroupBox>
+
+							<GroupBox Header="Поведение воспроизведения" Padding="10">
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition/>
+										<ColumnDefinition/>
+										<ColumnDefinition/>
+									</Grid.ColumnDefinitions>
+
+									<GroupBox Grid.Column="0" Header="Длительность перехода (Громкая -> обычная)" Padding="10">
+										<TextBox/>
+									</GroupBox>
+									<GroupBox Grid.Column="1" Header="Длительность перехода (Обычная -> громкая)" Padding="10">
+										<TextBox/>
+									</GroupBox>
+									<GroupBox Grid.Column="2" Header="Длительность затухания музыки" Padding="10">
+										<TextBox/>
+									</GroupBox>
 								</Grid>
 							</GroupBox>
 
@@ -67,6 +87,7 @@
 						</StackPanel>
 					</Border>
 				</Expander>
+
 			</StackPanel>
 			
 			

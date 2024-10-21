@@ -3,6 +3,7 @@ using Belly.Classes.StaticClasses;
 using Belly.Objects;
 using Belly.Pages;
 using Newtonsoft.Json;
+using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -157,7 +158,7 @@ namespace Belly
             while (true)
             {
 
-                TimeNow = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute);
+                TimeNow = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
                 if (MainPage.timeText != null) MainPage.timeText.Content = TimeNow.ToString();
 
 
@@ -170,7 +171,9 @@ namespace Belly
 
                         foreach (Issue item in schedule.Issues)
                         {
-                            if (item.StartTime.ToTimeSpan().TotalSeconds == TimeNow.ToTimeSpan().TotalSeconds && !messageShown)
+                            if (item.StartTime.ToTimeSpan().TotalSeconds == TimeNow.ToTimeSpan().TotalSeconds && 
+                                !messageShown && Player.OutputDevice.PlaybackState != PlaybackState.Playing
+                                )
                             {
 
                                 item.Start();
@@ -188,7 +191,7 @@ namespace Belly
                 }
 
 
-                await Task.Delay(75);
+                await Task.Delay(50);
 
             }
         }
