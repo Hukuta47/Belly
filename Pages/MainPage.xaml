@@ -14,7 +14,7 @@
 
 		<Grid Width="{Binding ActualWidth, ElementName=mainCanvas}"
           Height="{Binding ActualHeight, ElementName=mainCanvas}">
-			<StackPanel Grid.Row="0" Canvas.Left="{Binding ElementName=mainCanvas}" VerticalAlignment="Center" HorizontalAlignment="Center">
+			<StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
 				<Label Content="10:08" x:Name="TimeLabel" FontFamily="Arial Black" FontSize="164" />
 				<Label Content="" HorizontalAlignment="Center" x:Name="Label_Status"/>
 			</StackPanel>
@@ -25,7 +25,7 @@
 			<StackPanel VerticalAlignment="Bottom">
 				
 				<StackPanel.Effect>
-					<DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.5"/>
+					<DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.75"/>
 				</StackPanel.Effect>
 
 				<Expander ExpandDirection="Up" BorderBrush="Black" Padding="5" Margin="10" Header="Расписание дня" Width="212" Background="White">

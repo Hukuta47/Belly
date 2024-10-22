@@ -2,12 +2,13 @@
 {
     public class SettingsValues
     {
-        
-        public float normalVolume { get; set;}
+        public float basicVolume { get; set; }
+        public float middleVolume { get; set;}
         public float introOutroVolume { get; set; }
+
         public int durationIntroOutroVolume { get; set; }
-        public int durationTransitionToNormal { get; set; }
-        public int durationTransitionToUp { get; set; }
-        public int durationTransitionToEnd { get; set; }
+        public int durationTransitionToMiddleVolume { get; set; }
+        public int durationTransitionToUpVolume { get; set; }
+        public int durationTransitionToEndVolume { get; set; }
     }
 }

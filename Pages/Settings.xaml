@@ -27,29 +27,41 @@
 					<Border BorderThickness="1" CornerRadius="10" BorderBrush="Black" Padding="10" Margin="10">
 						<StackPanel>
 
-							<GroupBox Header="Основная громкость" Padding="10">
+							<GroupBox Header="Стандарнтая громкость" Padding="10">
 								<Grid>
 									<Grid.ColumnDefinitions>
 										<ColumnDefinition/>
 										<ColumnDefinition Width="44"/>
 									</Grid.ColumnDefinitions>
 
-									<Slider x:Name="slider_Basic" ValueChanged="Slider_ValueChanged" Grid.Column="0" Minimum="0" Maximum="100" VerticalAlignment="Center" SmallChange="1"/>
-									<Label x:Name="BasicLabel" Content="XXX%" Grid.Column="1"/>
+									<Slider x:Name="slider_basicVolume" Grid.Column="0" Minimum="0" Maximum="100" VerticalAlignment="Center" SmallChange="1"/>
+									<Label x:Name="label_basicVolume" Content="XXX%" Grid.Column="1"/>
 								</Grid>
 							</GroupBox>
-
-							<GroupBox Header="Начала/Конца громкость" Padding="10">
+							
+							<GroupBox Header="Динамическая громкость" Padding="10">
 								<Grid>
 									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="auto"/>
 										<ColumnDefinition/>
 										<ColumnDefinition Width="44"/>
 									</Grid.ColumnDefinitions>
+									<Grid.RowDefinitions>
+										<RowDefinition/>
+										<RowDefinition/>
+									</Grid.RowDefinitions>
 
-									<Slider x:Name="slider_IO" ValueChanged="Slider_ValueChanged" Grid.Column="0" Minimum="0" Maximum="100" VerticalAlignment="Center" SmallChange="1"/>
-									<Label x:Name="IOLabel" Content="XXX%" Grid.Column="1"/>
+									<Label Content="Громкость середины:" Grid.Column="0" Grid.Row="0" />
+									<Slider x:Name="slider_middleVolume" Grid.Column="1" Minimum="0" Maximum="100" VerticalAlignment="Center" SmallChange="1" Grid.Row="0"/>
+									<Label x:Name="label_middleVolume" Content="XXX%" Grid.Column="2" Grid.Row="0"/>
+
+									<Label Content="Громкость Начала/Конца:" Grid.Column="0" Grid.Row="1" />
+									<Slider x:Name="slider_introOutroVolume" Grid.Column="1" Minimum="0" Maximum="100" VerticalAlignment="Center" SmallChange="1" Grid.Row="1"/>
+									<Label x:Name="label_introOutroVolume" Content="XXX%" Grid.Column="2" Grid.Row="1"/>
+
 								</Grid>
 							</GroupBox>
+
 
 							<GroupBox Header="Поведение воспроизведения" Padding="10">
 								<Grid>
@@ -60,10 +72,10 @@
 										<ColumnDefinition/>
 									</Grid.ColumnDefinitions>
 
-									<GroupBox Grid.Column="0" Header="Длительность перехода (Громкая -> обычная)" Padding="10">
+									<GroupBox Grid.Column="0" Header="Длительность перехода (Громкая -> середина)" Padding="10">
 										<TextBox TextChanged="TextBox_TextChanged" Tag="durationTransitionToNormal" x:Name="durationTransitionToNormal"/>
 									</GroupBox>
-									<GroupBox Grid.Column="1" Header="Длительность перехода (Обычная -> громкая)" Padding="10">
+									<GroupBox Grid.Column="1" Header="Длительность перехода (Середина -> громкая)" Padding="10">
 										<TextBox TextChanged="TextBox_TextChanged" Tag="durationTransitionToUp" x:Name="durationTransitionToUp"/>
 									</GroupBox>
 									<GroupBox Grid.Column="2" Header="Длительность затухания музыки" Padding="10">

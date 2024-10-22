@@ -16,44 +16,47 @@ namespace Belly.Pages
         }
         void InitializeSettings()
         {
-            slider_Basic.ValueChanged -= Slider_ValueChanged;
-            slider_IO.ValueChanged -= Slider_ValueChanged;
+            slider_basicVolume.Value = MainWindow.SettingsValues.basicVolume * 100;
+            slider_middleVolume.Value = MainWindow.SettingsValues.middleVolume * 100;
+            slider_introOutroVolume.Value = MainWindow.SettingsValues.introOutroVolume * 100;
 
+            label_basicVolume.Content = $"{Math.Round(slider_basicVolume.Value, 0)}%";
+            label_middleVolume.Content = $"{Math.Round(slider_middleVolume.Value, 0)}%";
+            label_introOutroVolume.Content = $"{Math.Round(slider_introOutroVolume.Value, 0)}%";
 
-            slider_Basic.Value = MainWindow.SettingsValues.normalVolume * 100;
-            slider_IO.Value = MainWindow.SettingsValues.introOutroVolume * 100;
-            
-            BasicLabel.Content = $"{Math.Round(slider_Basic.Value, 0)}%";
-            IOLabel.Content = $"{Math.Round(slider_IO.Value, 0)}%";
+            slider_basicVolume.ValueChanged += slider_ValueChanged;
+            slider_middleVolume.ValueChanged += slider_ValueChanged;
+            slider_introOutroVolume.ValueChanged += slider_ValueChanged;
 
-            slider_Basic.ValueChanged += Slider_ValueChanged;
-            slider_IO.ValueChanged += Slider_ValueChanged;
-
-            durationTransitionToNormal.Text = MainWindow.SettingsValues.durationTransitionToNormal.ToString();
-            durationTransitionToUp.Text = MainWindow.SettingsValues.durationTransitionToUp.ToString();
-            durationTransitionToEnd.Text = MainWindow.SettingsValues.durationTransitionToEnd.ToString();
+            durationTransitionToNormal.Text = MainWindow.SettingsValues.durationTransitionToMiddleVolume.ToString();
+            durationTransitionToUp.Text = MainWindow.SettingsValues.durationTransitionToUpVolume.ToString();
+            durationTransitionToEnd.Text = MainWindow.SettingsValues.durationTransitionToEndVolume.ToString();
             durationIntroOutroVolume.Text = MainWindow.SettingsValues.durationIntroOutroVolume.ToString();
 
 
         }
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            MainWindow.SettingsValues.normalVolume = (float)(slider_Basic.Value / 100);
-            BasicLabel.Content = $"{Math.Round(slider_Basic.Value, 0)}%";
+            MainWindow.SettingsValues.basicVolume = (float)(slider_basicVolume.Value / 100);
+            label_basicVolume.Content = $"{Math.Round(slider_basicVolume.Value, 0)}%";
 
-            MainWindow.SettingsValues.introOutroVolume = (float)(slider_IO.Value / 100);
-            IOLabel.Content = $"{Math.Round(slider_IO.Value, 0)}%";
+            MainWindow.SettingsValues.middleVolume = (float)(slider_middleVolume.Value / 100);
+            label_middleVolume.Content = $"{Math.Round(slider_middleVolume.Value, 0)}%";
+
+            MainWindow.SettingsValues.introOutroVolume = (float)(slider_introOutroVolume.Value / 100);
+            label_introOutroVolume.Content = $"{Math.Round(slider_introOutroVolume.Value, 0)}%";
         }
 
         private void SaveValues_Click(object sender, RoutedEventArgs e)
         {
             var settings = new
             {
-                MainWindow.SettingsValues.normalVolume,
+                MainWindow.SettingsValues.basicVolume,
+                MainWindow.SettingsValues.middleVolume,
                 MainWindow.SettingsValues.introOutroVolume,
-                MainWindow.SettingsValues.durationTransitionToNormal,
-                MainWindow.SettingsValues.durationTransitionToUp,
-                MainWindow.SettingsValues.durationTransitionToEnd,
+                MainWindow.SettingsValues.durationTransitionToMiddleVolume,
+                MainWindow.SettingsValues.durationTransitionToUpVolume,
+                MainWindow.SettingsValues.durationTransitionToEndVolume,
                 MainWindow.SettingsValues.durationIntroOutroVolume
             };
 
@@ -69,13 +72,13 @@ namespace Belly.Pages
                 switch (((TextBox)sender).Tag)
                 {
                     case "durationTransitionToNormal":
-                        MainWindow.SettingsValues.durationTransitionToNormal = result;
+                        MainWindow.SettingsValues.durationTransitionToMiddleVolume = result;
                         break;
                     case "durationTransitionToUp":
-                        MainWindow.SettingsValues.durationTransitionToUp = result;
+                        MainWindow.SettingsValues.durationTransitionToUpVolume = result;
                         break;
                     case "durationTransitionToEnd":
-                        MainWindow.SettingsValues.durationTransitionToEnd = result;
+                        MainWindow.SettingsValues.durationTransitionToEndVolume = result;
                         break;
                     case "durationIntroOutroVolume":
                         MainWindow.SettingsValues.durationIntroOutroVolume = result;

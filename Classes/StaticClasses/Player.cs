@@ -1,5 +1,4 @@
-﻿
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Belly.Objects;
 using NAudio.Wave;
 using System.Collections.Generic;
@@ -24,38 +23,47 @@ namespace Belly.Classes.StaticClasses
 
         public async Task PlayMusic(int milliseconds, bool? volumeUpDown)
         {
-            int countMilliseconds = milliseconds;
-            var stopwatch = new Stopwatch();
-
-            stopwatch.Start();
-
-            if (volumeUpDown == true) startVolumeUpDown(milliseconds);
-
-
-            while ((int)stopwatch.ElapsedMilliseconds < milliseconds)
+            if (MainWindow.MusicList != null)
             {
-                if (OutputDevice.PlaybackState != PlaybackState.Playing)
+                int countMilliseconds = milliseconds;
+                var stopwatch = new Stopwatch();
+
+                stopwatch.Start();
+
+                if (volumeUpDown == true) startVolumeUpDown(milliseconds);
+
+
+                while ((int)stopwatch.ElapsedMilliseconds < milliseconds)
                 {
-                    AudioFile = new AudioFileReader(GetPathOnPriority(MainWindow.MusicList));
-                    OutputDevice.Init(AudioFile);
-                    OutputDevice.Play();
+                    if (OutputDevice.PlaybackState != PlaybackState.Playing)
+                    {
+                        AudioFile = new AudioFileReader(GetPathOnPriority(MainWindow.MusicList));
+                        OutputDevice.Init(AudioFile);
+                        OutputDevice.Play();
+                    }
+
+
+                    await Task.Delay(1);
+
                 }
 
-
-                await Task.Delay(1);
-
+                // Останавливаем воспроизведение и освобождаем ресурсы
+                OutputDevice.Stop();
+                AudioFile.Dispose();
+                OutputDevice.Dispose();
             }
 
-            // Останавливаем воспроизведение и освобождаем ресурсы
-            OutputDevice.Stop();
-            AudioFile.Dispose();
-            OutputDevice.Dispose();
+            
         }
         public void Play(MediaFile MediaFile)
         {
-            AudioFile = new AudioFileReader(MediaFile.Path);
-            OutputDevice.Init(AudioFile);
-            OutputDevice.Play();
+            if (MediaFile != null)
+            {
+                AudioFile = new AudioFileReader(MediaFile.Path);
+                OutputDevice.Init(AudioFile);
+                OutputDevice.Play();
+            }
+            
         }
         string GetPathOnPriority(List<Music> items)
         {
@@ -77,19 +85,21 @@ namespace Belly.Classes.StaticClasses
         {
             int offset =
                 (MainWindow.SettingsValues.durationIntroOutroVolume +
-                MainWindow.SettingsValues.durationTransitionToNormal +
-                MainWindow.SettingsValues.durationTransitionToUp +
+                MainWindow.SettingsValues.durationTransitionToMiddleVolume +
+                MainWindow.SettingsValues.durationTransitionToUpVolume +
                 MainWindow.SettingsValues.durationIntroOutroVolume +
-                MainWindow.SettingsValues.durationTransitionToEnd + 1) * 1000;
+                MainWindow.SettingsValues.durationTransitionToEndVolume + 1) * 1000;
 
             OutputDevice.Volume = MainWindow.SettingsValues.introOutroVolume;
             await Task.Delay(MainWindow.SettingsValues.durationIntroOutroVolume * 1000);
-            await SmoothChangeVolume(MainWindow.SettingsValues.normalVolume, MainWindow.SettingsValues.durationTransitionToNormal);
+            await SmoothChangeVolume(MainWindow.SettingsValues.middleVolume, MainWindow.SettingsValues.durationTransitionToMiddleVolume);
+            
             await Task.Delay(miliseconds - offset); 
-            await SmoothChangeVolume(MainWindow.SettingsValues.introOutroVolume, MainWindow.SettingsValues.durationTransitionToUp);
+            
+            await SmoothChangeVolume(MainWindow.SettingsValues.introOutroVolume, MainWindow.SettingsValues.durationTransitionToUpVolume);
             await Task.Delay(MainWindow.SettingsValues.durationIntroOutroVolume * 1000);
-            await SmoothChangeVolume(0, MainWindow.SettingsValues.durationTransitionToEnd);
-            OutputDevice.Volume = MainWindow.SettingsValues.normalVolume;
+            await SmoothChangeVolume(0, MainWindow.SettingsValues.durationTransitionToEndVolume);
+            OutputDevice.Volume = MainWindow.SettingsValues.basicVolume;
         }
         async Task SmoothChangeVolume(float targetVolume, int duration_sec)
         {
