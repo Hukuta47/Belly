@@ -9,10 +9,18 @@
     <StartupObject></StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="icon-export-50px.png" />
+    <None Remove="icon-import-50px.png" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="NAudio" Version="2.2.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon-export-50px.png" />
+    <Resource Include="icon-import-50px.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Settings.Designer.cs">

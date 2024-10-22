@@ -12,8 +12,20 @@
 	<DockPanel>
 		<Menu DockPanel.Dock="Top">
 			<MenuItem Header="Программа">
-				<MenuItem Header="Экспорт настроек"/>
-				<MenuItem Header="Импорт настрокек"/>
+				<MenuItem Header="Экспорт настроек">
+					<MenuItem.Icon>
+						<Image Source="/icon-export-50px.png"/>
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Импорт настрокек">
+					<MenuItem.Icon>
+						<Image Source="/icon-import-50px.png"/>
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
+			<MenuItem Header="Справка">
+				<MenuItem Header="О программе"/>
+				<MenuItem Header="Как пользоваться программой"/>
 			</MenuItem>
 		</Menu>
 		<Grid>
