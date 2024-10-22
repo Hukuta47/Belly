@@ -16,7 +16,7 @@ namespace Belly.Dialogs
         {
             InitializeComponent();
 
-            ListBox_AudioList.ItemsSource = MainWindow.AudioList;
+            ListBox_AudioList.ItemsSource = Main.AudioList;
             Button_Accept.Content = TextButton;
             RadioButton_PlayMusic.IsChecked = true;
         }
@@ -27,7 +27,7 @@ namespace Belly.Dialogs
             this.Issue = Issue;
 
 
-            ListBox_AudioList.ItemsSource = MainWindow.AudioList;
+            ListBox_AudioList.ItemsSource = Main.AudioList;
             Button_Accept.Content = TextButton;
 
             TextBox_NameIssue.Text = this.Issue.Name;

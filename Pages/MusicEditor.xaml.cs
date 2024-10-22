@@ -15,8 +15,8 @@ namespace Belly.Pages
         }
         void InitializeData()
         {
-            DataGrid_MusicList.ItemsSource = MainWindow.MusicList;
-            DataGrid_AudioList.ItemsSource = MainWindow.AudioList;
+            DataGrid_MusicList.ItemsSource = Main.MusicList;
+            DataGrid_AudioList.ItemsSource = Main.AudioList;
         }
         private void DataGrid_Drop(object sender, System.Windows.DragEventArgs e)
         {
@@ -33,25 +33,25 @@ namespace Belly.Pages
                         {
                             case "Music":
 
-                                if (!MainWindow.MusicList.Exists(f => f.Name == Path.GetFileName(file)))
+                                if (!Main.MusicList.Exists(f => f.Name == Path.GetFileName(file)))
                                 {
                                     Music music = new Music(file);
 
-                                    MainWindow.MusicList.Add(music);
+                                    Main.MusicList.Add(music);
                                     File.Copy(file, $@"Music\{music.Name}", true);
 
                                     DataGrid_MusicList.Items.Refresh();
 
-                                    var json = JsonConvert.SerializeObject(MainWindow.MusicList, Formatting.Indented);
+                                    var json = JsonConvert.SerializeObject(Main.MusicList, Formatting.Indented);
                                     File.WriteAllText(@"Music\listInfo.json", json);
                                 }
                                 break;
                             case "Audio":
-                                if (!MainWindow.AudioList.Exists(f => f.Name == Path.GetFileName(file)))
+                                if (!Main.AudioList.Exists(f => f.Name == Path.GetFileName(file)))
                                 {
                                     Audio audio = new Audio(file);
 
-                                    MainWindow.AudioList.Add(audio);
+                                    Main.AudioList.Add(audio);
                                     File.Copy(file, $@"Audio\{audio.Name}", true);
 
                                     DataGrid_AudioList.Items.Refresh();

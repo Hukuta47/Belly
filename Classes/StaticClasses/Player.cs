@@ -23,7 +23,7 @@ namespace Belly.Classes.StaticClasses
 
         public async Task PlayMusic(int milliseconds, bool? volumeUpDown)
         {
-            if (MainWindow.MusicList != null)
+            if (Main.MusicList != null)
             {
                 int countMilliseconds = milliseconds;
                 var stopwatch = new Stopwatch();
@@ -37,7 +37,7 @@ namespace Belly.Classes.StaticClasses
                 {
                     if (OutputDevice.PlaybackState != PlaybackState.Playing)
                     {
-                        AudioFile = new AudioFileReader(GetPathOnPriority(MainWindow.MusicList));
+                        AudioFile = new AudioFileReader(GetPathOnPriority(Main.MusicList));
                         OutputDevice.Init(AudioFile);
                         OutputDevice.Play();
                     }
@@ -84,22 +84,22 @@ namespace Belly.Classes.StaticClasses
         async Task startVolumeUpDown(int miliseconds)
         {
             int offset =
-                (MainWindow.SettingsValues.durationIntroOutroVolume +
-                MainWindow.SettingsValues.durationTransitionToMiddleVolume +
-                MainWindow.SettingsValues.durationTransitionToUpVolume +
-                MainWindow.SettingsValues.durationIntroOutroVolume +
-                MainWindow.SettingsValues.durationTransitionToEndVolume + 1) * 1000;
+                (Main.SettingsValues.durationIntroOutroVolume +
+                Main.SettingsValues.durationTransitionToMiddleVolume +
+                Main.SettingsValues.durationTransitionToUpVolume +
+                Main.SettingsValues.durationIntroOutroVolume +
+                Main.SettingsValues.durationTransitionToEndVolume + 1) * 1000;
 
-            OutputDevice.Volume = MainWindow.SettingsValues.introOutroVolume;
-            await Task.Delay(MainWindow.SettingsValues.durationIntroOutroVolume * 1000);
-            await SmoothChangeVolume(MainWindow.SettingsValues.middleVolume, MainWindow.SettingsValues.durationTransitionToMiddleVolume);
+            OutputDevice.Volume = Main.SettingsValues.introOutroVolume;
+            await Task.Delay(Main.SettingsValues.durationIntroOutroVolume * 1000);
+            await SmoothChangeVolume(Main.SettingsValues.middleVolume, Main.SettingsValues.durationTransitionToMiddleVolume);
             
             await Task.Delay(miliseconds - offset); 
             
-            await SmoothChangeVolume(MainWindow.SettingsValues.introOutroVolume, MainWindow.SettingsValues.durationTransitionToUpVolume);
-            await Task.Delay(MainWindow.SettingsValues.durationIntroOutroVolume * 1000);
-            await SmoothChangeVolume(0, MainWindow.SettingsValues.durationTransitionToEndVolume);
-            OutputDevice.Volume = MainWindow.SettingsValues.basicVolume;
+            await SmoothChangeVolume(Main.SettingsValues.introOutroVolume, Main.SettingsValues.durationTransitionToUpVolume);
+            await Task.Delay(Main.SettingsValues.durationIntroOutroVolume * 1000);
+            await SmoothChangeVolume(0, Main.SettingsValues.durationTransitionToEndVolume);
+            OutputDevice.Volume = Main.SettingsValues.basicVolume;
         }
         async Task SmoothChangeVolume(float targetVolume, int duration_sec)
         {

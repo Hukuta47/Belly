@@ -28,10 +28,10 @@ namespace Belly.Objects
             switch (IssueType)
             {
                 case IssueType.Music:
-                    await MainWindow.Player.PlayMusic(PlayTime, VolumeUpDown);
+                    await Main.Player.PlayMusic(PlayTime, VolumeUpDown);
                     break;
                 case IssueType.Audio:
-                    MainWindow.Player.Play(MediaFile);
+                    Main.Player.Play(MediaFile);
                     break;
             }
         }

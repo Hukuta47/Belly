@@ -42,13 +42,13 @@ namespace Belly.Pages
         }
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            var json = JsonConvert.SerializeObject(MainWindow.ScheduleList, Formatting.Indented);
+            var json = JsonConvert.SerializeObject(Main.ScheduleList, Formatting.Indented);
             File.WriteAllText("sheduleList.json", json);
 
         }
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.ScheduleList[ListBox_ListSchedules.SelectedIndex].Issues.Remove((Issue)DataGrid_Schedules.SelectedItem);
+            Main.ScheduleList[ListBox_ListSchedules.SelectedIndex].Issues.Remove((Issue)DataGrid_Schedules.SelectedItem);
             DataGrid_Schedules.Items.Refresh();
         }
         private void SelectedSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -58,7 +58,7 @@ namespace Belly.Pages
 
         void InitializeData()
         {
-            ListBox_ListSchedules.ItemsSource = MainWindow.ScheduleList;
+            ListBox_ListSchedules.ItemsSource = Main.ScheduleList;
         }
     }
 }

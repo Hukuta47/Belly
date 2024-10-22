@@ -16,7 +16,7 @@ using System.Windows.Controls;
 namespace Belly
 {
 
-    public partial class MainWindow : Window
+    public partial class Main : Window
     {
         public static SettingsValues SettingsValues;
         public static Player Player;
@@ -32,7 +32,7 @@ namespace Belly
 
 
 
-        public MainWindow()
+        public Main()
         {
             InitializeComponent();
 

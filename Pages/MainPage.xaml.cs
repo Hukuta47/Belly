@@ -17,14 +17,14 @@ namespace Belly.Pages
             InitializeComponent();
             InitializeInterface();
             timeText = TimeLabel;
-            TimeLabel.Content = MainWindow.TimeNow.ToString();
+            TimeLabel.Content = Main.TimeNow.ToString();
             Combobox_SelectSchedule.SelectionChanged += Schedule_SelectionChanged;
             selectedShedule = Combobox_SelectSchedule;
         }
         void InitializeInterface()
         {
-            ListBox_WeekList.ItemsSource = MainWindow.Week;
-            Combobox_SelectSchedule.ItemsSource = MainWindow.ScheduleList;
+            ListBox_WeekList.ItemsSource = Main.Week;
+            Combobox_SelectSchedule.ItemsSource = Main.ScheduleList;
 
 
             dayOfWeel = (int)DateTime.Now.DayOfWeek - 1;
@@ -45,7 +45,7 @@ namespace Belly.Pages
         private void Schedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ((Day)ListBox_WeekList.SelectedItem).scheduleNum = Combobox_SelectSchedule.SelectedIndex;
-            File.WriteAllText("weekList.json", JsonConvert.SerializeObject(MainWindow.Week, Formatting.Indented));
+            File.WriteAllText("weekList.json", JsonConvert.SerializeObject(Main.Week, Formatting.Indented));
         }
     }
 }
