@@ -15,10 +15,10 @@ namespace Belly.Classes.StaticClasses
         public AudioFileReader AudioFile;
 
 
-        public Player(float normalVolume, float introOutroVolume)
+        public Player(float basicVolume)
         {
             OutputDevice = new WaveOutEvent();
-            OutputDevice.Volume = normalVolume;
+            OutputDevice.Volume = basicVolume;
         }
 
         public async Task PlayMusic(int milliseconds, bool? volumeUpDown)

@@ -59,7 +59,7 @@ namespace Belly
         }
         void InitializeClasses()
         {
-            Player = new Player(SettingsValues.middleVolume, SettingsValues.introOutroVolume);
+            Player = new Player(SettingsValues.basicVolume);
 
             MusicList = JsonConvert.DeserializeObject<List<Music>>(File.ReadAllText(@"Music\\listInfo.json"));
             AudioList = new List<Audio>(new DirectoryInfo("Audio").GetFiles("*.mp3").Length);
