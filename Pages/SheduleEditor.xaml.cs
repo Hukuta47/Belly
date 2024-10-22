@@ -14,6 +14,8 @@ namespace Belly.Pages
         {
             InitializeComponent();
             InitializeData();
+
+            ListBox_ListSchedules.SelectedIndex = 0;
         }
         private void ChangeIssue_Click(object sender, RoutedEventArgs e)
         {
