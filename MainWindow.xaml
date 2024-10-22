@@ -4,31 +4,39 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Belly"
+		xmlns:r="clr-namespace:Belly.Properties"
         mc:Ignorable="d"
         Title="MainWindow" Width="1280" Height="720"  WindowState="Maximized">
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="auto"/>
-			<RowDefinition/>
-			<RowDefinition Height="auto"/>
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition/>
-			<ColumnDefinition/>
-			<ColumnDefinition/>
-			<ColumnDefinition/>
-		</Grid.ColumnDefinitions>
-
-		<Button Grid.Column="0" Content="Главная" Tag="main" Click="Button_Click"/>
 
 
+	<DockPanel>
+		<Menu DockPanel.Dock="Top">
+			<MenuItem Header="Программа">
+				<MenuItem Header="Экспорт настроек"/>
+				<MenuItem Header="Импорт настрокек"/>
+			</MenuItem>
+		</Menu>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto"/>
+				<RowDefinition/>
+				<RowDefinition Height="auto"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
 
-		<Button Grid.Column="1" Content="Расписание" Tag="schedule" Click="Button_Click"/>
-		<Button Grid.Column="2" Content="Аудио" Tag="music" Click="Button_Click"/>
-		<Button Grid.Column="3" Content="Настройки" Tag="settings" Click="Button_Click"/>
+			<Button Grid.Column="0" Content="Главная" Tag="main" Click="Button_Click"/>
+			<Button Grid.Column="1" Content="Расписание" Tag="schedule" Click="Button_Click"/>
+			<Button Grid.Column="2" Content="Аудио" Tag="music" Click="Button_Click"/>
+			<Button Grid.Column="3" Content="Настройки" Tag="settings" Click="Button_Click"/>
 
-		<Frame Grid.Row="1" Grid.ColumnSpan="4" NavigationUIVisibility="Hidden" x:Name="frame"/>
+			<Frame Grid.Row="1" Grid.ColumnSpan="4" NavigationUIVisibility="Hidden" x:Name="frame"/>
 
-		<Label Content="Ver: 1.1.0" Grid.Row="3" Grid.ColumnSpan="4"/>
-	</Grid>
+			<Label Content="Ver: 1.1.0" Grid.Row="3" Grid.ColumnSpan="4"/>
+		</Grid>
+	</DockPanel>
 </Window>
