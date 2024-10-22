@@ -84,23 +84,22 @@ namespace Belly.Classes.StaticClasses
             await SmoothChangeVolume(0, 3);
             OutputDevice.Volume = MainWindow.SettingsValues.normalVolume;
         }
-        async Task SmoothChangeVolume(double targetVolume, int duration_sec)
+        async Task SmoothChangeVolume(float targetVolume, int duration_sec)
         {
             duration_sec *= 1000;
 
-            double startVolume = OutputDevice.Volume;
-            int steps = 100; // Количество шагов для изменения громкости
-            double stepSize = (targetVolume - startVolume) / steps;
+            float startVolume = OutputDevice.Volume;
+            int steps = 100; 
+            float stepSize = (targetVolume - startVolume) / steps;
             int delay = duration_sec / steps;
 
             for (int i = 0; i <= steps; i++)
             {
-                OutputDevice.Volume += (float)stepSize;
+                OutputDevice.Volume += stepSize;
                 await Task.Delay(delay);
             }
 
-            // Убедимся, что громкость точно установлена в целевое значение
-            OutputDevice.Volume = (float)targetVolume;
+            OutputDevice.Volume = targetVolume;
         }
     }
 

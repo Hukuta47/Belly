@@ -9,60 +9,64 @@
       Title="MainPage"
 	  Background="White">
 
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition/>
-			<RowDefinition Height="auto"/>
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-		</Grid.ColumnDefinitions>
 
-		<Expander Grid.Row="1" ExpandDirection="Up" BorderBrush="Black" Padding="5" Margin="10" Header="Свойства">
-			<Grid>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="200px"/>
-					<ColumnDefinition/>
-				</Grid.ColumnDefinitions>
+	<Canvas x:Name="mainCanvas">
+
+		<Grid Width="{Binding ActualWidth, ElementName=mainCanvas}"
+          Height="{Binding ActualHeight, ElementName=mainCanvas}">
+			<StackPanel Grid.Row="0" Canvas.Left="{Binding ElementName=mainCanvas}" VerticalAlignment="Center" HorizontalAlignment="Center">
+				<Label Content="10:08" x:Name="TimeLabel" FontFamily="Arial Black" FontSize="164" />
+				<Label Content="" HorizontalAlignment="Center" x:Name="Label_Status"/>
+			</StackPanel>
+		</Grid>
 
 
+		<ScrollViewer Height="{Binding ActualHeight, ElementName=mainCanvas}" VerticalScrollBarVisibility="Hidden">
+			<StackPanel VerticalAlignment="Bottom">
+				
+				<StackPanel.Effect>
+					<DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.5"/>
+				</StackPanel.Effect>
 
-				<Grid Grid.Column="0">
-					<Grid.RowDefinitions>
-						<RowDefinition/>
-						<RowDefinition Height="auto"/>
-					</Grid.RowDefinitions>
-
-					<GroupBox Header="День недели" Grid.Row="0" Padding="10" Margin="10">
-						<ListBox x:Name="ListBox_WeekList" DisplayMemberPath="Name" SelectionChanged="DayOfWeekChanged"/>
-					</GroupBox>
-
-					<GroupBox Header="Задача дня" Grid.Row="1" Padding="10" Margin="10">
-						<ComboBox SelectedIndex="0" Grid.Row="0" x:Name="Combobox_SelectSchedule" DisplayMemberPath="Name" />
-					</GroupBox>
-
-				</Grid>
-				<GroupBox Header="Информация" Grid.Column="1" Padding="10" Margin="10">
+				<Expander ExpandDirection="Up" BorderBrush="Black" Padding="5" Margin="10" Header="Расписание дня" Width="212" Background="White">
 					
-				</GroupBox>
+				</Expander>
 				
 				
+				<Expander ExpandDirection="Up" BorderBrush="Black" Padding="5" Margin="10" Header="Расписание недели" Width="212" Background="White" >
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="200px"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
 
-			</Grid>
-		</Expander>
+						<Grid Grid.Column="0">
+							<Grid.RowDefinitions>
+								<RowDefinition/>
+								<RowDefinition Height="auto"/>
+							</Grid.RowDefinitions>
+
+							<GroupBox Header="День недели" Grid.Row="0" Padding="10" Margin="10">
+								<ListBox x:Name="ListBox_WeekList" DisplayMemberPath="Name" SelectionChanged="DayOfWeekChanged"/>
+							</GroupBox>
+
+							<GroupBox Header="Задача дня" Grid.Row="1" Padding="10" Margin="10">
+								<ComboBox SelectedIndex="0" Grid.Row="0" x:Name="Combobox_SelectSchedule" DisplayMemberPath="Name" />
+							</GroupBox>
+
+						</Grid>
+					</Grid>
+				</Expander>
+
+			</StackPanel>
+		</ScrollViewer>
 
 
 
 
 
-		<StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-			<Label Content="10:08" HorizontalContentAlignment="Center" VerticalAlignment="Center" x:Name="TimeLabel" FontFamily="Arial Black" FontSize="164" />
-			<Label Content="" HorizontalAlignment="Center" x:Name="Label_Status"/>
-		</StackPanel>
 
-
-
-		
-
-
-	</Grid>
+	</Canvas>
+	
+	
 </Page>
