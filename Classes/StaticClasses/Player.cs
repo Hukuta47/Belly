@@ -75,13 +75,20 @@ namespace Belly.Classes.StaticClasses
         }
         async Task startVolumeUpDown(int miliseconds)
         {
+            int offset =
+                (MainWindow.SettingsValues.durationIntroOutroVolume +
+                MainWindow.SettingsValues.durationTransitionToNormal +
+                MainWindow.SettingsValues.durationTransitionToUp +
+                MainWindow.SettingsValues.durationIntroOutroVolume +
+                MainWindow.SettingsValues.durationTransitionToEnd + 1) * 1000;
+
             OutputDevice.Volume = MainWindow.SettingsValues.introOutroVolume;
-            await Task.Delay(3000);
-            await SmoothChangeVolume(MainWindow.SettingsValues.normalVolume, 3);
-            await Task.Delay(miliseconds - (15000 + 1000));
-            await SmoothChangeVolume(MainWindow.SettingsValues.introOutroVolume, 3);
-            await Task.Delay(3000);
-            await SmoothChangeVolume(0, 3);
+            await Task.Delay(MainWindow.SettingsValues.durationIntroOutroVolume * 1000);
+            await SmoothChangeVolume(MainWindow.SettingsValues.normalVolume, MainWindow.SettingsValues.durationTransitionToNormal);
+            await Task.Delay(miliseconds - offset); 
+            await SmoothChangeVolume(MainWindow.SettingsValues.introOutroVolume, MainWindow.SettingsValues.durationTransitionToUp);
+            await Task.Delay(MainWindow.SettingsValues.durationIntroOutroVolume * 1000);
+            await SmoothChangeVolume(0, MainWindow.SettingsValues.durationTransitionToEnd);
             OutputDevice.Volume = MainWindow.SettingsValues.normalVolume;
         }
         async Task SmoothChangeVolume(float targetVolume, int duration_sec)
@@ -93,7 +100,7 @@ namespace Belly.Classes.StaticClasses
             float stepSize = (targetVolume - startVolume) / steps;
             int delay = duration_sec / steps;
 
-            for (int i = 0; i <= steps; i++)
+            for (int i = -1; i <= steps; i++)
             {
                 OutputDevice.Volume += stepSize;
                 await Task.Delay(delay);

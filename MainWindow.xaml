@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Belly"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowState="Maximized">
+        Title="MainWindow" Width="1280" Height="720"  WindowState="Maximized">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="auto"/>
@@ -19,7 +19,16 @@
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
 
-        <Button Grid.Column="0" Content="Главная" Tag="main" Click="Button_Click"/>
+		<Button Tag="main" Click="Button_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" >
+			<Button.Content>
+				<Border Padding="5" Margin="10" Grid.Column="0" Background="White" BorderBrush="Black" CornerRadius="5,5,5,5" BorderThickness="1">
+					<Label Content="Главная"/>
+				</Border>
+			</Button.Content>
+		</Button>
+		
+		
+        
         <Button Grid.Column="1" Content="Расписание" Tag="schedule" Click="Button_Click"/>
 		<Button Grid.Column="2" Content="Аудио" Tag="music" Click="Button_Click"/>
 		<Button Grid.Column="3" Content="Настройки" Tag="settings" Click="Button_Click"/>
