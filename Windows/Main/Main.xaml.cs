@@ -28,7 +28,7 @@ namespace Belly
         public static List<Day> Week;
 
         bool initialized = false;
-        bool messageShown = false;
+        bool playerStarted = false;
 
 
 
@@ -197,18 +197,18 @@ namespace Belly
                             foreach (Issue item in schedule.Issues)
                             {
                                 if (item.StartTime.ToTimeSpan().TotalSeconds == TimeNow.ToTimeSpan().TotalSeconds &&
-                                    !messageShown && Player.OutputDevice.PlaybackState != PlaybackState.Playing
+                                    !playerStarted && Player.OutputDevice.PlaybackState != PlaybackState.Playing
                                     )
                                 {
 
                                     item.Start();
-                                    messageShown = true; // Фиксируем, что сообщение показано
+                                    playerStarted = true; // Фиксируем, что сообщение показано
                                 }
 
                                 // Если время больше не совпадает, сбрасываем флаг
                                 if (item.StartTime.ToTimeSpan().TotalSeconds != TimeNow.ToTimeSpan().TotalSeconds)
                                 {
-                                    messageShown = false;
+                                    playerStarted = false;
                                 }
                             }
                         }
@@ -218,6 +218,31 @@ namespace Belly
                     await Task.Delay(100);
                 }
             }
+        }
+
+        private void Export_Click(object sender, RoutedEventArgs e)
+        {
+            var ProgramData = new
+            {
+                SettingsValues,
+                ScheduleList,
+                Week
+            };
+            System.Windows.Forms.SaveFileDialog saveFileDialog = new System.Windows.Forms.SaveFileDialog
+            {
+                FileName = "ExportSettingsBelly.json",
+                Title = "Экспорт настроек программы",
+                Filter = "JSON|*.json",
+                DefaultExt = "*.json"
+            };
+
+
+
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                File.WriteAllText(saveFileDialog.FileName, JsonConvert.SerializeObject(ProgramData, Formatting.Indented));
+            }
+
         }
     }
 }

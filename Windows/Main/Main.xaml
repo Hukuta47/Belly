@@ -12,14 +12,14 @@
 	<DockPanel>
 		<Menu DockPanel.Dock="Top">
 			<MenuItem Header="Программа">
-				<MenuItem Header="Экспорт настроек">
+				<MenuItem Header="Экспорт настроек" Click="Export_Click">
 					<MenuItem.Icon>
-						<Image Source="/Windows/window_Main/icons8-export-50.png"/>
+						<Image Source="/Windows/Main/icons8-export-50.png"/>
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem Header="Импорт настрокек">
 					<MenuItem.Icon>
-						<Image Source="/Windows/window_Main/icons8-import-50.png"/>
+						<Image Source="/Windows/Main/icons8-import-50.png"/>
 					</MenuItem.Icon>
 				</MenuItem>
 			</MenuItem>
