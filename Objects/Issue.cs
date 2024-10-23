@@ -31,9 +31,12 @@ namespace Belly.Objects
                 case IssueType.Music:
                     MainPage.label_statusText.Content = $"Играет музыка c {text_StartTime} до {text_EndTime}";
                     await Main.Player.PlayMusic(PlayTime, VolumeUpDown);
+                    MainPage.label_statusText.Content = $"";
                     break;
                 case IssueType.Audio:
-                    Main.Player.Play(MediaFile);
+                    MainPage.label_statusText.Content = $"Играет аудио файл";
+                    await Main.Player.Play(MediaFile);
+                    MainPage.label_statusText.Content = $"";
                     break;
             }
         }

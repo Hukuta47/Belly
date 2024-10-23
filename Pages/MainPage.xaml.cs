@@ -11,7 +11,7 @@ namespace Belly.Pages
     {
         public static Label label_timeText;
         public static Label label_statusText;
-        public static Label label_nameMusicText;
+        public static Label label_nameMediaFileText;
         public static ComboBox selectedShedule;
         public static int dayOfWeel;
         public MainPage()
@@ -24,7 +24,7 @@ namespace Belly.Pages
             Combobox_SelectSchedule.SelectionChanged += Schedule_SelectionChanged;
             selectedShedule = Combobox_SelectSchedule;
             label_statusText = label_Status;
-            label_nameMusicText = label_NameMusic;
+            label_nameMediaFileText = label_nameMediaFileMusic;
         }
         void InitializeInterface()
         {

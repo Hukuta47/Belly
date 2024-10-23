@@ -92,7 +92,7 @@
 				</Expander>
 
 				<Expander 
-				Header="Логирование" 
+				Header="Логирование (в разработке)" 
 				Background="White" 
 				BorderBrush="Black"
 				Padding="5"

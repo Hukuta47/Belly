@@ -43,7 +43,7 @@ namespace Belly.Classes.StaticClasses
                         AudioFile = new AudioFileReader(Music.Path);
                         OutputDevice.Init(AudioFile);
                         OutputDevice.Play();
-                        MainPage.label_nameMusicText.Content = $"Играет {Music.Name}";
+                        MainPage.label_nameMediaFileText.Content = $"Воспроизводиться {Music.Name}";
                     }
 
 
@@ -55,20 +55,22 @@ namespace Belly.Classes.StaticClasses
                 OutputDevice.Stop();
                 AudioFile.Dispose();
                 OutputDevice.Dispose();
-                MainPage.label_nameMusicText.Content = $"Играет -";
+                MainPage.label_nameMediaFileText.Content = $"";
             }
 
             
         }
-        public void Play(MediaFile MediaFile)
+        public async Task Play(MediaFile MediaFile)
         {
+            MainPage.label_nameMediaFileText.Content = $"Воспроизводиться {MediaFile.Name}";
             if (MediaFile != null)
             {
                 AudioFile = new AudioFileReader(MediaFile.Path);
                 OutputDevice.Init(AudioFile);
                 OutputDevice.Play();
             }
-            
+            await Task.Delay((int)AudioFile.TotalTime.TotalMilliseconds);
+            MainPage.label_nameMediaFileText.Content = $"";
         }
         Music GetPathOnPriority(List<Music> items)
         {

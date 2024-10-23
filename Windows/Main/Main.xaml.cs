@@ -15,6 +15,12 @@ using System.Windows.Controls;
 
 namespace Belly
 {
+    public class ProgramData
+    {
+        public object SettingsValues { get; set; }
+        public object ScheduleList { get; set; }
+        public object Week { get; set; }
+    }
 
     public partial class Main : Window
     {
@@ -181,43 +187,41 @@ namespace Belly
 
             while (true)
             {
-                if (TimeNow != TimeOnly.FromDateTime(DateTime.Now))
+                TimeNow = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+                if (MainPage.label_timeText != null) MainPage.label_timeText.Content = TimeNow.ToString();
+
+
+
+                if (initialized == true)
                 {
-                    TimeNow = TimeOnly.FromDateTime(DateTime.Now);
-                    if (MainPage.label_timeText != null) MainPage.label_timeText.Content = TimeNow.ToString();
-
-
-
-                    if (initialized == true)
+                    Schedule schedule = (Schedule)MainPage.selectedShedule.SelectedItem;
+                    if (schedule.Issues != null)
                     {
-                        Schedule schedule = (Schedule)MainPage.selectedShedule.SelectedItem;
-                        if (schedule.Issues != null)
+
+                        foreach (Issue item in schedule.Issues)
                         {
-
-                            foreach (Issue item in schedule.Issues)
+                            if (item.StartTime.ToTimeSpan().TotalSeconds == TimeNow.ToTimeSpan().TotalSeconds &&
+                                !playerStarted && Player.OutputDevice.PlaybackState != PlaybackState.Playing
+                                )
                             {
-                                if (item.StartTime.ToTimeSpan().TotalSeconds == TimeNow.ToTimeSpan().TotalSeconds &&
-                                    !playerStarted && Player.OutputDevice.PlaybackState != PlaybackState.Playing
-                                    )
-                                {
 
-                                    item.Start();
-                                    MainPage.label_statusText.Content = "";
-                                    playerStarted = true;
-                                }
+                                item.Start();
+                                playerStarted = true;
+                            }
 
-                                // Если время больше не совпадает, сбрасываем флаг
-                                if (item.StartTime.ToTimeSpan().TotalSeconds != TimeNow.ToTimeSpan().TotalSeconds)
-                                {
-                                    playerStarted = false;
-                                }
+                            // Если время больше не совпадает, сбрасываем флаг
+                            if (item.StartTime.ToTimeSpan().TotalSeconds != TimeNow.ToTimeSpan().TotalSeconds)
+                            {
+                                playerStarted = false;
                             }
                         }
-
                     }
-                    Debug.WriteLine(TimeNow.Minute);
-                    await Task.Delay(100);
+
                 }
+
+                Debug.WriteLine(TimeNow.Minute);
+                await Task.Delay(100);
+
             }
         }
 
@@ -243,5 +247,43 @@ namespace Belly
             }
 
         }
+
+        private void Import_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog
+            {
+                Title = "Импорт настроек программы",
+                Filter = "JSON|*.json",
+                DefaultExt = "*.json"
+            };
+
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    var programData = JsonConvert.DeserializeObject<ProgramData>(File.ReadAllText(openFileDialog.FileName));
+
+                    // Проверка данных
+                    if (programData == null)
+                    {
+                        MessageBox.Show("Данные не могут быть импортированы.");
+                        return;
+                    }
+
+                    // Обновление данных
+                    SettingsValues = (SettingsValues)programData.SettingsValues;
+                    ScheduleList = (List<Schedule>)programData.ScheduleList;
+                    Week = (List<Day>)programData.Week;
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка импорта данных: " + ex.Message);
+                }
+            }
+        }
+
+        
     }
 }

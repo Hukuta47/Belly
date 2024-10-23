@@ -17,7 +17,7 @@
 						<Image Source="/Windows/Main/icons8-export-50.png"/>
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Header="Импорт настрокек">
+				<MenuItem Header="Импорт настрокек (в разработке)" Click="Import_Click" IsEnabled="False">
 					<MenuItem.Icon>
 						<Image Source="/Windows/Main/icons8-import-50.png"/>
 					</MenuItem.Icon>

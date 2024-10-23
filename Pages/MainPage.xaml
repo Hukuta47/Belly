@@ -17,7 +17,7 @@
 			<StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
 				<Label Content="10:08" x:Name="TimeLabel" FontFamily="Arial Black" FontSize="164" />
 				<Label Content="" HorizontalAlignment="Center" x:Name="label_Status"/>
-				<Label Content="" HorizontalAlignment="Center" x:Name="label_NameMusic"/>
+				<Label Content="" HorizontalAlignment="Center" x:Name="label_nameMediaFileMusic"/>
 			</StackPanel>
 		</Grid>
 
