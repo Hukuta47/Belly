@@ -1,4 +1,5 @@
 ﻿using Belly.Enums;
+using Belly.Pages;
 using System;
 
 namespace Belly.Objects
@@ -28,6 +29,7 @@ namespace Belly.Objects
             switch (IssueType)
             {
                 case IssueType.Music:
+                    MainPage.label_statusText.Content = $"Играет музыка c {text_StartTime} до {text_EndTime}";
                     await Main.Player.PlayMusic(PlayTime, VolumeUpDown);
                     break;
                 case IssueType.Audio:

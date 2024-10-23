@@ -16,23 +16,20 @@
           Height="{Binding ActualHeight, ElementName=mainCanvas}">
 			<StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
 				<Label Content="10:08" x:Name="TimeLabel" FontFamily="Arial Black" FontSize="164" />
-				<Label Content="" HorizontalAlignment="Center" x:Name="Label_Status"/>
+				<Label Content="" HorizontalAlignment="Center" x:Name="label_Status"/>
+				<Label Content="" HorizontalAlignment="Center" x:Name="label_NameMusic"/>
 			</StackPanel>
 		</Grid>
 
 
 		<ScrollViewer Height="{Binding ActualHeight, ElementName=mainCanvas}" VerticalScrollBarVisibility="Hidden">
 			<StackPanel VerticalAlignment="Bottom">
-				
+
 				<StackPanel.Effect>
 					<DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.75"/>
 				</StackPanel.Effect>
 
-				<Expander ExpandDirection="Up" BorderBrush="Black" Padding="5" Margin="10" Header="Расписание дня" Width="212" Background="White">
-					
-				</Expander>
-				
-				
+
 				<Expander ExpandDirection="Up" BorderBrush="Black" Padding="5" Margin="10" Header="Расписание недели" Width="212" Background="White" >
 					<Grid>
 						<Grid.ColumnDefinitions>

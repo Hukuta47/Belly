@@ -184,7 +184,7 @@ namespace Belly
                 if (TimeNow != TimeOnly.FromDateTime(DateTime.Now))
                 {
                     TimeNow = TimeOnly.FromDateTime(DateTime.Now);
-                    if (MainPage.timeText != null) MainPage.timeText.Content = TimeNow.ToString();
+                    if (MainPage.label_timeText != null) MainPage.label_timeText.Content = TimeNow.ToString();
 
 
 
@@ -202,7 +202,8 @@ namespace Belly
                                 {
 
                                     item.Start();
-                                    playerStarted = true; // Фиксируем, что сообщение показано
+                                    MainPage.label_statusText.Content = "";
+                                    playerStarted = true;
                                 }
 
                                 // Если время больше не совпадает, сбрасываем флаг
@@ -235,8 +236,6 @@ namespace Belly
                 Filter = "JSON|*.json",
                 DefaultExt = "*.json"
             };
-
-
 
             if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {

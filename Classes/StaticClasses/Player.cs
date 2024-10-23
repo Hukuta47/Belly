@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using System.Diagnostics;
+using Belly.Pages;
 
 
 namespace Belly.Classes.StaticClasses
@@ -37,9 +38,12 @@ namespace Belly.Classes.StaticClasses
                 {
                     if (OutputDevice.PlaybackState != PlaybackState.Playing)
                     {
-                        AudioFile = new AudioFileReader(GetPathOnPriority(Main.MusicList));
+                        Music Music = GetPathOnPriority(Main.MusicList);
+
+                        AudioFile = new AudioFileReader(Music.Path);
                         OutputDevice.Init(AudioFile);
                         OutputDevice.Play();
+                        MainPage.label_nameMusicText.Content = $"Играет {Music.Name}";
                     }
 
 
@@ -51,6 +55,7 @@ namespace Belly.Classes.StaticClasses
                 OutputDevice.Stop();
                 AudioFile.Dispose();
                 OutputDevice.Dispose();
+                MainPage.label_nameMusicText.Content = $"Играет -";
             }
 
             
@@ -65,7 +70,7 @@ namespace Belly.Classes.StaticClasses
             }
             
         }
-        string GetPathOnPriority(List<Music> items)
+        Music GetPathOnPriority(List<Music> items)
         {
             int totalWeight = items.Sum(item => item.Priority);
             Random random = new Random();
@@ -75,11 +80,11 @@ namespace Belly.Classes.StaticClasses
             {
                 if (randomValue < music.Priority)
                 {
-                    return music.Path;
+                    return music;
                 }
                 randomValue -= music.Priority;
             }
-            return default(string);
+            return default;
         }
         async Task startVolumeUpDown(int miliseconds)
         {

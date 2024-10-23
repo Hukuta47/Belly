@@ -9,17 +9,22 @@ namespace Belly.Pages
 
     public partial class MainPage : Page
     {
-        public static Label timeText;
+        public static Label label_timeText;
+        public static Label label_statusText;
+        public static Label label_nameMusicText;
         public static ComboBox selectedShedule;
         public static int dayOfWeel;
         public MainPage()
         {
             InitializeComponent();
             InitializeInterface();
-            timeText = TimeLabel;
+            label_timeText = TimeLabel;
             TimeLabel.Content = Main.TimeNow.ToString();
+
             Combobox_SelectSchedule.SelectionChanged += Schedule_SelectionChanged;
             selectedShedule = Combobox_SelectSchedule;
+            label_statusText = label_Status;
+            label_nameMusicText = label_NameMusic;
         }
         void InitializeInterface()
         {
