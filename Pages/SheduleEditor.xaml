@@ -28,15 +28,16 @@
 				<RowDefinition Height="auto"/>
 			</Grid.RowDefinitions>
 
-			<GroupBox Padding="10" Margin="10" Grid.Row="0" Header="Список пресетов">
-				<ListBox x:Name="ListBox_ListSchedules" DisplayMemberPath="Name" SelectionChanged="SelectedSchedule_SelectionChanged"/>
+			<GroupBox Padding="10" Margin="10" Grid.Row="0" Header="Список пресетов" FontWeight="Bold" FontSize="18">
+				<ListBox x:Name="ListBox_ListSchedules" DisplayMemberPath="Name" SelectionChanged="SelectedSchedule_SelectionChanged" FontWeight="Normal" FontSize="12"/>
 			</GroupBox>
 
 			<Border Padding="10" Margin="10" Grid.Row="1" BorderBrush="Gray" BorderThickness="1" CornerRadius="10">
 				<StackPanel Orientation="Vertical">
-					<Button Content="Изменить задачу" Click="ChangeIssue_Click"/>
+					<Button Content="Изменить задачу" Click="ChangeIssue_Click" IsEnabled="False" x:Name="button_changeIssue"/>
 					<Button Content="Создать задачу" Click="CreateIssue_Click"/>
-					<Button Content="Удалить" Click="Delete_Click"/>
+					<Button Content="Снять виделение" Click="unselect_Click" IsEnabled="False" x:Name="button_unselect"/>
+					<Button Content="Удалить" Click="Delete_Click" x:Name="button_deleteIssue" IsEnabled="False"/>
 				</StackPanel>
 			</Border>
 
@@ -45,8 +46,8 @@
 
 
 
-		<GroupBox Padding="10" Margin="10" Grid.Column="1" Header="Список задач">
-			<DataGrid AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True" x:Name="DataGrid_Schedules" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False">
+		<GroupBox Padding="10" Margin="10" Grid.Column="1" Header="Список задач" FontWeight="Bold" FontSize="18">
+			<DataGrid AutoGenerateColumns="False" SelectionMode="Extended" IsReadOnly="True" x:Name="DataGrid_Schedules" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" SelectedCellsChanged="DataGrid_Schedules_SelectedCellsChanged" FontWeight="Normal" FontSize="12">
 				<DataGrid.Columns>
 					<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="auto"/>
 					<DataGridTextColumn Binding="{Binding IssueType}" Header="Тип" Width="50"/>

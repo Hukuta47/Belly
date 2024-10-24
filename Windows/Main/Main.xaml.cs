@@ -97,7 +97,6 @@ namespace Belly
             {
                 ScheduleList = JsonConvert.DeserializeObject<List<Schedule>>(File.ReadAllText("sheduleList.json"));
             }
-
             if (!File.Exists("weekList.json"))
             {
                 Week = new List<Day>

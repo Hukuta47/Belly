@@ -24,8 +24,8 @@
 				</MenuItem>
 			</MenuItem>
 			<MenuItem Header="Справка">
-				<MenuItem Header="О программе"/>
-				<MenuItem Header="Как пользоваться программой"/>
+				<MenuItem Header="О программе (в разработке)" IsEnabled="False"/>
+				<MenuItem Header="Как пользоваться программой (в разработке)" IsEnabled="False"/>
 			</MenuItem>
 		</Menu>
 		<Grid>

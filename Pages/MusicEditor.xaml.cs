@@ -66,15 +66,15 @@ namespace Belly.Pages
 
         private void Delete_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            foreach (var item in DataGrid_AudioList.SelectedItems)
+            foreach (Audio item in DataGrid_AudioList.SelectedItems)
             {
-                Main.AudioList.Remove((Audio)item);
-                File.Delete(((Audio)item).Path);
+                Main.AudioList.Remove(item);
+                File.Delete(item.Path);
             }
-            foreach (var item in DataGrid_MusicList.SelectedItems)
+            foreach (Music item in DataGrid_MusicList.SelectedItems)
             {
-                Main.MusicList.Remove((Music)item);
-                File.Delete(((Music)item).Path);
+                Main.MusicList.Remove(item);
+                File.Delete(item.Path);
             }
             var json = JsonConvert.SerializeObject(Main.MusicList, Formatting.Indented);
             File.WriteAllText(@"Music\listInfo.json", json);
@@ -82,18 +82,38 @@ namespace Belly.Pages
             DataGrid_AudioList.Items.Refresh();
             DataGrid_MusicList.Items.Refresh();
 
+            button_deleteIssue.IsEnabled = false;
+            button_unselect.IsEnabled = false;
+
         }
 
         private void ClearSelect_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             DataGrid_MusicList.SelectedItem = null;
             DataGrid_AudioList.SelectedItem = null;
+
+            button_deleteIssue.IsEnabled = false;
+            button_unselect.IsEnabled = false;
         }
 
         private void DataGrid_MusicList_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             var json = JsonConvert.SerializeObject(Main.MusicList, Formatting.Indented);
             File.WriteAllText(@"Music\listInfo.json", json);
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DataGrid_MusicList.SelectedItems.Count > 0 || DataGrid_AudioList.SelectedItems.Count > 0)
+            {
+                button_unselect.IsEnabled = true;
+                button_deleteIssue.IsEnabled = true;
+            }
+            else if (DataGrid_MusicList.SelectedItems.Count < 0 || DataGrid_AudioList.SelectedItems.Count < 0)
+            {
+                button_deleteIssue.IsEnabled = false;
+                button_unselect.IsEnabled = false;
+            }
         }
     }
 }

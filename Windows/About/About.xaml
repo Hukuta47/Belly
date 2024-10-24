@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Belly.Windows.form_About"
         mc:Ignorable="d"
-        Title="About" Height="450" Width="800">
+        Title="About" Height="480" Width="851">
     <Grid>
         
     </Grid>

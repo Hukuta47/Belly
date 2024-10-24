@@ -30,7 +30,7 @@
 				</StackPanel.Effect>
 
 
-				<Expander ExpandDirection="Up" BorderBrush="Black" Padding="5" Margin="10" Header="Расписание недели" Width="212" Background="White" >
+				<Expander ExpandDirection="Up" BorderBrush="Black" Padding="5" Margin="10" Header="Расписание недели" Width="212" Background="White" FontWeight="Bold" FontSize="18">
 					<Grid>
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="200px"/>
@@ -43,12 +43,12 @@
 								<RowDefinition Height="auto"/>
 							</Grid.RowDefinitions>
 
-							<GroupBox Header="День недели" Grid.Row="0" Padding="10" Margin="10">
-								<ListBox x:Name="ListBox_WeekList" DisplayMemberPath="Name" SelectionChanged="DayOfWeekChanged"/>
+							<GroupBox Header="День недели" Grid.Row="0" Padding="10" Margin="10" FontWeight="Bold" FontSize="18">
+								<ListBox x:Name="ListBox_WeekList" DisplayMemberPath="Name" SelectionChanged="DayOfWeekChanged" FontWeight="Normal" FontSize="12"/>
 							</GroupBox>
 
-							<GroupBox Header="Задача дня" Grid.Row="1" Padding="10" Margin="10">
-								<ComboBox SelectedIndex="0" Grid.Row="0" x:Name="Combobox_SelectSchedule" DisplayMemberPath="Name" />
+							<GroupBox Header="Задача дня" Grid.Row="1" Padding="10" Margin="10" FontWeight="Bold" FontSize="18">
+								<ComboBox SelectedIndex="0" Grid.Row="0" x:Name="Combobox_SelectSchedule" DisplayMemberPath="Name" FontWeight="Normal" FontSize="12"/>
 							</GroupBox>
 
 						</Grid>

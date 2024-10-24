@@ -4,7 +4,7 @@ namespace Belly.Objects
 {
     public class Audio : MediaFile
     {
-        new string Path { get; }
+        public new string Path { get; }
         new public string Name
         {
             get
@@ -15,7 +15,8 @@ namespace Belly.Objects
 
         public Audio(string Path) : base(Path, TypeMediaFile.Audio)
         {
-            this.Path = Path;
+            string _name = System.IO.Path.GetFileName(Path);
+            this.Path = $@"Audio\{_name}";
         }
     }
 }
