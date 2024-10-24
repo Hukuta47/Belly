@@ -45,9 +45,13 @@ namespace Belly.Pages
 
             Main.SettingsValues.introOutroVolume = (float)(slider_introOutroVolume.Value / 100);
             label_introOutroVolume.Content = $"{Math.Round(slider_introOutroVolume.Value, 0)}%";
+
+
+
+            SaveValues();
         }
 
-        private void SaveValues_Click(object sender, RoutedEventArgs e)
+        private void SaveValues()
         {
             var settings = new
             {
@@ -85,7 +89,7 @@ namespace Belly.Pages
                         break;
                 }
             }
-            
+            SaveValues();
         }
     }
 }

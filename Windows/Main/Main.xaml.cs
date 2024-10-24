@@ -15,12 +15,6 @@ using System.Windows.Controls;
 
 namespace Belly
 {
-    public class ProgramData
-    {
-        public object SettingsValues { get; set; }
-        public object ScheduleList { get; set; }
-        public object Week { get; set; }
-    }
 
     public partial class Main : Window
     {
@@ -259,28 +253,7 @@ namespace Belly
 
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                try
-                {
-                    var programData = JsonConvert.DeserializeObject<ProgramData>(File.ReadAllText(openFileDialog.FileName));
 
-                    // Проверка данных
-                    if (programData == null)
-                    {
-                        MessageBox.Show("Данные не могут быть импортированы.");
-                        return;
-                    }
-
-                    // Обновление данных
-                    SettingsValues = (SettingsValues)programData.SettingsValues;
-                    ScheduleList = (List<Schedule>)programData.ScheduleList;
-                    Week = (List<Day>)programData.Week;
-
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ошибка импорта данных: " + ex.Message);
-                }
             }
         }
 

@@ -7,20 +7,20 @@
       xmlns:trackClass="clr-namespace:Belly.Objects"
       Background="White"
       mc:Ignorable="d"
-      Title="SheduleEditor" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:DesignWidth="853" d:DesignHeight="480">
+      Title="SheduleEditor" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:DesignWidth="1280" d:DesignHeight="720">
 
-    
-    <Grid>
-        
-        <Grid.ColumnDefinitions>
-			<ColumnDefinition Width="1*"/>
-			<ColumnDefinition Width="4*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
+
+	<Grid>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
 			<RowDefinition	/>
 		</Grid.RowDefinitions>
 
-		
+
 
 		<Grid Grid.RowSpan="2" Grid.Column="0">
 			<Grid.RowDefinitions>
@@ -36,29 +36,28 @@
 				<StackPanel Orientation="Vertical">
 					<Button Content="Изменить задачу" Click="ChangeIssue_Click"/>
 					<Button Content="Создать задачу" Click="CreateIssue_Click"/>
-					<Button Content="Сохранить" Click="Save_Click"/>
 					<Button Content="Удалить" Click="Delete_Click"/>
 				</StackPanel>
 			</Border>
 
-			
+
 		</Grid>
 
-		
-		
+
+
 		<GroupBox Padding="10" Margin="10" Grid.Column="1" Header="Список задач">
-			<DataGrid AutoGenerateColumns="False" SelectionMode="Extended" IsReadOnly="True" x:Name="DataGrid_Schedules">
+			<DataGrid AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True" x:Name="DataGrid_Schedules" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False">
 				<DataGrid.Columns>
 					<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="auto"/>
 					<DataGridTextColumn Binding="{Binding IssueType}" Header="Тип" Width="50"/>
-					<DataGridTextColumn Binding="{Binding text_StartTime}" Header="Начало" Width="50"/>
+					<DataGridTextColumn Binding="{Binding text_StartTime}" Header="Начало" Width="50" SortDirection="Descending"/>
 					<DataGridTextColumn Binding="{Binding text_EndTime}" Header="Конец" Width="50"/>
 					<DataGridCheckBoxColumn Binding="{Binding VolumeUpDown}" Header="Прибавление громкости в начале/конце" Width="auto"/>
 				</DataGrid.Columns>
 			</DataGrid>
 		</GroupBox>
-		
-		
+
+
 
 
 

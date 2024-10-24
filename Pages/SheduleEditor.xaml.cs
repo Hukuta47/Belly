@@ -26,7 +26,7 @@ namespace Belly.Pages
                 ((Schedule)ListBox_ListSchedules.SelectedItem).Issues[DataGrid_Schedules.SelectedIndex] = dialog.Issue;
             }
             DataGrid_Schedules.Items.Refresh();
-
+            SaveSchedule();
         }
         private void CreateIssue_Click(object sender, RoutedEventArgs e)
         {
@@ -37,19 +37,15 @@ namespace Belly.Pages
                 ((Schedule)ListBox_ListSchedules.SelectedItem).Issues.Add(dialog.Issue);
             }
             DataGrid_Schedules.Items.Refresh();
-
-
-        }
-        private void Save_Click(object sender, RoutedEventArgs e)
-        {
-            var json = JsonConvert.SerializeObject(Main.ScheduleList, Formatting.Indented);
-            File.WriteAllText("sheduleList.json", json);
+            SaveSchedule();
 
         }
+        
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             Main.ScheduleList[ListBox_ListSchedules.SelectedIndex].Issues.Remove((Issue)DataGrid_Schedules.SelectedItem);
             DataGrid_Schedules.Items.Refresh();
+            SaveSchedule();
         }
         private void SelectedSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -59,6 +55,11 @@ namespace Belly.Pages
         void InitializeData()
         {
             ListBox_ListSchedules.ItemsSource = Main.ScheduleList;
+        }
+        private void SaveSchedule()
+        {
+            var json = JsonConvert.SerializeObject(Main.ScheduleList, Formatting.Indented);
+            File.WriteAllText("sheduleList.json", json);
         }
     }
 }

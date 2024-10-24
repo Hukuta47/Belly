@@ -1,13 +1,17 @@
-﻿using Belly.Enums;
+﻿using System.IO;
 using System.Windows;
+using Belly.Enums;
+using System.Windows.Shapes;
 
 namespace Belly.Objects
 {
     public class Music : MediaFile
     {
+        
         public Music(string Path) : base(Path, TypeMediaFile.Track)
         {
-            this.Path = Path;
+            string _name = System.IO.Path.GetFileName(Path);
+            this.Path = $@"Music\{_name}";
             priority = 1;
         }
         private int priority { get; set; }

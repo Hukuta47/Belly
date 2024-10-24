@@ -63,5 +63,37 @@ namespace Belly.Pages
                 }
             }
         }
+
+        private void Delete_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            foreach (var item in DataGrid_AudioList.SelectedItems)
+            {
+                Main.AudioList.Remove((Audio)item);
+                File.Delete(((Audio)item).Path);
+            }
+            foreach (var item in DataGrid_MusicList.SelectedItems)
+            {
+                Main.MusicList.Remove((Music)item);
+                File.Delete(((Music)item).Path);
+            }
+            var json = JsonConvert.SerializeObject(Main.MusicList, Formatting.Indented);
+            File.WriteAllText(@"Music\listInfo.json", json);
+
+            DataGrid_AudioList.Items.Refresh();
+            DataGrid_MusicList.Items.Refresh();
+
+        }
+
+        private void ClearSelect_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            DataGrid_MusicList.SelectedItem = null;
+            DataGrid_AudioList.SelectedItem = null;
+        }
+
+        private void DataGrid_MusicList_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            var json = JsonConvert.SerializeObject(Main.MusicList, Formatting.Indented);
+            File.WriteAllText(@"Music\listInfo.json", json);
+        }
     }
 }

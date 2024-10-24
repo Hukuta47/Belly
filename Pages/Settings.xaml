@@ -12,21 +12,14 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition/>
-			<RowDefinition Height="auto"/>
 		</Grid.RowDefinitions>
 
 
 		<ScrollViewer Grid.Row="0">
 			<StackPanel>
-				<Expander 
-					Header="Настройка громкости" 
-					Background="White" 
-					BorderBrush="Black"
-					Padding="5"
-					Margin="10">
+				<Expander Header="Настройка громкости" Background="White" BorderBrush="Black" Padding="5" Margin="10">
 					<Border BorderThickness="1" CornerRadius="10" BorderBrush="Black" Padding="10" Margin="10">
 						<StackPanel>
-
 							<GroupBox Header="Стандарнтая громкость" Padding="10">
 								<Grid>
 									<Grid.ColumnDefinitions>
@@ -38,7 +31,7 @@
 									<Label x:Name="label_basicVolume" Content="XXX%" Grid.Column="1"/>
 								</Grid>
 							</GroupBox>
-							
+
 							<GroupBox Header="Динамическая громкость" Padding="10">
 								<Grid>
 									<Grid.ColumnDefinitions>
@@ -91,12 +84,7 @@
 					</Border>
 				</Expander>
 
-				<Expander 
-				Header="Логирование (в разработке)" 
-				Background="White" 
-				BorderBrush="Black"
-				Padding="5"
-				Margin="10">
+				<Expander Header="Логирование (в разработке)" Background="White" BorderBrush="Black" Padding="5" Margin="10">
 					<Border BorderThickness="1" CornerRadius="10" BorderBrush="Black" Padding="10" Margin="10">
 						<StackPanel>
 							<TextBox IsReadOnly="True" Height="250"/>
@@ -105,14 +93,12 @@
 				</Expander>
 
 			</StackPanel>
-			
-			
-			
-			
-			
-			
-		</ScrollViewer>
 
-		<Button Grid.Row="1" Content="Сохранить настройки" Margin="5" Padding="5" Click="SaveValues_Click"/>
+
+
+
+
+
+		</ScrollViewer>
 	</Grid>
 </Page>

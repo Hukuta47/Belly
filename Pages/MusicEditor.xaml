@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Belly.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="600"
+      d:DesignWidth="1280" d:DesignHeight="720" 
       Title="MusicEditor"
 	  AllowDrop="True"
 	  Background="White">
@@ -15,23 +15,19 @@
 
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="1*" />
-			<ColumnDefinition Width="4*" />
+			<ColumnDefinition Width="1*" />
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
-			<RowDefinition/>
 			<RowDefinition/>
 			<RowDefinition Height="auto"/>
 		</Grid.RowDefinitions>
 
 
 
-		<StackPanel Grid.Row="4" Grid.Column="0">
-			<Button Content="Удалить"/>
-			<Button Content="Сохранить приоритет"/>
-		</StackPanel>
 
-		<GroupBox Header="Музыка" Grid.Row="0" Grid.ColumnSpan="2" Padding="10" Margin="10">
-			<DataGrid AllowDrop="True" Drop="DataGrid_Drop" x:Name="DataGrid_MusicList" Tag="Music" AutoGenerateColumns="False">
+
+		<GroupBox Header="Музыка" Grid.Row="0" Grid.Column="0" Padding="10" Margin="10">
+			<DataGrid AllowDrop="True" Drop="DataGrid_Drop" x:Name="DataGrid_MusicList" Tag="Music" AutoGenerateColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" CellEditEnding="DataGrid_MusicList_CellEditEnding">
 				<DataGrid.Columns>
 					<DataGridTextColumn Binding="{Binding Name}" Header="Название файла" IsReadOnly="True"/>
 					<DataGridTextColumn Binding="{Binding Duration}" Header="Длительность" IsReadOnly="True"/>
@@ -40,14 +36,25 @@
 			</DataGrid>
 		</GroupBox>
 
-		<GroupBox Grid.Row="1" Grid.ColumnSpan="2" Header="Аудио" Padding="10" Margin="10">
-			<DataGrid AllowDrop="True" Drop="DataGrid_Drop" x:Name="DataGrid_AudioList" Tag="Audio" AutoGenerateColumns="False">
+		<GroupBox Grid.Row="0" Grid.Column="1" Header="Аудио" Padding="10" Margin="10">
+			<DataGrid AllowDrop="True" Drop="DataGrid_Drop" x:Name="DataGrid_AudioList" Tag="Audio" AutoGenerateColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False">
 				<DataGrid.Columns>
 					<DataGridTextColumn Binding="{Binding Name}" Header="Название файла" IsReadOnly="True"/>
 					<DataGridTextColumn Binding="{Binding Duration}" Header="Длительность" IsReadOnly="True"/>
 				</DataGrid.Columns>
 			</DataGrid>
 		</GroupBox>
+
+
+		<Border Padding="10" Margin="10" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" HorizontalAlignment="Left">
+			<StackPanel Grid.Row="4" Grid.Column="0">
+				<Button Content="Снять выделение" Click="ClearSelect_Click" Padding="5,0,5,0" />
+				<Button Content="Удалить" Click="Delete_Click" Padding="5,0,5,0" />
+			</StackPanel>
+		</Border>
+
+
+
 
 
 	</Grid>

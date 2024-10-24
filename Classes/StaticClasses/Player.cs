@@ -63,6 +63,7 @@ namespace Belly.Classes.StaticClasses
         public async Task Play(MediaFile MediaFile)
         {
             MainPage.label_nameMediaFileText.Content = $"Воспроизводиться {MediaFile.Name}";
+            OutputDevice.Volume = Main.SettingsValues.basicVolume;
             if (MediaFile != null)
             {
                 AudioFile = new AudioFileReader(MediaFile.Path);
