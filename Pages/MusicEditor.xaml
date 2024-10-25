@@ -5,52 +5,57 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Belly.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="600"
+      d:DesignWidth="1280" d:DesignHeight="720" 
       Title="MusicEditor"
 	  AllowDrop="True"
-	  Drop="Page_Drop">
+	  Background="White">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+	<Grid>
+
+
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition/>
-			<ColumnDefinition/>
+			<ColumnDefinition Width="1*" />
+			<ColumnDefinition Width="1*" />
 		</Grid.ColumnDefinitions>
-        
-		<TabControl Grid.ColumnSpan="2">
-			<TabItem Header="5 Минут">
-				<DataGrid AutoGenerateColumns="False" x:Name="DataGrid5Min">
-					<DataGrid.Columns>
-                        <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
-						<DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="auto"/>
-					</DataGrid.Columns>
-				</DataGrid>
-			</TabItem>
-			<TabItem Header="10 Минут">
-                <DataGrid AutoGenerateColumns="False" x:Name="DataGrid10Min">
-					<DataGrid.Columns>
-                        <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
-						<DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="auto"/>
-					</DataGrid.Columns>
-				</DataGrid>
-			</TabItem>
-			<TabItem Header="40 Минут">
-                <DataGrid AutoGenerateColumns="False" x:Name="DataGrid40Min">
-					<DataGrid.Columns>
-						<DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
-						<DataGridTextColumn Header="Приоритет" Binding="{Binding Priority}" Width="auto"/>
-					</DataGrid.Columns>
-				</DataGrid>
-			</TabItem>
-		</TabControl>
-
-        <Button Grid.Row="1" Grid.Column="0" Content="Удалить" Click="DeleteClick"/>
-		<Button Grid.Row="1" Grid.Column="1" Content="Сохранить приоритет" Click="SaveClick"/>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="auto"/>
+		</Grid.RowDefinitions>
 
 
 
-    </Grid>
+
+
+		<GroupBox Header="Музыка" Grid.Row="0" Grid.Column="0" Padding="10" Margin="10" FontWeight="Bold" FontSize="18">
+			<DataGrid AllowDrop="True" Drop="DataGrid_Drop" x:Name="DataGrid_MusicList" Tag="Music" AutoGenerateColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" CellEditEnding="DataGrid_MusicList_CellEditEnding" SelectionChanged="DataGrid_SelectionChanged" FontWeight="Normal" FontSize="18">
+				<DataGrid.Columns>
+					<DataGridTextColumn Binding="{Binding Name}" Header="Название файла" IsReadOnly="True"/>
+					<DataGridTextColumn Binding="{Binding Duration}" Header="Длительность" IsReadOnly="True"/>
+					<DataGridTextColumn Binding="{Binding Priority}" Header="Приоритет"/>
+				</DataGrid.Columns>
+			</DataGrid>
+		</GroupBox>
+
+		<GroupBox Grid.Row="0" Grid.Column="1" Header="Аудио" Padding="10" Margin="10" FontWeight="Bold" FontSize="18">
+			<DataGrid AllowDrop="True" Drop="DataGrid_Drop" x:Name="DataGrid_AudioList" Tag="Audio" AutoGenerateColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" SelectionChanged="DataGrid_SelectionChanged" FontWeight="Normal" FontSize="18">
+				<DataGrid.Columns>
+					<DataGridTextColumn Binding="{Binding Name}" Header="Название файла" IsReadOnly="True"/>
+					<DataGridTextColumn Binding="{Binding Duration}" Header="Длительность" IsReadOnly="True"/>
+				</DataGrid.Columns>
+			</DataGrid>
+		</GroupBox>
+
+
+		<Border Padding="10" Margin="10" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="10" HorizontalAlignment="Left">
+			<StackPanel Grid.Row="4" Grid.Column="0">
+				<Button x:Name="button_unselect" Content="Снять выделение" Click="ClearSelect_Click" Padding="5,0,5,0" IsEnabled="false"/>
+				<Button x:Name="button_deleteIssue" Content="Удалить" Click="Delete_Click" Padding="5,0,5,0" IsEnabled="false"/>
+			</StackPanel>
+		</Border>
+
+
+
+
+
+	</Grid>
 </Page>

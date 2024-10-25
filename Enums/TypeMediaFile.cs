@@ -1,8 +1,8 @@
 ﻿namespace Belly.Enums
 {
-    public enum TypeData
+    public enum TypeMediaFile
     {
-        Folder,
+        Audio,
         Track
     }
 }

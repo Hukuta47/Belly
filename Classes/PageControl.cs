@@ -6,10 +6,10 @@ namespace Belly.Classes
 {
     public class PageControl
     {
-        Page musicEditor = new MusicEditor();
-        Page sheduleEditor = new SheduleEditor();
-        Page mainPage = new MainPage();
-        Page settings = new Settings();
+        MusicEditor musicEditor = new MusicEditor();
+        public MainPage mainPage = new MainPage();
+        SheduleEditor sheduleEditor = new SheduleEditor();
+        Settings settings = new Settings();
 
         Frame mainFrame;
 
@@ -30,12 +30,17 @@ namespace Belly.Classes
             {
                 case Pages.musicEditor:
                     mainFrame.Navigate(musicEditor);
+
                     break;
                 case Pages.sheduleEditor:
                     mainFrame.Navigate(sheduleEditor);
+
                     break;
                 case Pages.mainPage:
                     mainFrame.Navigate(mainPage);
+
+
+
                     break;
                 case Pages.settings:
                     mainFrame.Navigate(settings);
