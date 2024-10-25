@@ -12,6 +12,7 @@ namespace Belly.Pages
         public static Label label_timeText;
         public static Label label_statusText;
         public static Label label_nameMediaFileText;
+        public static ListBox listBox_WeekListInt;
         public static ComboBox selectedShedule;
         public static int dayOfWeel;
         public MainPage()
@@ -25,6 +26,7 @@ namespace Belly.Pages
             selectedShedule = Combobox_SelectSchedule;
             label_statusText = label_Status;
             label_nameMediaFileText = label_nameMediaFileMusic;
+            listBox_WeekListInt = ListBox_WeekList;
         }
         void InitializeInterface()
         {
@@ -45,7 +47,14 @@ namespace Belly.Pages
 
         private void DayOfWeekChanged(object sender, SelectionChangedEventArgs e)
         {
-            Combobox_SelectSchedule.SelectedIndex = ((Day)ListBox_WeekList.SelectedItem).scheduleNum;
+            if (ListBox_WeekList.SelectedItem != null)
+            {
+                Combobox_SelectSchedule.SelectedIndex = ((Day)ListBox_WeekList.SelectedItem).scheduleNum;
+            }
+            else
+            {
+                Combobox_SelectSchedule.SelectedIndex = -1;
+            }
         }
         private void Schedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

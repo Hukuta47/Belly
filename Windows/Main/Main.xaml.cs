@@ -182,22 +182,43 @@ namespace Belly
                 TimeNow = new TimeOnly(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
                 if (MainPage.label_timeText != null) MainPage.label_timeText.Content = TimeNow.ToString();
 
+                if (TimeNow == new TimeOnly(0,0,0))
+                {
+                    int dayOfWeek = (int)DateTime.Now.DayOfWeek - 1;
+
+                    if (dayOfWeek <= 5)
+                    {
+
+                        MainPage.listBox_WeekListInt.SelectedIndex = dayOfWeek;
+                    }
+                    else
+                    {
+                        MainPage.listBox_WeekListInt.SelectedIndex = -1;
+                    }
+
+
+                }
+
+
 
 
                 if (initialized == true)
                 {
+                    
+
                     Schedule schedule = (Schedule)MainPage.selectedShedule.SelectedItem;
+
                     if (schedule.Issues != null)
                     {
-
                         foreach (Issue item in schedule.Issues)
                         {
                             if (item.StartTime.ToTimeSpan().TotalSeconds == TimeNow.ToTimeSpan().TotalSeconds &&
                                 !playerStarted && Player.OutputDevice.PlaybackState != PlaybackState.Playing
                                 )
                             {
+                                var dayOfWeek = DateTime.Now.DayOfWeek;
 
-                                item.Start();
+                                if (dayOfWeek.ToString() != "Sunday") item.Start();
                                 playerStarted = true;
                             }
 
