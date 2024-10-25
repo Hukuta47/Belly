@@ -55,7 +55,6 @@ namespace Belly
             if (!Directory.Exists("Music")) Directory.CreateDirectory("Music");
             if (!File.Exists($"Music\\listInfo.json")) File.WriteAllText($"Music\\listInfo.json", "[]");
             if (!Directory.Exists("Audio")) Directory.CreateDirectory("Audio");
-            if (!Directory.Exists("Icons")) Directory.CreateDirectory("Icons");
 
         }
         void InitializeClasses()
