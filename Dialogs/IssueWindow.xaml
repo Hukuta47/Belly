@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Belly.Dialogs"
         mc:Ignorable="d"
-        Title="AddIssueWindow" d:DesignHeight="260" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" SizeToContent="Width">
+        Title="AddIssueWindow" d:DesignHeight="720" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" SizeToContent="Width">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="auto"/>
@@ -18,39 +18,39 @@
 		</Grid.RowDefinitions>
 
 
-		<GroupBox Grid.Row="0" Header="Название">
-			<TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" x:Name="TextBox_NameIssue" Text="Звоночек"/>	
+		<GroupBox Grid.Row="0" Header="Название" Padding="10" Margin="10" FontWeight="Bold" FontSize="18">
+			<TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" x:Name="TextBox_NameIssue" Text="Звоночек" FontWeight="Normal" FontSize="12"/>	
 		</GroupBox>
 
 
-		<GroupBox Grid.Row="1" Header="Задача:">
+		<GroupBox Grid.Row="1" Header="Задача" Padding="10" Margin="10" FontWeight="Bold" FontSize="18">
 			<StackPanel Grid.Row="1" Grid.Column="1">
-				<RadioButton Content="Играть музыку" Checked="RadioButton_Checked"  Tag="MusicFile" x:Name="RadioButton_PlayMusic"/>
-				<RadioButton Content="Проиграть файл" Checked="RadioButton_Checked" Tag="AudioFile" x:Name="RadioButton_PlayAudio"/>
+				<RadioButton Content="Играть музыку" Checked="RadioButton_Checked"  Tag="MusicFile" x:Name="RadioButton_PlayMusic" FontWeight="Normal" FontSize="12"/>
+				<RadioButton Content="Проиграть файл" Checked="RadioButton_Checked" Tag="AudioFile" x:Name="RadioButton_PlayAudio" FontWeight="Normal" FontSize="12"/>
 			</StackPanel>
 		</GroupBox>
 
-		<GroupBox Grid.Row="2" Header="Время">
-			<Grid>
+		<GroupBox Grid.Row="2" Header="Время" Padding="10" Margin="10" FontWeight="Bold" FontSize="18">
+			<Grid >
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition />
 					<ColumnDefinition Width="auto"/>
 					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
 
-				<TextBox Grid.Column="0" Text="00:00" TextAlignment="Center" x:Name="TextBox_StartTime"/>
-				<TextBlock Grid.Column="1" Text="-" Margin="10 0 10 0"/>
-				<TextBox Grid.Column="2" Text="00:00" TextAlignment="Center" x:Name="TextBox_EndTime"/>
+				<TextBox Grid.Column="0" Text="00:00" TextAlignment="Center" x:Name="TextBox_StartTime" FontWeight="Normal" FontSize="12"/>
+				<TextBlock Grid.Column="1" Text="-" Margin="10 0 10 0" FontWeight="Normal" FontSize="12"/>
+				<TextBox Grid.Column="2" Text="00:00" TextAlignment="Center" x:Name="TextBox_EndTime" FontWeight="Normal" FontSize="12"/>
 
 			</Grid>
 		</GroupBox>
 
-		<GroupBox Grid.Row="3" Header="Дополнительно" x:Name="GroupBox_Other">
-			<CheckBox Content="Прибавлять начало/конец?" x:Name="CheckBox_EnabledIO"/>
+		<GroupBox Grid.Row="3" Header="Дополнительно" x:Name="GroupBox_Other" Padding="10" Margin="10" FontWeight="Bold" FontSize="18">
+			<CheckBox Content="Прибавлять начало/конец?" x:Name="CheckBox_EnabledIO" FontWeight="Normal" FontSize="12"/>
 		</GroupBox>
 
-		<GroupBox Grid.Row="4" Header="Файл" x:Name="GroupBox_File">
-			<ListBox x:Name="ListBox_AudioList" DisplayMemberPath="Name"/>
+		<GroupBox Grid.Row="4" Header="Файл" x:Name="GroupBox_File" Padding="10" Margin="10" FontWeight="Bold" FontSize="18">
+			<ListBox x:Name="ListBox_AudioList" DisplayMemberPath="Name" FontWeight="Normal" FontSize="12"/>
 		</GroupBox>
 
 		

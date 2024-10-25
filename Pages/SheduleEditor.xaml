@@ -47,12 +47,12 @@
 
 
 		<GroupBox Padding="10" Margin="10" Grid.Column="1" Header="Список задач" FontWeight="Bold" FontSize="18">
-			<DataGrid AutoGenerateColumns="False" SelectionMode="Extended" IsReadOnly="True" x:Name="DataGrid_Schedules" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" SelectedCellsChanged="DataGrid_Schedules_SelectedCellsChanged" FontWeight="Normal" FontSize="12">
+			<DataGrid AutoGenerateColumns="False" SelectionMode="Extended" IsReadOnly="True" x:Name="DataGrid_Schedules" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" SelectedCellsChanged="DataGrid_Schedules_SelectedCellsChanged" FontWeight="Normal" FontSize="18">
 				<DataGrid.Columns>
 					<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="auto"/>
-					<DataGridTextColumn Binding="{Binding IssueType}" Header="Тип" Width="50"/>
-					<DataGridTextColumn Binding="{Binding text_StartTime}" Header="Начало" Width="50" SortDirection="Descending"/>
-					<DataGridTextColumn Binding="{Binding text_EndTime}" Header="Конец" Width="50"/>
+					<DataGridTextColumn Binding="{Binding IssueType}" Header="Тип" Width="auto"/>
+					<DataGridTextColumn Binding="{Binding text_StartTime}" Header="Начало" Width="auto"/>
+					<DataGridTextColumn Binding="{Binding text_EndTime}" Header="Конец" Width="auto"/>
 					<DataGridCheckBoxColumn Binding="{Binding VolumeUpDown}" Header="Прибавление громкости в начале/конце" Width="auto"/>
 				</DataGrid.Columns>
 			</DataGrid>

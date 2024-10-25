@@ -15,7 +15,7 @@ namespace Belly.Objects
             {
                 switch (DayOfWeek)
                 {
-                    case DayOfWeek.Monday: return "Понидельник";
+                    case DayOfWeek.Monday: return "Понедельник";
                     case DayOfWeek.Tuesday: return "Вторник";
                     case DayOfWeek.Wednesday: return "Среда";
                     case DayOfWeek.Thursday: return "Четверг";

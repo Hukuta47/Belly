@@ -30,7 +30,6 @@ namespace Belly.Classes.StaticClasses
                 var stopwatch = new Stopwatch();
 
                 stopwatch.Start();
-
                 if (volumeUpDown == true) startVolumeUpDown(milliseconds);
 
 
@@ -58,7 +57,7 @@ namespace Belly.Classes.StaticClasses
                 MainPage.label_nameMediaFileText.Content = $"";
             }
 
-            
+            OutputDevice.Volume = Main.SettingsValues.basicVolume;
         }
         public async Task Play(MediaFile MediaFile)
         {

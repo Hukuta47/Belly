@@ -43,7 +43,7 @@ namespace Belly.Dialogs
             {
                 RadioButton_PlayAudio.IsChecked = true;
                 CheckBox_EnabledIO.IsChecked = false;
-                ListBox_AudioList.SelectedItem = (Audio)Issue.MediaFile;
+                ListBox_AudioList.SelectedItem = (MediaFile)Issue.MediaFile;
             }
         }
         private void Create_Click(object sender, RoutedEventArgs e)

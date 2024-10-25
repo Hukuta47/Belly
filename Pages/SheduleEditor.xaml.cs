@@ -28,6 +28,8 @@ namespace Belly.Pages
             }
             DataGrid_Schedules.Items.Refresh();
             SaveSchedule();
+
+            
         }
         private void CreateIssue_Click(object sender, RoutedEventArgs e)
         {
@@ -54,6 +56,10 @@ namespace Belly.Pages
         private void SelectedSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid_Schedules.ItemsSource = ((Schedule)ListBox_ListSchedules.SelectedItem).Issues;
+
+            button_changeIssue.IsEnabled = false;
+            button_deleteIssue.IsEnabled = false;
+            button_unselect.IsEnabled = false;
         }
 
         void InitializeData()

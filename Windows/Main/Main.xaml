@@ -48,7 +48,7 @@
 
 			<Frame Grid.Row="1" Grid.ColumnSpan="4" NavigationUIVisibility="Hidden" x:Name="frame"/>
 
-			<Label Content="Ver: 1.1.0" Grid.Row="3" Grid.ColumnSpan="4"/>
+			<Label Content="Ver: 1.0.0.25102024" Grid.Row="3" Grid.ColumnSpan="4"/>
 		</Grid>
 	</DockPanel>
 </Window>
