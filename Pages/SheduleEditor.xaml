@@ -5,45 +5,64 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Belly.Pages"
       xmlns:trackClass="clr-namespace:Belly.Objects"
-      
+      Background="White"
       mc:Ignorable="d"
-      Title="SheduleEditor" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:DesignHeight="444.142" d:DesignWidth="521.845">
-
-    
-    <Grid>
-        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="3.5*"/>
-            <ColumnDefinition Width="4.5*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-
-        <Label Grid.Row="0" Grid.Column="0" Content="Тип дня:"/>
-        <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" x:Name="schedules" DisplayMemberPath="Name" SelectionChanged="schedules_SelectionChanged"/>
-
-        <DataGrid Grid.Row="1" Grid.ColumnSpan="3" x:Name="dataListSchedule" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="*"/>
-                <DataGridTextColumn Binding="{Binding PlayTime}" Header="Время запуска" Width="*"/>
-                <DataGridTextColumn Binding="{Binding Media.Name}" Header="Музыка" Width="*"/>
-            </DataGrid.Columns>
-            <DataGrid.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Сместить вверх"/>
-                    <MenuItem Header="Сместить вниз"/>
-                    <MenuItem Header="Изменить" Click="MenuItem_Click"/>
-                </ContextMenu>
-            </DataGrid.ContextMenu>
-        </DataGrid>
-
-        <Button Content="Создать звонок" Grid.ColumnSpan="2" Grid.Row="3" Click="CreateBell"/>
-        <Button Content="Сохранить" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3" Click="SaveClick"/>
+      Title="SheduleEditor" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:DesignWidth="1280" d:DesignHeight="720">
 
 
-    </Grid>
+	<Grid>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition	/>
+		</Grid.RowDefinitions>
+
+
+
+		<Grid Grid.RowSpan="2" Grid.Column="0">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition Height="auto"/>
+			</Grid.RowDefinitions>
+
+			<GroupBox Padding="10" Margin="10" Grid.Row="0" Header="Список пресетов" FontWeight="Bold" FontSize="18">
+				<ListBox x:Name="ListBox_ListSchedules" DisplayMemberPath="Name" SelectionChanged="SelectedSchedule_SelectionChanged" FontWeight="Normal" FontSize="12"/>
+			</GroupBox>
+
+			<Border Padding="10" Margin="10" Grid.Row="1" BorderBrush="Gray" BorderThickness="1" CornerRadius="10">
+				<StackPanel Orientation="Vertical">
+					<Button Content="Изменить задачу" Click="ChangeIssue_Click" IsEnabled="False" x:Name="button_changeIssue"/>
+					<Button Content="Создать задачу" Click="CreateIssue_Click"/>
+					<Button Content="Снять виделение" Click="unselect_Click" IsEnabled="False" x:Name="button_unselect"/>
+					<Button Content="Удалить" Click="Delete_Click" x:Name="button_deleteIssue" IsEnabled="False"/>
+				</StackPanel>
+			</Border>
+
+
+		</Grid>
+
+
+
+		<GroupBox Padding="10" Margin="10" Grid.Column="1" Header="Список задач" FontWeight="Bold" FontSize="18">
+			<DataGrid AutoGenerateColumns="False" SelectionMode="Extended" IsReadOnly="True" x:Name="DataGrid_Schedules" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" SelectedCellsChanged="DataGrid_Schedules_SelectedCellsChanged" FontWeight="Normal" FontSize="18">
+				<DataGrid.Columns>
+					<DataGridTextColumn Binding="{Binding Name}" Header="Название" Width="auto"/>
+					<DataGridTextColumn Binding="{Binding IssueType}" Header="Тип" Width="auto"/>
+					<DataGridTextColumn Binding="{Binding text_StartTime}" Header="Начало" Width="auto"/>
+					<DataGridTextColumn Binding="{Binding text_EndTime}" Header="Конец" Width="auto"/>
+					<DataGridCheckBoxColumn Binding="{Binding VolumeUpDown}" Header="Прибавление громкости в начале/конце" Width="auto"/>
+				</DataGrid.Columns>
+			</DataGrid>
+		</GroupBox>
+
+
+
+
+
+
+
+	</Grid>
 </Page>

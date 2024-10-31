@@ -1,12 +1,8 @@
-﻿using Belly.Classes.StaticClasses;
-using Belly.Dialogs;
-using Belly.Objects;
+﻿using Belly.Objects;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 
 namespace Belly.Pages
 {
@@ -15,151 +11,109 @@ namespace Belly.Pages
         public MusicEditor()
         {
             InitializeComponent();
-            LoadTracks();
+            InitializeData();
         }
-        private void DeleteClick(object sender, RoutedEventArgs e)
+        void InitializeData()
         {
-            List<DataGrid> dataGrids = new List<DataGrid>()
+            DataGrid_MusicList.ItemsSource = Main.MusicList;
+            DataGrid_AudioList.ItemsSource = Main.AudioList;
+        }
+        private void DataGrid_Drop(object sender, System.Windows.DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                DataGrid5Min,
-                DataGrid10Min,
-                DataGrid40Min
-            };
-
-            foreach (DataGrid dataGrid in dataGrids)
-            {
-                List<Track> tempTracks = dataGrid.ItemsSource as List<Track>;
-
-                foreach (Track selectTrack in dataGrid.SelectedItems)
-                {
-                    tempTracks.Remove(selectTrack);
-                    File.Delete(selectTrack.Path);
-                }
-                dataGrid.ItemsSource = null;
-                dataGrid.ItemsSource = tempTracks;
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
 
-            }
-            SaveClick();
-        }
-        private void SaveClick(object sender, RoutedEventArgs e)
-        {
-            var json1 = JsonConvert.SerializeObject(DataGrid5Min.ItemsSource, Formatting.Indented);
-            var json2 = JsonConvert.SerializeObject(DataGrid10Min.ItemsSource, Formatting.Indented);
-            var json3 = JsonConvert.SerializeObject(DataGrid40Min.ItemsSource, Formatting.Indented);
-
-            File.WriteAllText("5 min\\listInfo.json", json1);
-            File.WriteAllText("10 min\\listInfo.json", json2);
-            File.WriteAllText("40 min\\listInfo.json", json3);
-        }
-        private void SaveClick()
-        {
-            var json1 = JsonConvert.SerializeObject(DataGrid5Min.ItemsSource, Formatting.Indented);
-            var json2 = JsonConvert.SerializeObject(DataGrid10Min.ItemsSource, Formatting.Indented);
-            var json3 = JsonConvert.SerializeObject(DataGrid40Min.ItemsSource, Formatting.Indented);
-
-            File.WriteAllText("5 min\\listInfo.json", json1);
-            File.WriteAllText("10 min\\listInfo.json", json2);
-            File.WriteAllText("40 min\\listInfo.json", json3);
-        }
-        void LoadTracks()
-        {
-            musicLists.Min5 = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("5 min\\listInfo.json"));
-            musicLists.Min10 = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("10 min\\listInfo.json"));
-            musicLists.Min40 = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("40 min\\listInfo.json"));
-
-            DataGrid5Min.ItemsSource = musicLists.Min5;
-            DataGrid10Min.ItemsSource = musicLists.Min10;
-            DataGrid40Min.ItemsSource = musicLists.Min40;
-        }
-        private void Page_Drop(object sender, DragEventArgs e)
-        {
-            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            AddTrackWindow addTrackWindow = new AddTrackWindow();
-            
-            if (addTrackWindow.ShowDialog() == true)
-            {
                 foreach (string file in files)
                 {
-                    if (Path.GetExtension(file).Equals(".mp3", StringComparison.OrdinalIgnoreCase))
+                    if (System.IO.Path.GetExtension(file).ToLower() == ".mp3")
                     {
-                        if (addTrackWindow.Accept5min)
+                        switch (((DataGrid)sender).Tag)
                         {
-                            if (!musicLists.Min5.Exists(l => l.Path == new Track($"5 min\\{Path.GetFileName(file)}").Path))
-                            {
-                                File.Copy(file, $"5 min\\{Path.GetFileName(file)}", true);
-                                musicLists.Min5.Add(new Track($"5 min\\{Path.GetFileName(file)}"));
-                                var json = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("5 min\\listInfo.json"));
+                            case "Music":
 
-                                json.Add(new Track($"5 min\\{Path.GetFileName(file)}"));
-                                json.Sort((m1, m2) => string.Compare(m1.Name, m2.Name, StringComparison.Ordinal)); // Сортировка А-Я
-                                var jsonWrit = JsonConvert.SerializeObject(json, Formatting.Indented);
-                                File.WriteAllText("5 min\\listInfo.json", jsonWrit);
-                            }
-                        }
-                        if (addTrackWindow.Accept10min)
-                        {
-                            if (!musicLists.Min10.Exists(l => l.Path == new Track($"10 min\\{Path.GetFileName(file)}").Path))
-                            {
-                                File.Copy(file, $"10 min\\{Path.GetFileName(file)}", true);
-                                musicLists.Min10.Add(new Track($"10 min\\{Path.GetFileName(file)}"));
-                                var json = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("10 min\\listInfo.json"));
+                                if (!Main.MusicList.Exists(f => f.Name == Path.GetFileName(file)))
+                                {
+                                    Music music = new Music(file);
 
-                                json.Add(new Track($"10 min\\{Path.GetFileName(file)}"));
-                                json.Sort((m1, m2) => string.Compare(m1.Name, m2.Name, StringComparison.Ordinal)); // Сортировка А-Я
-                                var jsonWrit = JsonConvert.SerializeObject(json, Formatting.Indented);
-                                File.WriteAllText("10 min\\listInfo.json", jsonWrit);
-                            }
-                        }
-                        if (addTrackWindow.Accept40min)
-                        {
-                            
-                            if (!musicLists.Min40.Exists(l => l.Path == new Track($"40 min\\{Path.GetFileName(file)}").Path))
-                            {
-                                File.Copy(file, $"40 min\\{Path.GetFileName(file)}", true);
-                                musicLists.Min40.Add(new Track($"40 min\\{Path.GetFileName(file)}"));
-                                var json = JsonConvert.DeserializeObject<List<Track>>(File.ReadAllText("40 min\\listInfo.json"));
+                                    Main.MusicList.Add(music);
+                                    File.Copy(file, $@"Music\{music.Name}", true);
 
-                                json.Add(new Track($"40 min\\{Path.GetFileName(file)}"));
-                                json.Sort((m1, m2) => string.Compare(m1.Name, m2.Name, StringComparison.Ordinal)); // Сортировка А-Я
-                                var jsonWrit = JsonConvert.SerializeObject(json, Formatting.Indented);
-                                File.WriteAllText("40 min\\listInfo.json", jsonWrit);
-                            }
+                                    DataGrid_MusicList.Items.Refresh();
+
+                                    var json = JsonConvert.SerializeObject(Main.MusicList, Formatting.Indented);
+                                    File.WriteAllText(@"Music\listInfo.json", json);
+                                }
+                                break;
+                            case "Audio":
+                                if (!Main.AudioList.Exists(f => f.Name == Path.GetFileName(file)))
+                                {
+                                    Audio audio = new Audio(file);
+
+                                    Main.AudioList.Add(audio);
+                                    File.Copy(file, $@"Audio\{audio.Name}", true);
+
+                                    DataGrid_AudioList.Items.Refresh();
+                                }
+                                break;
                         }
+
                     }
                 }
             }
-
-            musicLists.Min5.Sort((m1, m2) => string.Compare(m1.Name, m2.Name, StringComparison.Ordinal)); // Сортировка А-Я
-            musicLists.Min10.Sort((m1, m2) => string.Compare(m1.Name, m2.Name, StringComparison.Ordinal)); // Сортировка А-Я
-            musicLists.Min40.Sort((m1, m2) => string.Compare(m1.Name, m2.Name, StringComparison.Ordinal)); // Сортировка А-Я
-
-            DataGrid5Min.ItemsSource = musicLists.Min5;
-            DataGrid10Min.ItemsSource = musicLists.Min10;
-            DataGrid40Min.ItemsSource = musicLists.Min40;
-
-
-            DataGrid5Min.Items.Refresh();
-            DataGrid10Min.Items.Refresh();
-            DataGrid40Min.Items.Refresh();
-
         }
 
-        public static List<T> RemoveDuplicates<T>(List<T> list)
+        private void Delete_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            HashSet<T> seenElements = new HashSet<T>();
-            List<T> uniqueList = new List<T>();
-
-            foreach (T item in list)
+            foreach (Audio item in DataGrid_AudioList.SelectedItems)
             {
-                if (seenElements.Add(item))
-                {
-                    uniqueList.Add(item);
-                }
+                Main.AudioList.Remove(item);
+                File.Delete(item.Path);
             }
+            foreach (Music item in DataGrid_MusicList.SelectedItems)
+            {
+                Main.MusicList.Remove(item);
+                File.Delete(item.Path);
+            }
+            var json = JsonConvert.SerializeObject(Main.MusicList, Formatting.Indented);
+            File.WriteAllText(@"Music\listInfo.json", json);
 
-            return uniqueList;
+            DataGrid_AudioList.Items.Refresh();
+            DataGrid_MusicList.Items.Refresh();
+
+            button_deleteIssue.IsEnabled = false;
+            button_unselect.IsEnabled = false;
+
         }
 
+        private void ClearSelect_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            DataGrid_MusicList.SelectedItem = null;
+            DataGrid_AudioList.SelectedItem = null;
+
+            button_deleteIssue.IsEnabled = false;
+            button_unselect.IsEnabled = false;
+        }
+
+        private void DataGrid_MusicList_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            var json = JsonConvert.SerializeObject(Main.MusicList, Formatting.Indented);
+            File.WriteAllText(@"Music\listInfo.json", json);
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DataGrid_MusicList.SelectedItems.Count > 0 || DataGrid_AudioList.SelectedItems.Count > 0)
+            {
+                button_unselect.IsEnabled = true;
+                button_deleteIssue.IsEnabled = true;
+            }
+            else if (DataGrid_MusicList.SelectedItems.Count < 0 || DataGrid_AudioList.SelectedItems.Count < 0)
+            {
+                button_deleteIssue.IsEnabled = false;
+                button_unselect.IsEnabled = false;
+            }
+        }
     }
 }

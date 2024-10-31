@@ -7,10 +7,10 @@ namespace Belly.Objects
         public Schedule(string Name)
         {
             this.Name = Name;
-            bells = new List<Bell>();
+            Issues = new List<Issue>();
         }
         public string Name { get; }
-        public List<Bell> bells { get; set; } = new List<Bell>();
+        public List<Issue> Issues { get; set; } = new List<Issue>();
 
     }
 }

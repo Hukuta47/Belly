@@ -1,11 +1,10 @@
-﻿using Newtonsoft.Json;
-using System.IO;
-using Belly.Objects;
+﻿using Belly.Objects;
 using System.Windows.Controls;
-using System.Collections.Generic;
 using System.Windows;
 using Belly.Dialogs;
-using Belly.Classes.StaticClasses;
+using Newtonsoft.Json;
+using System.IO;
+using Microsoft.VisualBasic;
 
 namespace Belly.Pages
 {
@@ -15,65 +14,94 @@ namespace Belly.Pages
         public SheduleEditor()
         {
             InitializeComponent();
+            InitializeData();
 
-            LoadList();
-
+            ListBox_ListSchedules.SelectedIndex = 0;
         }
-
-        void LoadList()
+        private void ChangeIssue_Click(object sender, RoutedEventArgs e)
         {
-            var jsonRead = JsonConvert.DeserializeObject<List<Schedule>>(File.ReadAllText("sheduleList.json"));
-            
-            schedules.ItemsSource = jsonRead;
+            var dialog = new IssueWindow("Изменить", (Issue)DataGrid_Schedules.SelectedItem);
 
-            sheduleList.basicSchedule = jsonRead[0];
-            sheduleList.shortSchedule = jsonRead[1];
-            sheduleList.exclusiveSchedule = jsonRead[2];
-
-            schedules.SelectedIndex = 0;
-        }
-
-        private void schedules_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            dataListSchedule.ItemsSource = ((Schedule)schedules.SelectedItem).bells;
-        }
-
-        private void CreateBell(object sender, System.Windows.RoutedEventArgs e)
-        {
-            var dialog = new AddScheduleWindow();
-
-            List<Bell> tempList = dataListSchedule.ItemsSource as List<Bell>;
             if (dialog.ShowDialog() == true)
             {
-                tempList.Add(new Bell(dialog.Name, dialog.PlayTime, dialog.MediaData));
+                ((Schedule)ListBox_ListSchedules.SelectedItem).Issues[DataGrid_Schedules.SelectedIndex] = dialog.Issue;
             }
+            DataGrid_Schedules.Items.Refresh();
+            SaveSchedule();
 
-            dataListSchedule.ItemsSource = tempList;
-            dataListSchedule.Items.Refresh();
-
+            
         }
-
-        private void SaveClick(object sender, RoutedEventArgs e)
+        private void CreateIssue_Click(object sender, RoutedEventArgs e)
         {
-            List<Schedule> schedulesList = schedules.ItemsSource as List<Schedule>;
+            var dialog = new IssueWindow("Создать");
 
-            var jsonWrite = JsonConvert.SerializeObject(schedulesList, Formatting.Indented);
-
-            File.WriteAllText("sheduleList.json", jsonWrite);
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            SetBellData changeBellData = new SetBellData(dataListSchedule.SelectedItem);
-
-            if (changeBellData.ShowDialog() == true)
+            if (dialog.ShowDialog() == true)
             {
-                dataListSchedule.SelectedItem = changeBellData.SelectedItem;
-
-                List<Bell> bells = (List<Bell>)dataListSchedule.ItemsSource;
-                dataListSchedule.ItemsSource = null;
-                dataListSchedule.ItemsSource = bells;
+                ((Schedule)ListBox_ListSchedules.SelectedItem).Issues.Add(dialog.Issue);
             }
+            DataGrid_Schedules.Items.Refresh();
+            SaveSchedule();
+
+        }
+        
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Issue issue in DataGrid_Schedules.SelectedItems)
+            {
+                Main.ScheduleList[ListBox_ListSchedules.SelectedIndex].Issues.Remove(issue);
+            }
+            DataGrid_Schedules.Items.Refresh();
+            SaveSchedule();
+        }
+        private void SelectedSchedule_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid_Schedules.ItemsSource = ((Schedule)ListBox_ListSchedules.SelectedItem).Issues;
+
+            button_changeIssue.IsEnabled = false;
+            button_deleteIssue.IsEnabled = false;
+            button_unselect.IsEnabled = false;
+        }
+
+        void InitializeData()
+        {
+            ListBox_ListSchedules.ItemsSource = Main.ScheduleList;
+        }
+        private void SaveSchedule()
+        {
+            var json = JsonConvert.SerializeObject(Main.ScheduleList, Formatting.Indented);
+            File.WriteAllText("sheduleList.json", json);
+        }
+
+        private void DataGrid_Schedules_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            DataGrid dataGrid = (DataGrid)sender;
+            if (dataGrid.SelectedItems.Count > 1)
+            {
+                button_changeIssue.IsEnabled = false;
+            }
+            else
+            {
+                button_changeIssue.IsEnabled = true;
+            }
+
+            if (dataGrid.SelectedItems.Count > 0)
+            {
+                button_unselect.IsEnabled = true;
+                button_deleteIssue.IsEnabled = true;
+            }
+            else if (dataGrid.SelectedItems.Count < 0)
+            {
+                button_deleteIssue.IsEnabled = false;
+                button_unselect.IsEnabled = false;
+            }
+        }
+
+        private void unselect_Click(object sender, RoutedEventArgs e)
+        {
+            DataGrid_Schedules.SelectedItem = null;
+            button_unselect.IsEnabled = false;
+            button_changeIssue.IsEnabled = false;
+            button_deleteIssue.IsEnabled = false;
         }
     }
 }
